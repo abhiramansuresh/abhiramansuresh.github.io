@@ -2,7 +2,6 @@
 
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -30,6 +29,21 @@ nav a {
     text-decoration: none;
 }
 
+#hero {
+    background: #f3f3f3;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #35424a;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
 section {
     padding: 20px;
     margin: 20px;
@@ -37,12 +51,13 @@ section {
     border-radius: 5px;
 }
 
+.project {
+    margin: 20px 0;
+}
+
 footer {
     text-align: center;
     padding: 10px 0;
     background: #35424a;
     color: #ffffff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
