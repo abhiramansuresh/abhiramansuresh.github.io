@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Update URL without page reload
-                history.pushState({ page: sectionId }, '', `${sectionId}`);
+                history.pushState({ page: sectionId }, '', `${sectionId}.html`);
             }
         });
     };
@@ -212,7 +212,7 @@ function navigate(page) {
         targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         
         // Update URL without page reload
-        history.pushState({ page }, '', `${page}`);
+        history.pushState({ page }, '', `${page}.html`);
         
         // Force a recalculation of intersection observer
         setTimeout(() => {
