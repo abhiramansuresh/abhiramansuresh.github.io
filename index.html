@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="profile-animation.js" defer></script>
+    <script src="wave-animation.js" defer></script>
 </head>
 <body>
     <button class="menu-button">
@@ -67,6 +68,9 @@
                     <a href="mailto:abhiraman@live.com" class="nav-item" target="_blank">
                         <i class="fas fa-envelope"></i> Email me
                     </a>
+                    <a href="https://steamcommunity.com/id/pandasaan/" class="nav-item" target="_blank">
+                        <i class="fab fa-steam"></i> Steam
+                    </a>
                 </div>
             </nav>
         </aside>
@@ -75,12 +79,14 @@
         <main class="main-content">
             <!-- Index Section -->
             <section id="index" class="project-section">
-                <h1>Hey There 👋</h1>
+                <h1>Hey <span class="wave-emoji" onclick="playGreeting()">👋</span> I am Aaabhi!</h1>
+                <h3 style="color: #636363; margin-bottom: 20px;">Game Designer | AI Enthusiast</h3>
                 <p class="project-description">
-                    I'm Abhi, just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.  
+                    Just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.
                     Whether I'm smashing keyboards, sketching ideas, or forging game worlds, I'm all in. 
                     I believe games, when designed right, can hit deep and stay with you long after the credits roll—and that's exactly what I love creating.
                 </p>
+                
             </section>
 
             <!-- Atlas Keeper Section -->
@@ -207,13 +213,17 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const section = document.querySelector(this.getAttribute('href'));
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                    // Update active state
-                    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-                    this.classList.add('active');
+                if (this.getAttribute('href') === '#index') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const section = document.querySelector(this.getAttribute('href'));
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
+                // Update active state
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
             });
         });
 
