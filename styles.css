@@ -16,13 +16,19 @@ body {
 }
 
 /* Menu Button */
+/* Add this at the very top of the file, after the * selector */
+:root {
+    --accent-color:#ff1f71;
+    --accent-color-hover: #ff4788;
+}
+
 .menu-button {
     display: none;
     position: fixed;
     top: 1rem;
     left: 1rem;
     z-index: 1000;
-    background: #ff1f71;
+    background: var(--accent-color);
     border: none;
     color: white;
     width: 40px;
@@ -33,7 +39,7 @@ body {
 }
 
 .menu-button:hover {
-    background: #ff4788;
+    background: var(--accent-color-hover);
 }
 
 /* Responsive Styles */
@@ -80,7 +86,7 @@ body {
 .project-section h1 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    color: #ff1f71;
+    color: var(--accent-color);
 }
 
 .video-container {
@@ -108,7 +114,7 @@ body {
 }
 
 .responsibilities h2 {
-    color: #ff1f71;
+    color: var(--accent-color);
     margin-bottom: 1rem;
 }
 
@@ -125,11 +131,11 @@ body {
 
 .responsibilities li i {
     margin-right: 1rem;
-    color: #ff1f71;
+    color: var(--accent-color);;
 }
 
 .experience h2 {
-    color: #ff1f71;
+    color: var(--accent-color);
     margin-bottom: 1rem;
 }
 
@@ -149,7 +155,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ff1f71;
+    background: var(--accent-color);
     border-radius: 4px;
 }
 
@@ -191,7 +197,7 @@ body {
 }
 
 .square-bottom {
-    background-color: #ff1f71;
+    background-color: var(--accent-color);;
     transform: rotate(-15deg);
 }
 
@@ -233,7 +239,7 @@ body {
 }
 
 .progress {
-    background-color: #ff1f71;
+    background-color: var(--accent-color);;
     height: 100%;
     border-radius: 2px;
 }
@@ -271,7 +277,7 @@ body {
 }
 
 .nav-item.active {
-    background-color: #ff1f71;
+    background-color: var(--accent-color);;
 }
 
 .nav-item i {
@@ -343,7 +349,7 @@ body {
 .project-section h1 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    color: #ff1f71;
+    color: var(--accent-color);;
 }
 
 .video-container {
@@ -371,7 +377,7 @@ body {
 }
 
 .responsibilities h2 {
-    color: #ff1f71;
+    color: var(--accent-color);;
     margin-bottom: 1rem;
 }
 
@@ -388,11 +394,11 @@ body {
 
 .responsibilities li i {
     margin-right: 1rem;
-    color: #ff1f71;
+    color: var(--accent-color);;
 }
 
 .experience h2 {
-    color: #ff1f71;
+    color: var(--accent-color);;
     margin-bottom: 1rem;
 }
 
@@ -412,7 +418,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #ff1f71;
+    background: var(--accent-color);;
     border-radius: 4px;
 }
 

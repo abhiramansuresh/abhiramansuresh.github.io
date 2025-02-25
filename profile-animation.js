@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     profileSquares.addEventListener('click', handleClickAnimation);
     profileSquares.addEventListener('touchstart', (e) => {
         e.preventDefault(); // Prevent default touch behavior
-        handleClickAnimation();
+        handleClickAnimation(e); // Pass the event object
     });
     
     // Reset rotation on mouse leave and touch end
