@@ -21,7 +21,7 @@ function createFloatingScore(x, y) {
     const randomX = x + (Math.random() * 40 - 20);
     score.style.left = `${randomX}px`;
     score.style.top = `${y - 40}px`;
-    score.style.color = '#ff1f71';
+    score.style.color = 'var(--accent-color)';
     score.style.fontSize = '2.5rem';
     score.style.fontWeight = 'bold';
     score.style.pointerEvents = 'none';
