@@ -53,6 +53,9 @@ function createFloatingScore(x, y) {
 function handleClickAnimation(event) {
     const bottomSquare = document.querySelector('.square-bottom');
     const topSquare = document.querySelector('.square-top');
+    const clickSound = new Audio('assets/click.mp3');
+
+    clickSound.play();
     
     // Initial scale down
     bottomSquare.style.transform = `rotate(${getRandomRotation()}deg) scale(0.95)`;
