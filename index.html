@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhi's Portfolio - Brutalist Edition</title>
+    <title>Abhi's Portfolio</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,25 +11,13 @@
     <script src="wave-animation.js" defer></script>
 </head>
 <body>
-
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <a href="#index" class="nav-item active">Home</a>
-        <a href="#atlas-keeper" class="nav-item">Atlas Keeper</a>
-        <a href="#atlas-mission" class="nav-item">Atlas Mission</a>
-        <a href="#duo-jump" class="nav-item">Duo Jump</a>
-        <a href="#baldy" class="nav-item">Baldy</a>
-        <a href="https://pandasaan.itch.io" class="nav-item" target="_blank">Others</a>
-        <a href="https://abhiraman.tumblr.com" class="nav-item" target="_blank">Sketchbook</a>
-        <a href="mailto:abhiraman@live.com" class="nav-item" target="_blank"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.linkedin.com/in/abhiraman/" class="nav-item" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://steamcommunity.com/id/pandasaan/" class="nav-item" target="_blank"><i class="fab fa-steam"></i></a>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Index Section -->
-        <section id="index" class="project-section">
+    <button class="menu-button">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="overlay"></div>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
             <div class="profile">
                 <div class="profile-squares">
                     <div class="profile-square square-bottom"></div>
@@ -37,182 +25,226 @@
                 </div>
                 <h2>Abhiraman Suresh</h2>
                 <p>Game Designer | AI Enthusiast</p>
-                <!-- Progress bar removed for simplicity, can be added back if desired -->
+                <div class="progress-bar">
+                    <div class="progress" style="width: 100%"></div>
+                </div>
             </div>
 
-            <h1>Hey <span class="wave-emoji" onclick="playGreeting()">👋</span> I am Abhi!</h1>
-            <p class="project-description">
-                Just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.
-                Whether I'm smashing keyboards, sketching ideas, or forging game worlds, I'm all in.
-                I believe games, when designed right, can hit deep and stay with you long after the credits roll—and that's exactly what I love creating.
-            </p>
-        </section>
+            <nav class="navigation">
+                <a href="#index" class="nav-item active">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                
+                <div class="nav-section">
+                    <h3>Projects</h3>
+                    <a href="#atlas-keeper" class="nav-item">
+                        <i class="fas fa-gamepad"></i> Atlas Keeper
+                    </a>
+                    <a href="#atlas-mission" class="nav-item">
+                        <i class="fas fa-gamepad"></i> Atlas Mission
+                    </a>
+                    <a href="#duo-jump" class="nav-item">
+                        <i class="fas fa-gamepad"></i> Duo Jump
+                    </a>
+                    <a href="#baldy" class="nav-item">
+                        <i class="fas fa-gamepad"></i> Baldy
+                    </a>
+                    <a href="https://pandasaan.itch.io" class="nav-item" target="_blank">
+                        <i class="fas fa-external-link-square"></i> Others
+                    </a>
+                    <a href="https://abhiraman.tumblr.com" class="nav-item" target="_blank">
+                        <i class="fas fa-pencil"></i> Sketchbook
+                    </a>
+                </div>
 
-        <!-- Atlas Keeper Section -->
-        <section id="atlas-keeper" class="project-section">
-            <h1>Atlas Keeper</h1>
-            <div class="video-container">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/U_m0j8dUG7M?si=ShoAlzTT0HjeAARt" title="Atlas Keeper Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div class="platform-icons">
-                <i class="fab fa-windows"></i>
-                <i class="fab fa-apple"></i>
-            </div>
-            <p class="project-description">
-                Atlas Keeper is an exciting game project that showcases innovative gameplay mechanics.
-            </p>
-            <div class="responsibilities">
-                <h2>Key Features</h2>
-                <ul>
-                    <li><i class="fas fa-check"></i>Feature 1</li>
-                    <li><i class="fas fa-check"></i>Feature 2</li>
-                    <li><i class="fas fa-check"></i>Feature 3</li>
-                </ul>
-            </div>
-            <div class="experience">
-                <h2>Development Journey</h2>
-                <p>Share your experience and challenges during the development of Atlas Keeper here.</p>
-            </div>
-        </section>
+                <div class="nav-section">
+                    <h3>Contact Me</h3>
+                    <a href="mailto:abhiraman@live.com" class="nav-item" target="_blank">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/abhiraman/" class="nav-item" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    
+                    <a href="https://steamcommunity.com/id/pandasaan/" class="nav-item" target="_blank">
+                        <i class="fab fa-steam"></i> Steam
+                    </a>
+                </div>
+            </nav>
+        </aside>
 
-        <!-- Atlas Mission Section -->
-        <section id="atlas-mission" class="project-section">
-            <h1>Atlas Mission</h1>
-            <div class="video-container">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/0u-aXlx_tqc?si=dGH9bjunhf-47zjs" title="Atlas Mission Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-            <div class="platform-icons">
-                <i class="fab fa-windows"></i>
-            </div>
-            <p class="project-description">
-                Atlas Mission is an engaging game that takes players on an epic adventure.
-            </p>
-            <div class="responsibilities">
-                <h2>Key Features</h2>
-                <ul>
-                    <li><i class="fas fa-check"></i>Feature 1</li>
-                    <li><i class="fas fa-check"></i>Feature 2</li>
-                    <li><i class="fas fa-check"></i>Feature 3</li>
-                </ul>
-            </div>
-            <div class="experience">
-                <h2>Development Journey</h2>
-                <p>Share your experience and challenges during the development of Atlas Mission here.</p>
-            </div>
-        </section>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Index Section -->
+            <section id="index" class="project-section">
+                <h1>Hey <span class="wave-emoji" onclick="playGreeting()">👋</span> I am Aaabhi!</h1>
+                <h3 style="color: #636363; margin-bottom: 20px;">Game Designer | AI Enthusiast</h3>
+                <p class="project-description">
+                    Just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.
+                    Whether I'm smashing keyboards, sketching ideas, or forging game worlds, I'm all in. 
+                    I believe games, when designed right, can hit deep and stay with you long after the credits roll—and that's exactly what I love creating.
+                </p>
+                
+            </section>
 
-        <!-- Duo Jump Section -->
-        <section id="duo-jump" class="project-section">
-            <h1>Duo Jump</h1>
-            <div class="video-container">
-                <img src="assets/duoJumpThumbnail.jpg" alt="Duo Jump">
-            </div>
-            <div class="platform-icons">
-                <i class="fab fa-android"></i>
-                <i class="fab fa-apple"></i>
-            </div>
-            <p class="project-description">
-                Duo Jump is an exciting mobile game that challenges players' reflexes and coordination.
-            </p>
-            <div class="responsibilities">
-                <h2>Key Features</h2>
-                <ul>
-                    <li><i class="fas fa-check"></i>Feature 1</li>
-                    <li><i class="fas fa-check"></i>Feature 2</li>
-                    <li><i class="fas fa-check"></i>Feature 3</li>
-                </ul>
-            </div>
-            <div class="experience">
-                <h2>Development Journey</h2>
-                <p>Share your experience and challenges during the development of Duo Jump here.</p>
-            </div>
-        </section>
+            <!-- Atlas Keeper Section -->
+            <section id="atlas-keeper" class="project-section">
+                <h1>Atlas Keeper</h1>
+                <div class="video-container">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/U_m0j8dUG7M?si=ShoAlzTT0HjeAARt" title="Atlas Keeper Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="platform-icons">
+                    <i class="fab fa-windows"></i>
+                    <i class="fab fa-apple"></i>
+                </div>
+                <p class="project-description">
+                    Atlas Keeper is an exciting game project that showcases innovative gameplay mechanics.
+                </p>
+                <div class="responsibilities">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><i class="fas fa-check"></i>Feature 1</li>
+                        <li><i class="fas fa-check"></i>Feature 2</li>
+                        <li><i class="fas fa-check"></i>Feature 3</li>
+                    </ul>
+                </div>
+                <div class="experience">
+                    <h2>Development Journey</h2>
+                    <p>Share your experience and challenges during the development of Atlas Keeper here.</p>
+                </div>
+            </section>
 
-        <!-- Baldy Section -->
-        <section id="baldy" class="project-section">
-            <h1>Baldy</h1>
-            <div class="video-container">
-                <img src="assets/baldyThumbnail.jpg" alt="Baldy">
-            </div>
-            <div class="platform-icons">
-                <i class="fab fa-windows"></i>
-            </div>
-            <p class="project-description">
-                Baldy is a unique game experience with innovative mechanics and engaging gameplay.
-            </p>
-            <div class="responsibilities">
-                <h2>Key Features</h2>
-                <ul>
-                    <li><i class="fas fa-check"></i>Feature 1</li>
-                    <li><i class="fas fa-check"></i>Feature 2</li>
-                    <li><i class="fas fa-check"></i>Feature 3</li>
-                </ul>
-            </div>
-            <div class="experience">
-                <h2>Development Journey</h2>
-                <p>Share your experience and challenges during the development of Baldy here.</p>
-            </div>
-        </section>
-    </main>
+            <!-- Atlas Mission Section -->
+            <section id="atlas-mission" class="project-section">
+                <h1>Atlas Mission</h1>
+                <div class="video-container">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/0u-aXlx_tqc?si=dGH9bjunhf-47zjs" title="Atlas Mission Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="platform-icons">
+                    <i class="fab fa-windows"></i>
+                </div>
+                <p class="project-description">
+                    Atlas Mission is an engaging game that takes players on an epic adventure.
+                </p>
+                <div class="responsibilities">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><i class="fas fa-check"></i>Feature 1</li>
+                        <li><i class="fas fa-check"></i>Feature 2</li>
+                        <li><i class="fas fa-check"></i>Feature 3</li>
+                    </ul>
+                </div>
+                <div class="experience">
+                    <h2>Development Journey</h2>
+                    <p>Share your experience and challenges during the development of Atlas Mission here.</p>
+                </div>
+            </section>
+
+            <!-- Duo Jump Section -->
+            <section id="duo-jump" class="project-section">
+                <h1>Duo Jump</h1>
+                <div class="video-container">
+                    <img src="assets/duoJumpThumbnail.jpg" alt="Duo Jump">
+                </div>
+                <div class="platform-icons">
+                    <i class="fab fa-android"></i>
+                    <i class="fab fa-apple"></i>
+                </div>
+                <p class="project-description">
+                    Duo Jump is an exciting mobile game that challenges players' reflexes and coordination.
+                </p>
+                <div class="responsibilities">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><i class="fas fa-check"></i>Feature 1</li>
+                        <li><i class="fas fa-check"></i>Feature 2</li>
+                        <li><i class="fas fa-check"></i>Feature 3</li>
+                    </ul>
+                </div>
+                <div class="experience">
+                    <h2>Development Journey</h2>
+                    <p>Share your experience and challenges during the development of Duo Jump here.</p>
+                </div>
+            </section>
+
+            <!-- Baldy Section -->
+            <section id="baldy" class="project-section">
+                <h1>Baldy</h1>
+                <div class="video-container">
+                    <img src="assets/baldyThumbnail.jpg" alt="Baldy">
+                </div>
+                <div class="platform-icons">
+                    <i class="fab fa-windows"></i>
+                </div>
+                <p class="project-description">
+                    Baldy is a unique game experience with innovative mechanics and engaging gameplay.
+                </p>
+                <div class="responsibilities">
+                    <h2>Key Features</h2>
+                    <ul>
+                        <li><i class="fas fa-check"></i>Feature 1</li>
+                        <li><i class="fas fa-check"></i>Feature 2</li>
+                        <li><i class="fas fa-check"></i>Feature 3</li>
+                    </ul>
+                </div>
+                <div class="experience">
+                    <h2>Development Journey</h2>
+                    <p>Share your experience and challenges during the development of Baldy here.</p>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script>
-        // Keep smooth scrolling for anchor links
-        document.querySelectorAll('.top-nav a[href^="#"]').forEach(anchor => {
+        // Handle mobile menu
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+        });
+
+        document.querySelector('.overlay').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.remove('active');
+            document.querySelector('.overlay').classList.remove('active');
+        });
+
+        // Handle smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#index') {
+                if (this.getAttribute('href') === '#index') {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                    const section = document.querySelector(targetId);
+                    const section = document.querySelector(this.getAttribute('href'));
                     if (section) {
-                        // Calculate offset considering the fixed top nav height
-                        const navHeight = document.querySelector('.top-nav').offsetHeight;
-                        const sectionTop = section.offsetTop - navHeight;
-                        window.scrollTo({ top: sectionTop, behavior: 'smooth' });
+                        section.scrollIntoView({ behavior: 'smooth' });
                     }
                 }
-                // Update active state for top nav
-                document.querySelectorAll('.top-nav .nav-item').forEach(item => item.classList.remove('active'));
+                // Update active state
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
                 this.classList.add('active');
             });
         });
 
-        // Update active section on scroll for top nav
+        // Update active section on scroll
         const sections = document.querySelectorAll('.project-section');
-        const navItems = document.querySelectorAll('.top-nav .nav-item');
-        const topNav = document.querySelector('.top-nav');
+        const navItems = document.querySelectorAll('.nav-item');
 
         window.addEventListener('scroll', () => {
             let current = '';
-            const navHeight = topNav ? topNav.offsetHeight : 0;
-
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - navHeight - 10; // Adjust offset slightly
+                const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
                     current = section.getAttribute('id');
                 }
             });
 
-             // If scrolled to the very top, or above the first section start, set #index active
-             if (pageYOffset < sections[0].offsetTop - navHeight - 10) {
-                 current = 'index';
-             }
-
             navItems.forEach(item => {
                 item.classList.remove('active');
-                // Check internal links only for scrollspy
-                const href = item.getAttribute('href');
-                if (href && href.startsWith('#') && href === `#${current}`) {
+                if (item.getAttribute('href') === `#${current}`) {
                     item.classList.add('active');
                 }
             });
-             // Ensure 'Home' is active if current is 'index'
-            if (current === 'index') {
-                const homeLink = document.querySelector('.top-nav a[href="#index"]');
-                if(homeLink) homeLink.classList.add('active');
-            }
         });
     </script>
 <!-- Add this before the closing </body> tag -->
