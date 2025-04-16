@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&family=Noto+Sans+Warang+Citi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
+
+:root {
+    --background-color: #1e1033;
+    --text-color: #ffffff;
+    --secondary-text-color: #636363;
+    --highlight-color: #ffd54f;
+    --heading-font: 'Special Gothic Expanded One', serif;
+    --body-font: 'Lato', sans-serif;
+    --accent-color: #ff6600;
+    
+    /* Grid variables */
+    --grid-margin: 100px;
+    --grid-gutter: 52px;
+    --grid-columns: 5;
+    
+    /* Alignment variables */
+    --vertical-alignment: 200px; /* Adjust this value to align the logo and title */
+}
 
 * {
     margin: 0;
@@ -8,181 +27,160 @@
 }
 
 body {
-    font-family: 'Lato', sans-serif;
-    background-color: #000000;
-    color: #ffffff;
+    font-family: var(--body-font);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    position: relative;
 }
 
+/* Typography */
+h1, h2, .large-text {
+    font-family: var(--heading-font);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.6rem;
+    font-family: var(--body-font);
+}
+
+.large-text {
+    font-size: 2.2rem;
+    line-height: 1.3;
+}
+
+p, a, li, span {
+    font-family: var(--body-font);
+}
+
+/* Grid Overlay for Development */
+.grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.1;
+    display: none; /* Set to flex to see the grid */
+}
+
+.grid-container {
+    display: flex;
+    width: calc(100% - (var(--grid-margin) * 2));
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    gap: var(--grid-gutter);
+}
+
+.grid-column {
+    flex: 1;
+    background-color: rgba(255, 0, 0, 0.5);
+    height: 100%;
+}
+
+/* Main Layout */
 .container {
     display: flex;
     min-height: 100vh;
-}
-
-/* Menu Button */
-/* Add this at the very top of the file, after the * selector */
-:root {
-    --accent-colors: #ff1f71, #16C47F, #8B5DFF, #FF9D23, #F93827;
-    --accent-colors-hover: #ff4788, #13ac6f, #7a51df, #df891f, #da3122;
-    --accent-color: #ff1f71;
-    --accent-color-hover: #ff4788;
-}
-
-.menu-button {
-    display: none;
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1000;
-    background: var(--accent-color);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.menu-button:hover {
-    background: var(--accent-color-hover);
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .menu-button {
-        display: block;
-    }
-
-    .sidebar {
-        transform: translateX(-100%);
-    }
-
-    .sidebar.active {
-        transform: translateX(0);
-    }
-
-    .main-content {
-        margin-left: 0;
-        padding: 4rem 1rem 1rem 1rem; /* Added top padding to prevent overlap */
-    }
-
-    /* Overlay when sidebar is active */
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 998;
-    }
-
-    .overlay.active {
-        display: block;
-    }
-}
-
-.project-section {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
-
-.project-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-color);
-}
-
-.video-container {
-    margin-bottom: 2rem;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.platform-icons {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
-
-.project-description {
-    font-size: 1.5rem;
-    line-height: 1.6;
-    color: #ffffff;
-    margin-bottom: 2rem;
-}
-
-.responsibilities {
-    margin-bottom: 2rem;
-}
-
-.responsibilities h2 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-.responsibilities ul {
-    list-style: none;
-}
-
-.responsibilities li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.8rem;
-    color: #cccccc;
-}
-
-.responsibilities li i {
-    margin-right: 1rem;
-    color: var(--accent-color);;
-}
-
-.experience h2 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-.experience p {
-    color: #cccccc;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-/* Scrollbar Styles */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--accent-color);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #ff4788;
+    width: 80%; /* Reduced from 100% minus margins to a fixed percentage */
+    max-width: 1200px; /* Adjusted max-width for better centering */
+    margin: 0 auto; /* This centers the container horizontally */
+    position: relative;
+    justify-content: center; /* Center children horizontally */
+    align-items: center; /* Center children vertically */
 }
 
 /* Sidebar Styles */
 .sidebar {
-    width: 280px;
-    background-color: #0f0f0f;
+    width: 250px; /* Fixed width instead of calculated width */
     padding: 2rem;
+    padding-top: var(--vertical-alignment); /* Added vertical alignment for consistent spacing */
     position: fixed;
-    height: 100vh;
+    left: auto; 
+    top: 0; /* Position the sidebar at the top of the viewport */
+    height: 100vh; /* Make the sidebar take full viewport height */
     overflow-y: auto;
     transition: transform 0.3s ease-in-out;
     z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Changed from space-between to align content from top */
+    transform: translateX(-50%); /* Position relative to container center */
+    margin-left: -25%; /* Adjust to position correctly */
 }
 
+/* You may also want to adjust the contact section to maintain some spacing */
+.contact-section {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem; /* Changed from 100 to 2rem for proper spacing */
+    margin-bottom: 2rem; /* Add bottom margin for spacing from viewport bottom */
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    margin-left: 250px; /* Fixed margin based on sidebar width */
+    max-width: 800px; /* Limit the width for better readability */
+    border-left: 1px solid rgba(255, 255, 255, 0.1); /* Add vertical divider */
+}
+
+/* Responsive Styles - adjust as needed */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+    
+    .sidebar {
+        transform: translateX(-500%);
+        margin-left: 0;
+        left: 0;
+        width: 280px;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 2rem var(--grid-margin);
+        border-left: none;
+    }
+}
 .profile {
     text-align: center;
     margin-bottom: 2rem;
+    margin-top:0; /* Use the variable for top margin */
+}
+
+/* Index section adjustment */
+#index {
+    padding-top: var(--vertical-alignment); /* Use the same variable for consistent alignment */
 }
 
 .profile-squares {
@@ -191,7 +189,6 @@ body {
     height: 150px;
     margin: 0 auto 1rem;
     cursor: pointer;
-    margin-bottom: 50px;
 }
 
 .profile-square {
@@ -202,38 +199,30 @@ body {
 }
 
 .square-bottom {
-    background-color: var(--accent-color);;
+    background-color: var(--highlight-color);
     transform: rotate(-15deg);
 }
 
 .square-top {
-    background-image: url('assets/profile.jpg');
-    background-size: cover;
-    background-position: center;
+    background-color: #fff5e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transform: rotate(0deg);
+    overflow: hidden;
 }
 
-.profile-squares .square-bottom {
-    transform: rotate(-15deg);
-}
-
-.profile-squares .square-top {
-    transform: rotate(0deg);
-}
-
-.profile-squares:active .square-bottom,
-.profile-squares:active .square-top {
-    transform: scale(0.95);
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .profile h2 {
-    color: #ffffff;
+    color: var(--text-color);
     margin-bottom: 0.5rem;
-}
-
-.profile p {
-    color: #888;
-    font-size: 0.9rem;
+    font-size: 2.5rem;
+    font-family: var(--heading-font);
 }
 
 .progress-bar {
@@ -244,7 +233,7 @@ body {
 }
 
 .progress {
-    background-color: var(--accent-color);;
+    background-color: var(--highlight-color);
     height: 100%;
     border-radius: 2px;
 }
@@ -253,25 +242,22 @@ body {
 .navigation {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 2rem;
+    flex-grow: 1;
+    justify-content: space-between;
 }
 
 .nav-section {
-    margin: 1.5rem 0;
-}
-
-.nav-section h3 {
-    color: #888;
-    font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
     padding: 0.8rem 1rem;
-    color: #ffffff;
+    color: var(--text-color);
     text-decoration: none;
     border-radius: 8px;
     transition: background-color 0.3s;
@@ -280,16 +266,12 @@ body {
 }
 
 .nav-item:hover {
-    background-color: #2a2a2a;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-item.active {
-    background-color: var(--accent-color);
-    transition: background-color 0.3s ease;
-}
-
-.nav-item:not(.active):hover {
-    background-color: #2a2a2a;
+    background-color: var(--highlight-color);
+    color: #000;
 }
 
 .nav-item i {
@@ -298,147 +280,230 @@ body {
     text-align: center;
 }
 
+.contact-section {
+    display: flex;
+    gap: 1rem;
+    margin-top: 100;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.contact-icon:hover {
+    background-color: var(--highlight-color);
+    color: #000;
+}
+
 /* Main Content Styles */
 .main-content {
     flex: 1;
-    margin-left: 20%;
-    padding: 0;
-    max-width: 1200px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
-    -webkit-overflow-scrolling: touch;
-}
-
-.project-section {
-    min-height: 100vh;
     padding: 2rem;
-    scroll-snap-align: start;
+    /* Reducing the margin-left to create less space between sidebar and content */
+    margin-left: calc(var(--grid-margin) + (100% - (var(--grid-gutter) * (var(--grid-columns) - 1))) / var(--grid-columns));
+    width: calc(100% - (100% - (var(--grid-gutter) * (var(--grid-columns) - 1))) / var(--grid-columns));
+}
+
+/* Section Styles */
+.section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
     position: relative;
-    box-sizing: border-box;
+    display: inline-block;
+    font-family: var(--body-font);
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .menu-button {
-        display: block;
-    }
-
-    .sidebar {
-        transform: translateX(-100%);
-    }
-
-    .sidebar.active {
-        transform: translateX(0);
-    }
-
-    .main-content {
-        margin-left: 0;
-        padding: 1rem;
-    }
-
-    /* Overlay when sidebar is active */
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 998;
-    }
-
-    .overlay.active {
-        display: block;
-    }
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 30px;
+    height: 3px;
+    background-color: var(--highlight-color);
 }
 
-.project-section {
-    margin-bottom: 3rem;
-}
-
-.project-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-color);;
-}
-
-.video-container {
+.section-subtitle {
+    color: var(--secondary-text-color);
     margin-bottom: 2rem;
-    border-radius: 12px;
+}
+
+/* Project Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--grid-gutter);
+}
+
+.project-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-thumbnail {
+    width: 100%;
+    height: 200px;
+    background-color: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
 }
 
-.platform-icons {
+.project-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-thumbnail img {
+    transform: scale(1.05);
+}
+
+.project-info {
+    padding: 1.5rem;
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
+    align-items: flex-start;
 }
 
-.project-description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #d8d8d8;
-    margin-bottom: 2rem;
-}
-
-.responsibilities {
-    margin-bottom: 2rem;
-}
-
-.responsibilities h2 {
-    color: var(--accent-color);;
-    margin-bottom: 1rem;
-}
-
-.responsibilities ul {
-    list-style: none;
-}
-
-.responsibilities li {
+.project-logo {
+    width: 60px;
+    height: 60px;
+    background-color: #333;
     display: flex;
     align-items: center;
-    margin-bottom: 0.8rem;
-    color: #cccccc;
-}
-
-.responsibilities li i {
+    justify-content: center;
+    overflow: hidden;
     margin-right: 1rem;
-    color: var(--accent-color);;
+    flex-shrink: 0;
 }
 
-.experience h2 {
-    color: var(--accent-color);;
-    margin-bottom: 1rem;
-}
-
-.experience p {
-    color: #cccccc;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-/* Scrollbar Styles */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--accent-color);;
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #ff4788;
-}
-.video-container img {
+.project-logo img {
     width: 100%;
-    height: 315px;
+    height: 100%;
     object-fit: cover;
+}
+
+.project-text {
+    flex: 1;
+}
+
+.project-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+    font-family: var(--body-font);
+}
+
+.project-excerpt {
+    color: var(--secondary-text-color);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Highlight Box */
+.highlight-box {
+    background-color: var(--highlight-color);
+    color: #000;
+    padding: 0.2rem 0.5rem;
+    display: inline-block;
+    font-family: inherit; /* This will inherit the font from the parent element */
+}
+
+/* Love Text */
+.love {
+    color: var(--accent-color);
+}
+
+/* Menu Button for Mobile */
+.menu-button {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    background: var(--highlight-color);
+    border: none;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1200px) {
+    :root {
+        --grid-margin: 50px;
+        --grid-gutter: 30px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --grid-margin: 20px;
+    }
+    
+    .menu-button {
+        display: block;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%);
+        left: 0;
+        width: 280px;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 2rem var(--grid-margin);
+    }
+    
+    .overlay.active {
+        display: block;
+    }
 }

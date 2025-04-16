@@ -11,6 +11,16 @@
     <script src="wave-animation.js" defer></script>
 </head>
 <body>
+    <div class="grid-overlay">
+        <div class="grid-container">
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+            <div class="grid-column"></div>
+        </div>
+    </div>
+    
     <button class="menu-button">
         <i class="fas fa-bars"></i>
     </button>
@@ -21,53 +31,37 @@
             <div class="profile">
                 <div class="profile-squares">
                     <div class="profile-square square-bottom"></div>
-                    <div class="profile-square square-top"></div>
+                    <div class="profile-square square-top">
+                        <img src="assets/logo.png" alt="Profile" class="profile-image">
+                    </div>
                 </div>
-                <h2>Abhiraman Suresh</h2>
-                <p>Game Designer | AI Enthusiast</p>
                 <div class="progress-bar">
                     <div class="progress" style="width: 100%"></div>
                 </div>
             </div>
 
             <nav class="navigation">
-                <a href="#index" class="nav-item active">
-                    <i class="fas fa-home"></i> Home
-                </a>
-                
                 <div class="nav-section">
-                    <h3>Projects</h3>
-                    <a href="#atlas-keeper" class="nav-item">
-                        <i class="fas fa-gamepad"></i> Atlas Keeper
+                    <a href="#projects" class="nav-item">
+                        Projects
                     </a>
-                    <a href="#atlas-mission" class="nav-item">
-                        <i class="fas fa-gamepad"></i> Atlas Mission
+                    <a href="#prototypes" class="nav-item">
+                        Prototypes
                     </a>
-                    <a href="#duo-jump" class="nav-item">
-                        <i class="fas fa-gamepad"></i> Duo Jump
-                    </a>
-                    <a href="#baldy" class="nav-item">
-                        <i class="fas fa-gamepad"></i> Baldy
-                    </a>
-                    <a href="https://pandasaan.itch.io" class="nav-item" target="_blank">
-                        <i class="fas fa-external-link-square"></i> Others
-                    </a>
-                    <a href="https://abhiraman.tumblr.com" class="nav-item" target="_blank">
-                        <i class="fas fa-pencil"></i> Sketchbook
+                    <a href="#about" class="nav-item">
+                        About
                     </a>
                 </div>
 
-                <div class="nav-section">
-                    <h3>Contact Me</h3>
-                    <a href="mailto:abhiraman@live.com" class="nav-item" target="_blank">
-                        <i class="fas fa-envelope"></i> Email
+                <div class="nav-section contact-section">
+                    <a href="mailto:abhiraman@live.com" class="contact-icon" target="_blank">
+                        <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/abhiraman/" class="nav-item" target="_blank">
-                        <i class="fab fa-linkedin"></i> LinkedIn
+                    <a href="https://www.linkedin.com/in/abhiraman/" class="contact-icon" target="_blank">
+                        <i class="fab fa-linkedin"></i>
                     </a>
-                    
-                    <a href="https://steamcommunity.com/id/pandasaan/" class="nav-item" target="_blank">
-                        <i class="fab fa-steam"></i> Steam
+                    <a href="https://steamcommunity.com/id/pandasaan/" class="contact-icon" target="_blank">
+                        <i class="fab fa-steam"></i>
                     </a>
                 </div>
             </nav>
@@ -76,120 +70,52 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Index Section -->
-            <section id="index" class="project-section">
-                <h1>Hey <span class="wave-emoji" onclick="playGreeting()">👋</span> I am Aaabhi!</h1>
-                <h3 style="color: #636363; margin-bottom: 20px;">Game Designer | AI Enthusiast</h3>
-                <p class="project-description">
-                    Just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.
-                    Whether I'm smashing keyboards, sketching ideas, or forging game worlds, I'm all in. 
-                    I believe games, when designed right, can hit deep and stay with you long after the credits roll—and that's exactly what I love creating.
-                </p>
+            <!-- In the index section -->
+            <section id="index" class="section">
+                <h1 class="large-text">Hey! I am <span class="highlight-box">Aaabhi</span></h1>
+                <h3>I <span class="love">love</span> movies, design, playing / making games.</h3>
+                <h3>Currently, designing experiences @ LearningYogi</h3>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">All the projects I've worked on professionally</p>
                 
-            </section>
-
-            <!-- Atlas Keeper Section -->
-            <section id="atlas-keeper" class="project-section">
-                <h1>Atlas Keeper</h1>
-                <div class="video-container">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/U_m0j8dUG7M?si=ShoAlzTT0HjeAARt" title="Atlas Keeper Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <div class="platform-icons">
-                    <i class="fab fa-windows"></i>
-                    <i class="fab fa-apple"></i>
-                </div>
-                <p class="project-description">
-                    Atlas Keeper is an exciting game project that showcases innovative gameplay mechanics.
-                </p>
-                <div class="responsibilities">
-                    <h2>Key Features</h2>
-                    <ul>
-                        <li><i class="fas fa-check"></i>Feature 1</li>
-                        <li><i class="fas fa-check"></i>Feature 2</li>
-                        <li><i class="fas fa-check"></i>Feature 3</li>
-                    </ul>
-                </div>
-                <div class="experience">
-                    <h2>Development Journey</h2>
-                    <p>Share your experience and challenges during the development of Atlas Keeper here.</p>
+                <div class="projects-grid" id="projects-container">
+                    <!-- Projects will be loaded dynamically -->
                 </div>
             </section>
 
-            <!-- Atlas Mission Section -->
-            <section id="atlas-mission" class="project-section">
-                <h1>Atlas Mission</h1>
-                <div class="video-container">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/0u-aXlx_tqc?si=dGH9bjunhf-47zjs" title="Atlas Mission Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <div class="platform-icons">
-                    <i class="fab fa-windows"></i>
-                </div>
-                <p class="project-description">
-                    Atlas Mission is an engaging game that takes players on an epic adventure.
-                </p>
-                <div class="responsibilities">
-                    <h2>Key Features</h2>
-                    <ul>
-                        <li><i class="fas fa-check"></i>Feature 1</li>
-                        <li><i class="fas fa-check"></i>Feature 2</li>
-                        <li><i class="fas fa-check"></i>Feature 3</li>
-                    </ul>
-                </div>
-                <div class="experience">
-                    <h2>Development Journey</h2>
-                    <p>Share your experience and challenges during the development of Atlas Mission here.</p>
+            <!-- Prototypes Section -->
+            <section id="prototypes" class="section">
+                <h2 class="section-title">Prototypes</h2>
+                <p class="section-subtitle">Experimental projects and prototypes made for fun</p>
+                
+                <div class="projects-grid" id="prototypes-container">
+                    <!-- Prototypes will be loaded dynamically -->
                 </div>
             </section>
 
-            <!-- Duo Jump Section -->
-            <section id="duo-jump" class="project-section">
-                <h1>Duo Jump</h1>
-                <div class="video-container">
-                    <img src="assets/duoJumpThumbnail.jpg" alt="Duo Jump">
-                </div>
-                <div class="platform-icons">
-                    <i class="fab fa-android"></i>
-                    <i class="fab fa-apple"></i>
-                </div>
-                <p class="project-description">
-                    Duo Jump is an exciting mobile game that challenges players' reflexes and coordination.
-                </p>
-                <div class="responsibilities">
-                    <h2>Key Features</h2>
-                    <ul>
-                        <li><i class="fas fa-check"></i>Feature 1</li>
-                        <li><i class="fas fa-check"></i>Feature 2</li>
-                        <li><i class="fas fa-check"></i>Feature 3</li>
-                    </ul>
-                </div>
-                <div class="experience">
-                    <h2>Development Journey</h2>
-                    <p>Share your experience and challenges during the development of Duo Jump here.</p>
-                </div>
-            </section>
-
-            <!-- Baldy Section -->
-            <section id="baldy" class="project-section">
-                <h1>Baldy</h1>
-                <div class="video-container">
-                    <img src="assets/baldyThumbnail.jpg" alt="Baldy">
-                </div>
-                <div class="platform-icons">
-                    <i class="fab fa-windows"></i>
-                </div>
-                <p class="project-description">
-                    Baldy is a unique game experience with innovative mechanics and engaging gameplay.
-                </p>
-                <div class="responsibilities">
-                    <h2>Key Features</h2>
-                    <ul>
-                        <li><i class="fas fa-check"></i>Feature 1</li>
-                        <li><i class="fas fa-check"></i>Feature 2</li>
-                        <li><i class="fas fa-check"></i>Feature 3</li>
-                    </ul>
-                </div>
-                <div class="experience">
-                    <h2>Development Journey</h2>
-                    <p>Share your experience and challenges during the development of Baldy here.</p>
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2 class="section-title">About</h2>
+                <p class="section-subtitle">A bit about me and my background</p>
+                
+                <p>Just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.
+                Whether I'm smashing keyboards, sketching ideas, or forging game worlds, I'm all in. 
+                I believe games, when designed right, can hit deep and stay with you long after the credits roll—and that's exactly what I love creating.</p>
+                
+                <div class="contact-icons">
+                    <a href="mailto:abhiraman@live.com" class="contact-icon" target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/abhiraman/" class="contact-icon" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://steamcommunity.com/id/pandasaan/" class="contact-icon" target="_blank">
+                        <i class="fab fa-steam"></i>
+                    </a>
                 </div>
             </section>
         </main>
@@ -226,7 +152,7 @@
         });
 
         // Update active section on scroll
-        const sections = document.querySelectorAll('.project-section');
+        const sections = document.querySelectorAll('section');
         const navItems = document.querySelectorAll('.nav-item');
 
         window.addEventListener('scroll', () => {
@@ -247,7 +173,8 @@
             });
         });
     </script>
-<!-- Add this before the closing </body> tag -->
-<script src="js/theme.js"></script>
+    <script src="js/theme.js"></script>
+    <!-- At the bottom of your HTML file, before the closing body tag -->
+    <script src="js/projects.js"></script>
 </body>
 </html>
