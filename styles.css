@@ -17,7 +17,7 @@
     --grid-columns: 5;
     
     /* Alignment variables */
-    --vertical-alignment: 200px; /* Adjust this value to align the logo and title */
+    --vertical-alignment: 150px; /* Adjust this value to align the logo and title */
 }
 
 * {
@@ -122,15 +122,17 @@ p, a, li, span {
     flex-direction: column;
     justify-content: flex-start; /* Changed from space-between to align content from top */
     transform: translateX(-50%); /* Position relative to container center */
-    margin-left: -25%; /* Adjust to position correctly */
+    margin-left: -35%; /* Adjust to position correctly */
 }
 
 /* You may also want to adjust the contact section to maintain some spacing */
 .contact-section {
     display: flex;
+    flex-direction: row; /* Explicitly set to row for horizontal layout */
+    justify-content: center; /* Center the icons horizontally */
+    align-items: center; /* Align items vertically */
     gap: 1rem;
-    margin-top: 2rem; /* Changed from 100 to 2rem for proper spacing */
-    margin-bottom: 2rem; /* Add bottom margin for spacing from viewport bottom */
+    margin-top: 2rem; /* Use a proper value with units */
 }
 
 /* Main Content Styles */
@@ -392,6 +394,7 @@ p, a, li, span {
     width: 60px;
     height: 60px;
     background-color: #333;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
