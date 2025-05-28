@@ -204,6 +204,7 @@ p, a, li, span {
     padding: 2rem;
     margin-left: 250px; /* Adjusted to match new sidebar width + padding */
     width: calc(100% - 250px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1); /* Added median line */
 }
 
 /* Responsive Styles - adjust as needed */
