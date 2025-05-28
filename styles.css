@@ -108,56 +108,52 @@ p, a, li, span {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 250px; /* Fixed width instead of calculated width */
+    width: 250px;
     padding: 2rem;
-    padding-top: var(--vertical-alignment); /* Added vertical alignment for consistent spacing */
+    padding-top: var(--vertical-alignment);
     position: fixed;
-    left: auto; 
-    top: 0; /* Position the sidebar at the top of the viewport */
-    height: 100vh; /* Make the sidebar take full viewport height */
+    left: max(20px, calc(50% - 600px)); /* Ensures minimum distance from left edge */
+    top: 0;
+    height: 100vh;
     overflow-y: auto;
     transition: transform 0.3s ease-in-out;
     z-index: 999;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Changed from space-between to align content from top */
-    transform: translateX(-50%); /* Position relative to container center */
-    margin-left: -35%; /* Adjust to position correctly */
-}
-
-/* You may also want to adjust the contact section to maintain some spacing */
-.contact-section {
-    display: flex;
-    flex-direction: row; /* Explicitly set to row for horizontal layout */
-    justify-content: center; /* Center the icons horizontally */
-    align-items: center; /* Align items vertically */
-    gap: 1rem;
-    margin-top: 2rem; /* Use a proper value with units */
+    justify-content: flex-start;
 }
 
 /* Main Content Styles */
 .main-content {
     flex: 1;
     padding: 2rem;
-    margin-left: 250px; /* Fixed margin based on sidebar width */
-    max-width: 800px; /* Limit the width for better readability */
-    border-left: 1px solid rgba(255, 255, 255, 0.1); /* Add vertical divider */
+    margin-left: 300px; /* Provide enough space for sidebar + some spacing */
+    max-width: 800px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Responsive Styles - adjust as needed */
 @media screen and (max-width: 1200px) {
     .container {
-        width: 95%;
+        width: 80%;
+    }
+    
+    .sidebar {
+        left: 10px; /* Fixed position on medium screens */
+    }
+    
+    .main-content {
+        margin-left: 280px; /* Adjust based on sidebar width + padding */
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .container {
         width: 100%;
     }
     
     .sidebar {
-        transform: translateX(-500%);
+        transform: translateX(-100%); /* Hide off-screen when inactive */
         margin-left: 0;
         left: 0;
         width: 280px;
