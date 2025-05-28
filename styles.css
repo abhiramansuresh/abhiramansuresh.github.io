@@ -581,3 +581,27 @@ p, a, li, span {
         display: block;
     }
 }
+
+/* General link styling */
+a {
+    color: #ffffff; /* Change this to your desired color */
+    text-decoration: none; /* Removes underline */;
+}
+
+/* Link styles for different states */
+a:link {
+    color: #ffffff; /* Color for unvisited links */
+}
+
+a:visited {
+    color: #ffffff; /* Color for visited links */
+}
+
+a:hover {
+    color: #ffd54f; /* Color when mouse hovers over the link */
+    text-decoration: none; /* Adds underline on hover */
+}
+
+a:active {
+    color: #ffd54f; /* Color when the link is clicked */
+}

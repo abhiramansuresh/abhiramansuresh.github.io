@@ -24,10 +24,26 @@ const projectsData = [
         logo: "assets/project-thumbs/atlasmission-icon.jpg",
         category: "project"
     },
+    {
+        id: 4,
+        title: "Duo Jump",
+        excerpt: "IoT interface for managing connected home devices with voice commands and automation.",
+        thumbnail: "assets/project-thumbs/duojump-thumb.jpg",
+        logo: "assets/project-thumbs/duojump-icon.png",
+        category: "project"
+    },
+    {
+        id: 5,
+        title: "Baldy",
+        excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
+        thumbnail: "assets/project-thumbs/baldy-thumb.jpg",
+        logo: "assets/project-thumbs/baldy-icon.jpg",
+        category: "project"
+    },
 
     // Prototypes
     {
-        id: 4,
+        id: 6,
         title: "Duo Jump",
         excerpt: "IoT interface for managing connected home devices with voice commands and automation.",
         thumbnail: "assets/project-thumbs/duojump-thumb.jpg",
@@ -35,7 +51,7 @@ const projectsData = [
         category: "prototype"
     },
     {
-        id: 5,
+        id: 7,
         title: "Baldy",
         excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
         thumbnail: "assets/project-thumbs/baldy-thumb.jpg",
