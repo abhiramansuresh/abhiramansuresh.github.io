@@ -158,7 +158,7 @@ p, a, li, span {
 }
 
 .profile-squares {
-    margin: 0 0 1rem auto; /* Change from margin: 0 auto 1rem to align right */
+    margin: 0 auto 2rem;
 }
 
 /* Navigation items - right align */
@@ -302,7 +302,7 @@ p, a, li, span {
     background-color: #2a2a2a;
     height: 4px;
     border-radius: 2px;
-    margin: 1rem 0;
+    margin: 3rem 0;
 }
 
 .progress {
