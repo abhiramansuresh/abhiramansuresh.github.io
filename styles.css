@@ -108,11 +108,11 @@ p, a, li, span {
 
 /* Sidebar Styles */
 .sidebar {
-    width: 250px;
-    padding: 2rem;
+    width: 200px; /* Reduced from 250px */
+    padding: 1.5rem; /* Reduced from 2rem */
     padding-top: var(--vertical-alignment);
     position: fixed;
-    left: max(20px, calc(50% - 600px)); /* Ensures minimum distance from left edge */
+    left: max(10px, calc(50% - 550px)); /* Adjusted position closer to center */
     top: 0;
     height: 100vh;
     overflow-y: auto;
@@ -121,15 +121,89 @@ p, a, li, span {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    text-align: right; /* Right-align text content */
+}
+
+/* Navigation Styles */
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-grow: 1;
+    justify-content: flex-start; /* Change from space-between to flex-start */
+    align-items: flex-end; /* Right-align navigation items */
+}
+
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end; /* Right-align items in nav sections */
+}
+
+/* Contact section - horizontal alignment */
+.nav-section.contact-section {
+    flex-direction: row; /* Make icons align horizontally */
+    justify-content: flex-end; /* Right-align the icons */
+    gap: 1rem;
+    margin-top: 2rem; /* Add space between nav buttons and contact icons */
+    margin-bottom: auto; /* Push away from bottom */
+}
+
+/* Profile section - right align */
+.profile {
+    text-align: right; /* Override the center alignment */
+    margin-bottom: 2rem;
+    margin-top: 0;
+}
+
+.profile-squares {
+    margin: 0 0 1rem auto; /* Change from margin: 0 auto 1rem to align right */
+}
+
+/* Navigation items - right align */
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end; /* Align items to the right */
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Right-align content within nav items */
+    padding: 0.8rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.nav-item i {
+    margin-right: 0; /* Remove right margin */
+    margin-left: 0.8rem; /* Add left margin instead */
+    width: 20px;
+    text-align: center;
+    order: 2; /* Move icon to the right of text */
+}
+
+/* Contact section - right align */
+.contact-section {
+    display: flex;
+    gap: 1rem;
+    margin-top: 100;
+    justify-content: flex-end; /* Align icons to the right */
 }
 
 /* Main Content Styles */
 .main-content {
     flex: 1;
     padding: 2rem;
-    margin-left: 300px; /* Provide enough space for sidebar + some spacing */
-    max-width: 800px;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    margin-left: 250px; /* Adjusted to match new sidebar width + padding */
+    width: calc(100% - 250px);
 }
 
 /* Responsive Styles - adjust as needed */
@@ -139,11 +213,11 @@ p, a, li, span {
     }
     
     .sidebar {
-        left: 10px; /* Fixed position on medium screens */
+        left: 30px; /* Fixed position on medium screens */
     }
     
     .main-content {
-        margin-left: 280px; /* Adjust based on sidebar width + padding */
+        margin-left: 230px; /* Adjust based on new sidebar width + padding */
     }
 }
 
