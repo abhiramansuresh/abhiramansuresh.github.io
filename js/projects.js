@@ -6,7 +6,7 @@ const projectsData = [
         excerpt: "A comprehensive platform for online education with interactive lessons and assessments.",
         thumbnail: "assets/project-thumbs/pdapro-thumb.jpg",
         logo: "assets/project-thumbs/pdapro.jpg",
-        category: "project" 
+        category: "app" 
     },
     {
         id: 2,
@@ -14,7 +14,7 @@ const projectsData = [
         excerpt: "Real-time analytics dashboard for tracking sales, inventory, and customer behavior.",
         thumbnail: "assets/project-thumbs/atlaskeeper-thumb.jpg",
         logo: "assets/project-thumbs/atlaskeeper-icon.jpg",
-        category: "project"
+        category: "game"
     },
     {
         id: 3,
@@ -22,23 +22,23 @@ const projectsData = [
         excerpt: "Secure and intuitive banking application with biometric authentication and transaction tracking.",
         thumbnail: "assets/project-thumbs/atlasmission-thumb.jpg",
         logo: "assets/project-thumbs/atlasmission-icon.jpg",
-        category: "project"
+        category: "game"
     },
     {
         id: 4,
         title: "Duo Jump",
-        excerpt: "IoT interface for managing connected home devices with voice commands and automation.",
+        excerpt: "A fun platformer game where you control two characters simultaneously.",
         thumbnail: "assets/project-thumbs/duojump-thumb.jpg",
         logo: "assets/project-thumbs/duojump-icon.png",
-        category: "project"
+        category: "game"
     },
     {
         id: 5,
         title: "Baldy",
-        excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
+        excerpt: "An adventure game featuring a bald protagonist navigating through challenging environments.",
         thumbnail: "assets/project-thumbs/baldy-thumb.jpg",
         logo: "assets/project-thumbs/baldy-icon.jpg",
-        category: "project"
+        category: "game"
     },
 
     // Prototypes
@@ -105,10 +105,37 @@ function loadPrototypes() {
     });
 }
 
+// Function to load games
+function loadGames() {
+    const container = document.getElementById('games-container');
+    const filteredProjects = projectsData.filter(project => project.category === 'game');
+    
+    container.innerHTML = '';
+    
+    filteredProjects.forEach(project => {
+        container.innerHTML += createProjectCard(project);
+    });
+}
+
+// Function to load apps
+function loadApps() {
+    const container = document.getElementById('apps-container');
+    const filteredProjects = projectsData.filter(project => project.category === 'app');
+    
+    container.innerHTML = '';
+    
+    filteredProjects.forEach(project => {
+        container.innerHTML += createProjectCard(project);
+    });
+}
+
 // Initialize projects when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Load projects
-    loadProjects('project');
+    // Load games
+    loadGames();
+    
+    // Load apps
+    loadApps();
     
     // Load prototypes
     loadPrototypes();

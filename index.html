@@ -42,16 +42,22 @@
 
             <nav class="navigation">
                 <div class="nav-section">
-                    <a href="#index" class="nav-item">
-                        Projects
+                    <a href="#games" class="nav-item">
+                        Games
+                    </a>
+                    <a href="#apps" class="nav-item">
+                        Apps
                     </a>
                     <a href="#prototypes" class="nav-item">
                         Prototypes
                     </a>
                     <a href="https://pandasaan.itch.io" class="nav-item" target="_blank">
-                        Others<i class="fas fa-square-arrow-up-right"></i> 
+                        <i class="fas fa-arrow-up-right-from-square"></i> Others
                     </a>
-                    <a href="#about" class="nav-item">
+                    <a href="https://abhiraman.tumblr.com" class="nav-item" target="_blank">
+                        <i class="fas fa-arrow-up-right-from-square"></i> Scribbling
+                    </a>
+                    <a href="about.html" class="nav-item" id="about-link"> <!-- Changed href to about.html and added an ID -->
                         About
                     </a>
                 </div>
@@ -80,13 +86,23 @@
                 <h3>Currently, designing experiences <a href="https://www.learningyogi.com" target="_blank">@LearningYogi</a></h3>
             </section>
 
-            <!-- Projects Section -->
-            <section id="projects" class="section">
-                <h2 class="section-title">Projects</h2>
-                <p class="section-subtitle">All the projects I've worked on professionally</p>
+            <!-- Games Section -->
+            <section id="games" class="section">
+                <h2 class="section-title">Games</h2>
+                <p class="section-subtitle">Games I've developed professionally</p>
                 
-                <div class="projects-grid" id="projects-container">
-                    <!-- Projects will be loaded dynamically -->
+                <div class="projects-grid" id="games-container">
+                    <!-- Games will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Apps Section -->
+            <section id="apps" class="section">
+                <h2 class="section-title">Apps</h2>
+                <p class="section-subtitle">Applications I've worked on professionally</p>
+                
+                <div class="projects-grid" id="apps-container">
+                    <!-- Apps will be loaded dynamically -->
                 </div>
             </section>
 
@@ -100,14 +116,9 @@
                 </div>
             </section>
 
-            <!-- About Section -->
-            <section id="about" class="section">
-                <h2 class="section-title">About</h2>
-                <p class="section-subtitle">A bit about me and my background</p>
-                
-                <p>Just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.
-                Whether I'm smashing keyboards, sketching ideas, or forging game worlds, I'm all in. 
-                I believe games, when designed right, can hit deep and stay with you long after the credits roll—and that's exactly what I love creating.</p>
+            <!-- New container for dynamically loaded content -->
+            <section id="main-content-area">
+                <!-- Content from about.html will be loaded here -->
             </section>
         </main>
     </div>
@@ -124,14 +135,15 @@
             document.querySelector('.overlay').classList.remove('active');
         });
 
-        // Handle smooth scrolling for anchor links
+        // Handle smooth scrolling for anchor links - MODIFIED
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                if (this.getAttribute('href') === '#index') {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#index') {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                    const section = document.querySelector(this.getAttribute('href'));
+                    const section = document.querySelector(targetId);
                     if (section) {
                         section.scrollIntoView({ behavior: 'smooth' });
                     }
@@ -142,8 +154,28 @@
             });
         });
 
-        // Update active section on scroll
-        const sections = document.querySelectorAll('section');
+        // New JavaScript to handle loading about.html
+        document.getElementById('about-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            fetch('about.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('main-content-area').innerHTML = html;
+                    // Hide other sections and show main-content-area
+                    document.querySelectorAll('.content-section').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    document.getElementById('main-content-area').style.display = 'block';
+
+                    // Remove active state from other nav items and add to 'About'
+                    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                })
+                .catch(error => console.error('Error loading about.html:', error));
+        });
+
+        // Update active section on scroll - MODIFIED to exclude dynamically loaded content
+        const sections = document.querySelectorAll('section:not(#main-content-area)'); // Exclude the dynamic content area
         const navItems = document.querySelectorAll('.nav-item');
 
         window.addEventListener('scroll', () => {
@@ -157,15 +189,17 @@
             });
 
             navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${current}`) {
-                    item.classList.add('active');
+                // Only update active state for internal links and not the about link
+                if (item.getAttribute('href').startsWith('#') && item.getAttribute('id') !== 'about-link') {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${current}`) {
+                        item.classList.add('active');
+                    }
                 }
             });
         });
     </script>
     <script src="js/theme.js"></script>
-    <!-- At the bottom of your HTML file, before the closing body tag -->
     <script src="js/projects.js"></script>
 </body>
 </html>
