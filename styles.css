@@ -584,17 +584,17 @@ p, a, li, span {
 
 /* General link styling */
 a {
-    color: #ffffff; /* Change this to your desired color */
+    color: #ffd54f; /* Change this to your desired color */
     text-decoration: none; /* Removes underline */;
 }
 
 /* Link styles for different states */
 a:link {
-    color: #ffffff; /* Color for unvisited links */
+    color: #ffd54f; /* Color for unvisited links */
 }
 
 a:visited {
-    color: #ffffff; /* Color for visited links */
+    color: #ffd54f; /* Color for visited links */
 }
 
 a:hover {
@@ -604,4 +604,107 @@ a:hover {
 
 a:active {
     color: #ffd54f; /* Color when the link is clicked */
+}
+
+/* Project Detail Styles */
+.project-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.project-logo-large {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+}
+
+.project-logo-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-title-container h1 {
+    margin-bottom: 0.5rem;
+}
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.project-gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.project-gallery img:hover {
+    transform: scale(1.02);
+}
+
+.project-content {
+    margin-bottom: 2rem;
+}
+
+.project-description {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.project-description p {
+    margin-bottom: 1rem;
+}
+
+.project-description ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.back-button {
+    margin-top: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--highlight-color);
+    color: #000;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: #e6c046;
+    transform: translateY(-2px);
 }

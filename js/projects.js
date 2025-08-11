@@ -6,7 +6,21 @@ const projectsData = [
         excerpt: "A comprehensive platform for online education with interactive lessons and assessments.",
         thumbnail: "assets/project-thumbs/pdapro-thumb.jpg",
         logo: "assets/project-thumbs/pdapro.jpg",
-        category: "app" 
+        category: "app",
+        description: `<p>PDA Pro is a comprehensive platform for online education that I developed to provide interactive lessons and assessments.</p>
+        <p>The platform features:</p>
+        <ul>
+            <li>Interactive lesson modules</li>
+            <li>Real-time assessment tools</li>
+            <li>Progress tracking dashboard</li>
+            <li>Collaborative learning spaces</li>
+        </ul>
+        <p>This project was built using React for the frontend and Node.js for the backend, with MongoDB as the database.</p>`,
+        gallery: [
+            "assets/project-gallery/pdapro-1.jpg",
+            "assets/project-gallery/pdapro-2.jpg"
+        ],
+        videoUrl: "https://www.youtube.com/embed/your-video-id" // Optional YouTube embed URL
     },
     {
         id: 2,
@@ -14,7 +28,19 @@ const projectsData = [
         excerpt: "Real-time analytics dashboard for tracking sales, inventory, and customer behavior.",
         thumbnail: "assets/project-thumbs/atlaskeeper-thumb.jpg",
         logo: "assets/project-thumbs/atlaskeeper-icon.jpg",
-        category: "game"
+        category: "game",
+        description: `<p>Atlas Keeper is a real-time analytics dashboard that I developed for tracking game metrics and player behavior.</p>
+        <p>Key features include:</p>
+        <ul>
+            <li>Real-time player statistics</li>
+            <li>In-game economy monitoring</li>
+            <li>Player retention analysis</li>
+            <li>Customizable reporting tools</li>
+        </ul>`,
+        gallery: [
+            "assets/project-gallery/atlaskeeper-1.jpg",
+            "assets/project-gallery/atlaskeeper-2.jpg"
+        ]
     },
     {
         id: 3,
@@ -129,6 +155,66 @@ function loadApps() {
     });
 }
 
+// Function to load project details
+function loadProjectDetails(projectId) {
+    // Find the project by ID
+    const project = projectsData.find(p => p.id == projectId);
+    
+    if (!project) {
+        console.error(`Project with ID ${projectId} not found`);
+        return;
+    }
+    
+    // Determine the section to return to based on project category
+    let returnSection = '#';
+    if (project.category === 'game') {
+        returnSection = '#games';
+    } else if (project.category === 'app') {
+        returnSection = '#apps';
+    } else if (project.category === 'prototype') {
+        returnSection = '#prototypes';
+    }
+    
+    // Create the project detail HTML
+    const detailHtml = `
+    <section id="project-detail" class="main-content-section">
+        <div class="project-header">
+            <div class="project-logo-large">
+                <img src="${project.logo}" alt="${project.title} Logo">
+            </div>
+            <div class="project-title-container">
+                <h1>${project.title}</h1>
+                <p class="highlight-box">${project.category}</p>
+            </div>
+        </div>
+        
+        ${project.gallery && project.gallery.length > 0 ? `
+        <div class="project-gallery">
+            ${project.gallery.map(img => `<img src="${img}" alt="${project.title} screenshot">`).join('')}
+        </div>
+        ` : ''}
+        
+        <div class="project-content">
+            <div class="project-description">
+                ${project.description || ''}
+            </div>
+            
+            ${project.videoUrl ? `
+            <div class="video-container">
+                <iframe width="560" height="315" src="${project.videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            ` : ''}
+        </div>
+        
+        <div class="back-button">
+            <a href="${returnSection}" class="btn back-to-projects">Back to ${project.category === 'game' ? 'Games' : project.category === 'app' ? 'Apps' : 'Prototypes'}</a>
+        </div>
+    </section>
+    `;
+    
+    return detailHtml;
+}
+
 // Initialize projects when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Load games
@@ -144,8 +230,82 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.project-card').forEach(card => {
         card.addEventListener('click', function() {
             const projectId = this.getAttribute('data-id');
-            // You can implement project detail view here
-            console.log(`Project clicked: ${projectId}`);
+            const projectHtml = loadProjectDetails(projectId);
+            
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show project details in main-content-area
+            const mainContentArea = document.getElementById('main-content-area');
+            mainContentArea.innerHTML = projectHtml;
+            mainContentArea.style.display = 'block';
+            
+            // Add event listener to the back button
+            const backButton = mainContentArea.querySelector('.back-to-projects');
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = this.getAttribute('href');
+                    
+                    // Hide main-content-area and show all sections
+                    mainContentArea.style.display = 'none';
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.style.display = 'block';
+                    });
+                    
+                    // Scroll to the appropriate section
+                    if (targetSection === '#index') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const section = document.querySelector(targetSection);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                    
+                    // Update active state in navigation
+                    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                    document.querySelector(`a[href="${targetSection}"]`).classList.add('active');
+                });
+            }
+            
+            // Make sidebar navigation work from project detail pages
+            document.querySelectorAll('.nav-item').forEach(navItem => {
+                if (navItem.getAttribute('id') !== 'about-link') {
+                    const originalClickHandler = navItem.onclick;
+                    navItem.onclick = function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        
+                        // Hide main-content-area and show all sections
+                        mainContentArea.style.display = 'none';
+                        document.querySelectorAll('.section').forEach(section => {
+                            section.style.display = 'block';
+                        });
+                        
+                        // Scroll to the appropriate section
+                        if (targetId === '#index') {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                            const section = document.querySelector(targetId);
+                            if (section) {
+                                section.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                        
+                        // Update active state
+                        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        return false;
+                    };
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 });
