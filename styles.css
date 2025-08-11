@@ -2,6 +2,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
 
+/* Word Carousel Animation */
+.word-carousel {
+    display: inline-block;
+    color: var(--highlight-color);
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    height: 1.5em;
+    vertical-align: middle; /* Changed to middle for better alignment with text */
+    min-width: 180px; /* Width for longer words like 'AI Systems' */
+    text-align: left;
+    margin-left: 8px; /* Space after 'designing' */
+    cursor: pointer; /* Indicate it's clickable */
+    line-height: 1.5; /* Match line height with parent */
+    /* Removed underline styling */
+}
+
+.word-carousel span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 1.5em; /* Match parent height */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes slide-up {
+    0% { transform: translateY(100%); opacity: 0; }
+    8% { transform: translateY(0); opacity: 1; }
+    80% { transform: translateY(0); opacity: 1; }
+    95% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(-100%); opacity: 0; }
+}
+
+/* Ensure h3 has proper line height and alignment */
+#index h3 {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 1.5;
+}
+
 :root {
     --background-color: #1e1033;
     --text-color: #ffffff;
@@ -689,9 +732,7 @@ a:active {
     border-radius: 8px;
 }
 
-.back-button {
-    margin-top: 2rem;
-}
+/* Back button styles removed as requested */
 
 .btn {
     display: inline-block;

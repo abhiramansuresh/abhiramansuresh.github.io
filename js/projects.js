@@ -206,9 +206,7 @@ function loadProjectDetails(projectId) {
             ` : ''}
         </div>
         
-        <div class="back-button">
-            <a href="${returnSection}" class="btn back-to-projects">Back to ${project.category === 'game' ? 'Games' : project.category === 'app' ? 'Apps' : 'Prototypes'}</a>
-        </div>
+        <!-- Back button removed as requested -->
     </section>
     `;
     
@@ -242,34 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mainContentArea.innerHTML = projectHtml;
             mainContentArea.style.display = 'block';
             
-            // Add event listener to the back button
-            const backButton = mainContentArea.querySelector('.back-to-projects');
-            if (backButton) {
-                backButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetSection = this.getAttribute('href');
-                    
-                    // Hide main-content-area and show all sections
-                    mainContentArea.style.display = 'none';
-                    document.querySelectorAll('.section').forEach(section => {
-                        section.style.display = 'block';
-                    });
-                    
-                    // Scroll to the appropriate section
-                    if (targetSection === '#index') {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    } else {
-                        const section = document.querySelector(targetSection);
-                        if (section) {
-                            section.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }
-                    
-                    // Update active state in navigation
-                    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-                    document.querySelector(`a[href="${targetSection}"]`).classList.add('active');
-                });
-            }
+            // Back button functionality removed as requested
             
             // Make sidebar navigation work from project detail pages
             document.querySelectorAll('.nav-item').forEach(navItem => {
