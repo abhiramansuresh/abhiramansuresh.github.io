@@ -81,7 +81,7 @@ const projectsData = [
 
     // Prototypes
     {
-        id: 8,
+        id: 6,
         title: "Squares",
         excerpt: "IoT interface for managing connected home devices with voice commands and automation.",
         thumbnail: "assets/project-thumbs/squares-icon.jpg",
@@ -99,7 +99,7 @@ const projectsData = [
         itchioUrl: "https://pandasaan.itch.io/grainy"
     },
     {
-        id: 6,
+        id: 8,
         title: "The Crossover",
         excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
         thumbnail: "assets/project-thumbs/crossover-thumb.jpg",
@@ -107,6 +107,16 @@ const projectsData = [
         category: "Prototype",
         itchioUrl: "https://pandasaan.itch.io/the-crossover-virtual-reality-game",
         videoUrl: "https://youtu.be/r_zFsgJGq20?si=bo05elt1KqDDluae"
+    },
+    {
+        id: 9,
+        title: "Combat a Mort",
+        excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
+        thumbnail: "assets/project-thumbs/combat-thumb.jpg",
+        logo: "assets/project-thumbs/combat-thumb.jpg",
+        category: "Prototype",
+        itchioUrl: "https://pandasaan.itch.io/combat-a-mort",
+        videoUrl: "https://www.youtube.com/watch?v=4DFo81-5m4Y"
     },
 
 ];

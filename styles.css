@@ -182,8 +182,10 @@ span {
     position: relative;
     justify-content: center;
     /* Center children horizontally */
-    align-items: center;
+    align-items: flex-start;
     /* Center children vertically */
+    gap: 4rem;
+    /* Add spacing between sidebar and content */
 }
 
 /* Sidebar Styles */
@@ -193,8 +195,8 @@ span {
     padding: 1.5rem;
     /* Reduced from 2rem */
     padding-top: var(--vertical-alignment);
-    position: fixed;
-    left: max(10px, calc(50% - 550px));
+    position: -webkit-sticky;
+    position: sticky;
     /* Adjusted position closer to center */
     top: 0;
     height: 100vh;
@@ -487,9 +489,8 @@ span {
 .main-content {
     flex: 1;
     padding: 2rem;
-    /* Reducing the margin-left to create less space between sidebar and content */
-    margin-left: calc(var(--grid-margin) + (100% - (var(--grid-gutter) * (var(--grid-columns) - 1))) / var(--grid-columns));
-    width: calc(100% - (100% - (var(--grid-gutter) * (var(--grid-columns) - 1))) / var(--grid-columns));
+    margin-left: 0;
+    width: auto;
 }
 
 /* Section Styles */
@@ -655,6 +656,11 @@ span {
         --grid-gutter: 30px;
     }
 
+    .container {
+        width: 90%;
+        /* Give more space on tablets */
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -670,6 +676,8 @@ span {
     }
 
     .sidebar {
+        position: fixed;
+        /* Go back to fixed for mobile drawer */
         transform: translateX(-100%);
         left: 0;
         width: 280px;
