@@ -299,15 +299,7 @@ span {
 }
 
 /* Main Content Styles */
-.main-content {
-    flex: 1;
-    padding: 2rem;
-    margin-left: 250px;
-    /* Adjusted to match new sidebar width + padding */
-    width: calc(100% - 250px);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    /* Added median line */
-}
+/* Main Content Styles - Consolidate with later definition */
 
 /* Responsive Styles - adjust as needed */
 @media screen and (max-width: 1200px) {
@@ -734,7 +726,14 @@ a:active {
 .project-header {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: var(--background-color);
+    z-index: 100;
+    /* Optional: explicit separation */
 }
 
 .project-logo-large {
@@ -868,13 +867,27 @@ a:active {
 .project-text-column {
     /* Sticky text so it stays while scrolling long galleries */
     position: sticky;
-    top: 2rem;
+    top: 11rem;
+    /* Adjusted for sticky header */
 }
 
 .project-media-column {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+/* Enable grid layout when requested (for >2 images) */
+.project-media-column.use-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    /* Prevent stretching */
+}
+
+/* Ensure video always spans full width in grid mode */
+.project-media-column.use-grid .media-item.video-item {
+    grid-column: 1 / -1;
 }
 
 .media-item {
@@ -965,6 +978,38 @@ a:active {
 .lightbox-close:hover {
     transform: scale(1.1);
     color: var(--highlight-color);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 2002;
+    user-select: none;
+}
+
+.lightbox-nav:hover {
+    background-color: var(--highlight-color);
+    color: black;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
 }
 
 /* Media Queries for New Layout */

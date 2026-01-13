@@ -197,6 +197,10 @@ function loadApps() {
 }
 
 // Function to load project details
+// Global state for lightbox navigation
+let currentMediaItems = [];
+let currentMediaIndex = 0;
+
 function loadProjectDetails(projectId) {
     // Find the project by ID
     const project = projectsData.find(p => p.id == projectId);
@@ -204,6 +208,23 @@ function loadProjectDetails(projectId) {
     if (!project) {
         console.error(`Project with ID ${projectId} not found`);
         return;
+    }
+
+    // Reset media items for this project
+    currentMediaItems = [];
+    if (project.videoUrl) {
+        currentMediaItems.push({
+            type: 'video',
+            source: getYouTubeEmbedUrl(project.videoUrl)
+        });
+    }
+    if (project.gallery && project.gallery.length > 0) {
+        project.gallery.forEach(img => {
+            currentMediaItems.push({
+                type: 'image',
+                source: img
+            });
+        });
     }
 
     // Determine the section to return to based on project category
@@ -217,6 +238,10 @@ function loadProjectDetails(projectId) {
     }
 
     // Create the project detail HTML
+    // Check if we should use grid layout (more than 2 images)
+    const hasManyImages = project.gallery && project.gallery.length > 2;
+    const gridClass = hasManyImages ? 'use-grid' : '';
+
     // Create the project detail HTML with new 2-column layout
     const detailHtml = `
     <section id="project-detail" class="main-content-section">
@@ -261,21 +286,25 @@ function loadProjectDetails(projectId) {
             </div>
 
             <!-- Right Column: Media Gallery (Video + Images) -->
-            <div class="project-media-column">
+            <div class="project-media-column ${gridClass}">
                 ${/* Video Section */ ''}
                 ${project.videoUrl ? `
-                <div class="media-item" onclick="openLightbox('video', '${getYouTubeEmbedUrl(project.videoUrl)}')">
+                <div class="media-item video-item" onclick="openLightbox(0)">
                     <iframe width="560" height="315" src="${getYouTubeEmbedUrl(project.videoUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 ` : ''}
 
                 ${/* Gallery Images */ ''}
                 ${project.gallery && project.gallery.length > 0 ?
-            project.gallery.map(img => `
-                    <div class="media-item" onclick="openLightbox('image', '${img}')">
-                        <img src="${img}" alt="${project.title} screenshot">
-                    </div>
-                    `).join('')
+            project.gallery.map((img, index) => {
+                // Calculate actual index based on whether video exists
+                const globalIndex = project.videoUrl ? index + 1 : index;
+                return `
+                        <div class="media-item" onclick="openLightbox(${globalIndex})">
+                            <img src="${img}" alt="${project.title} screenshot">
+                        </div>
+                        `;
+            }).join('')
             : ''}
             </div>
         </div>
@@ -295,6 +324,8 @@ function createLightbox() {
     lightbox.className = 'lightbox-modal';
     lightbox.innerHTML = `
         <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+        <div class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</div>
+        <div class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#10095;</div>
         <div class="lightbox-content" id="lightbox-content-container">
             <!-- Content injected here -->
         </div>
@@ -307,31 +338,75 @@ function createLightbox() {
         }
     });
 
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+        if (!document.querySelector('.lightbox-modal.active')) return;
+
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
     document.body.appendChild(lightbox);
 }
 
-function openLightbox(type, source) {
+function openLightbox(index) {
     const lightbox = document.querySelector('.lightbox-modal');
     if (!lightbox) return;
 
+    currentMediaIndex = index;
+    updateLightboxContent();
+
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function updateLightboxContent() {
     const container = document.getElementById('lightbox-content-container');
     container.innerHTML = '';
 
-    if (type === 'image') {
+    const item = currentMediaItems[currentMediaIndex];
+    if (!item) return;
+
+    if (item.type === 'image') {
         const img = document.createElement('img');
-        img.src = source;
+        img.src = item.source;
         container.appendChild(img);
-    } else if (type === 'video') {
+    } else if (item.type === 'video') {
         const iframe = document.createElement('iframe');
-        iframe.src = source; // Source should already be an embed URL
+        iframe.src = item.source; // Source should already be an embed URL
         iframe.frameBorder = "0";
         iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
         iframe.allowFullscreen = true;
         container.appendChild(iframe);
     }
 
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    // Update nav buttons visibility based on index (optional: loop or hide at ends)
+    // For now, we'll loop strictly or just let them exist. 
+    // Let's hide if there's only 1 item
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+
+    if (currentMediaItems.length <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+    } else {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+    }
+}
+
+function navigateLightbox(direction) {
+    currentMediaIndex += direction;
+
+    // Loop functionality
+    if (currentMediaIndex < 0) {
+        currentMediaIndex = currentMediaItems.length - 1;
+    } else if (currentMediaIndex >= currentMediaItems.length) {
+        currentMediaIndex = 0;
+    }
+
+    updateLightboxContent();
 }
 
 function closeLightbox() {
