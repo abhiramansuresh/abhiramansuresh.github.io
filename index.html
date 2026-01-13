@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <script src="wave-animation.js" defer></script>
     <script src="word-carousel.js" defer></script>
 </head>
+
 <body>
     <div class="grid-overlay">
         <div class="grid-container">
@@ -21,7 +23,7 @@
             <div class="grid-column"></div>
         </div>
     </div>
-    
+
     <button class="menu-button">
         <i class="fas fa-bars"></i>
     </button>
@@ -58,7 +60,8 @@
                     <a href="https://abhiraman.tumblr.com" class="nav-item" target="_blank">
                         <i class="fas fa-arrow-up-right-from-square"></i> Scribbling
                     </a> -->
-                    <a href="about.html" class="nav-item" id="about-link"> <!-- Changed href to about.html and added an ID -->
+                    <a href="about.html" class="nav-item" id="about-link">
+                        <!-- Changed href to about.html and added an ID -->
                         About
                     </a>
                 </div>
@@ -83,7 +86,7 @@
             <!-- In the index section -->
             <section id="index" class="section">
                 <h1 class="large-text">Hey! I am <span class="highlight-box">Aaabhi</span></h1>
-                <h3>Designer with experience designing <span id="word-carousel" class="word-carousel">UX</span></h3>
+                <h3>Designer with experience building <span id="word-carousel" class="word-carousel">UX</span></h3>
                 <!--<h3>I <span class="love">love</span> movies, design, playing / making games.</h3>
                 <h3>Currently, designing experiences <a href="https://www.learningyogi.com" target="_blank">@LearningYogi</a></h3>-->
             </section>
@@ -91,8 +94,8 @@
             <!-- Games Section -->
             <section id="games" class="section">
                 <h2 class="section-title">Games</h2>
-                <p class="section-subtitle">Games I've developed professionally</p>
-                
+                <p class="section-subtitle">Games I've built / helped build so far</p>
+
                 <div class="projects-grid" id="games-container">
                     <!-- Games will be loaded dynamically -->
                 </div>
@@ -101,8 +104,8 @@
             <!-- Apps Section -->
             <section id="apps" class="section">
                 <h2 class="section-title">Apps</h2>
-                <p class="section-subtitle">Applications I've worked on professionally</p>
-                
+                <p class="section-subtitle">Applications I've built / helped build so far</p>
+
                 <div class="projects-grid" id="apps-container">
                     <!-- Apps will be loaded dynamically -->
                 </div>
@@ -112,7 +115,7 @@
             <section id="prototypes" class="section">
                 <h2 class="section-title">Prototypes</h2>
                 <p class="section-subtitle">Experimental projects and prototypes made for fun</p>
-                
+
                 <div class="projects-grid" id="prototypes-container">
                     <!-- Prototypes will be loaded dynamically -->
                 </div>
@@ -127,12 +130,12 @@
 
     <script>
         // Handle mobile menu
-        document.querySelector('.menu-button').addEventListener('click', function() {
+        document.querySelector('.menu-button').addEventListener('click', function () {
             document.querySelector('.sidebar').classList.toggle('active');
             document.querySelector('.overlay').classList.toggle('active');
         });
 
-        document.querySelector('.overlay').addEventListener('click', function() {
+        document.querySelector('.overlay').addEventListener('click', function () {
             document.querySelector('.sidebar').classList.remove('active');
             document.querySelector('.overlay').classList.remove('active');
         });
@@ -157,7 +160,7 @@
         });
 
         // New JavaScript to handle loading about.html
-        document.getElementById('about-link').addEventListener('click', function(e) {
+        document.getElementById('about-link').addEventListener('click', function (e) {
             e.preventDefault();
             fetch('about.html')
                 .then(response => response.text())
@@ -204,4 +207,5 @@
     <script src="js/theme.js"></script>
     <script src="js/projects.js"></script>
 </body>
+
 </html>
