@@ -40,7 +40,8 @@ const projectsData = [
         gallery: [
             "assets/project-gallery/atlaskeeper-1.jpg",
             "assets/project-gallery/atlaskeeper-2.jpg"
-        ]
+        ],
+        embedCode: '<iframe width="560" height="315" src="https://www.youtube.com/embed/U_m0j8dUG7M?si=mIbd1L5jJcWbssxW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
     },
     {
         id: 3,
@@ -74,7 +75,8 @@ const projectsData = [
         excerpt: "IoT interface for managing connected home devices with voice commands and automation.",
         thumbnail: "assets/project-thumbs/duojump-thumb.jpg",
         logo: "assets/project-thumbs/duojump-icon.png",
-        category: "prototype"
+        category: "prototype",
+        embedCode: '<iframe width="560" height="315" src="https://www.youtube.com/embed/U_m0j8dUG7M?si=mIbd1L5jJcWbssxW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
     },
     {
         id: 7,
@@ -111,9 +113,9 @@ function createProjectCard(project) {
 function loadProjects(category) {
     const container = document.getElementById('projects-container');
     const filteredProjects = projectsData.filter(project => project.category === category);
-    
+
     container.innerHTML = '';
-    
+
     filteredProjects.forEach(project => {
         container.innerHTML += createProjectCard(project);
     });
@@ -123,9 +125,9 @@ function loadProjects(category) {
 function loadPrototypes() {
     const container = document.getElementById('prototypes-container');
     const filteredProjects = projectsData.filter(project => project.category === 'prototype');
-    
+
     container.innerHTML = '';
-    
+
     filteredProjects.forEach(project => {
         container.innerHTML += createProjectCard(project);
     });
@@ -135,9 +137,9 @@ function loadPrototypes() {
 function loadGames() {
     const container = document.getElementById('games-container');
     const filteredProjects = projectsData.filter(project => project.category === 'game');
-    
+
     container.innerHTML = '';
-    
+
     filteredProjects.forEach(project => {
         container.innerHTML += createProjectCard(project);
     });
@@ -147,9 +149,9 @@ function loadGames() {
 function loadApps() {
     const container = document.getElementById('apps-container');
     const filteredProjects = projectsData.filter(project => project.category === 'app');
-    
+
     container.innerHTML = '';
-    
+
     filteredProjects.forEach(project => {
         container.innerHTML += createProjectCard(project);
     });
@@ -159,12 +161,12 @@ function loadApps() {
 function loadProjectDetails(projectId) {
     // Find the project by ID
     const project = projectsData.find(p => p.id == projectId);
-    
+
     if (!project) {
         console.error(`Project with ID ${projectId} not found`);
         return;
     }
-    
+
     // Determine the section to return to based on project category
     let returnSection = '#';
     if (project.category === 'game') {
@@ -174,7 +176,7 @@ function loadProjectDetails(projectId) {
     } else if (project.category === 'prototype') {
         returnSection = '#prototypes';
     }
-    
+
     // Create the project detail HTML
     const detailHtml = `
     <section id="project-detail" class="main-content-section">
@@ -199,7 +201,11 @@ function loadProjectDetails(projectId) {
                 ${project.description || ''}
             </div>
             
-            ${project.videoUrl ? `
+            ${project.embedCode ? `
+            <div class="video-container">
+                ${project.embedCode}
+            </div>
+            ` : project.videoUrl ? `
             <div class="video-container">
                 <iframe width="560" height="315" src="${project.videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
@@ -209,53 +215,53 @@ function loadProjectDetails(projectId) {
         <!-- Back button removed as requested -->
     </section>
     `;
-    
+
     return detailHtml;
 }
 
 // Initialize projects when the DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Load games
     loadGames();
-    
+
     // Load apps
     loadApps();
-    
+
     // Load prototypes
     loadPrototypes();
-    
+
     // Add click event listeners to project cards
     document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             const projectId = this.getAttribute('data-id');
             const projectHtml = loadProjectDetails(projectId);
-            
+
             // Hide all sections
             document.querySelectorAll('.section').forEach(section => {
                 section.style.display = 'none';
             });
-            
+
             // Show project details in main-content-area
             const mainContentArea = document.getElementById('main-content-area');
             mainContentArea.innerHTML = projectHtml;
             mainContentArea.style.display = 'block';
-            
+
             // Back button functionality removed as requested
-            
+
             // Make sidebar navigation work from project detail pages
             document.querySelectorAll('.nav-item').forEach(navItem => {
                 if (navItem.getAttribute('id') !== 'about-link') {
                     const originalClickHandler = navItem.onclick;
-                    navItem.onclick = function(e) {
+                    navItem.onclick = function (e) {
                         e.preventDefault();
                         const targetId = this.getAttribute('href');
-                        
+
                         // Hide main-content-area and show all sections
                         mainContentArea.style.display = 'none';
                         document.querySelectorAll('.section').forEach(section => {
                             section.style.display = 'block';
                         });
-                        
+
                         // Scroll to the appropriate section
                         if (targetId === '#index') {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -265,16 +271,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                 section.scrollIntoView({ behavior: 'smooth' });
                             }
                         }
-                        
+
                         // Update active state
                         document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
                         this.classList.add('active');
-                        
+
                         return false;
                     };
                 }
             });
-            
+
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
