@@ -40,8 +40,15 @@ const projectsData = [
             <li>Customizable reporting tools</li>
         </ul>`,
         gallery: [
-            "assets/project-gallery/atlaskeeper-1.jpg",
-            "assets/project-gallery/atlaskeeper-2.jpg"
+            "assets/project-gallery/atlaskeeper-1.png",
+            "assets/project-gallery/atlaskeeper-3.png",
+            "assets/project-gallery/atlaskeeper-4.png",
+            "assets/project-gallery/atlaskeeper-5.png",
+            "assets/project-gallery/atlaskeeper-6.png",
+            "assets/project-gallery/atlaskeeper-7.png",
+            "assets/project-gallery/atlaskeeper-8.png",
+
+
         ],
         videoUrl: "https://youtu.be/U_m0j8dUG7M?si=3Mls99gCGnhjj6Um", // Optional YouTube embed URL
         appStoreUrl: "https://apps.apple.com/in/app/atlaskeeper-kids-learning-game/id6444937235",     // URL for App Store button
