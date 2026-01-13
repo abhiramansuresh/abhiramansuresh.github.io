@@ -6,7 +6,7 @@ const projectsData = [
         excerpt: "A comprehensive platform for online education with interactive lessons and assessments.",
         thumbnail: "assets/project-thumbs/pdapro-thumb.jpg",
         logo: "assets/project-thumbs/pdapro.jpg",
-        category: "app",
+        category: "App",
         description: `<p>PDA Pro is a comprehensive platform for online education that I developed to provide interactive lessons and assessments.</p>
         <p>The platform features:</p>
         <ul>
@@ -20,7 +20,9 @@ const projectsData = [
             "assets/project-gallery/pdapro-1.jpg",
             "assets/project-gallery/pdapro-2.jpg"
         ],
-        videoUrl: "https://youtube.com/shorts/nJXYRFSMVoo?si=EAdpjtU21oJNYI6u" // Optional YouTube embed URL
+        videoUrl: "https://youtube.com/shorts/nJXYRFSMVoo?si=EAdpjtU21oJNYI6u", // Optional YouTube embed URL
+        appStoreUrl: "https://apps.apple.com/in/app/pda-pro-for-demand-avoidance/id6743385207",     // URL for App Store button
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.learningyogi.pdapro&pcampaignid=web_share",   // URL for Google Play button
     },
     {
         id: 2,
@@ -28,7 +30,7 @@ const projectsData = [
         excerpt: "Real-time analytics dashboard for tracking sales, inventory, and customer behavior.",
         thumbnail: "assets/project-thumbs/atlaskeeper-thumb.jpg",
         logo: "assets/project-thumbs/atlaskeeper-icon.jpg",
-        category: "game",
+        category: "Game",
         description: `<p>Atlas Keeper is a real-time analytics dashboard that I developed for tracking game metrics and player behavior.</p>
         <p>Key features include:</p>
         <ul>
@@ -41,7 +43,9 @@ const projectsData = [
             "assets/project-gallery/atlaskeeper-1.jpg",
             "assets/project-gallery/atlaskeeper-2.jpg"
         ],
-        videoUrl: "https://youtu.be/U_m0j8dUG7M?si=3Mls99gCGnhjj6Um" // Optional YouTube embed URL
+        videoUrl: "https://youtu.be/U_m0j8dUG7M?si=3Mls99gCGnhjj6Um", // Optional YouTube embed URL
+        appStoreUrl: "https://apps.apple.com/in/app/atlaskeeper-kids-learning-game/id6444937235",     // URL for App Store button
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.learningyogi.MagicBookMVP&pcampaignid=web_share"   // URL for Google Play button
     },
     {
         id: 3,
@@ -49,8 +53,10 @@ const projectsData = [
         excerpt: "Secure and intuitive banking application with biometric authentication and transaction tracking.",
         thumbnail: "assets/project-thumbs/atlasmission-thumb.jpg",
         logo: "assets/project-thumbs/atlasmission-icon.jpg",
-        category: "game",
-        videoUrl: "https://www.youtube.com/watch?v=0u-aXlx_tqc" // Optional YouTube embed URL
+        category: "Game",
+        videoUrl: "https://www.youtube.com/watch?v=0u-aXlx_tqc", // Optional YouTube embed URL
+        appStoreUrl: "https://apps.apple.com/in/app/atlasmission-1-kids-learning/id1161093896",     // URL for App Store button
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.LearningYogi.Atlasmission&pcampaignid=web_share"   // URL for Google Play button
     },
     {
         id: 4,
@@ -58,7 +64,9 @@ const projectsData = [
         excerpt: "A fun platformer game where you control two characters simultaneously.",
         thumbnail: "assets/project-thumbs/duojump-thumb.jpg",
         logo: "assets/project-thumbs/duojump-icon.png",
-        category: "game"
+        category: "Game",
+        videoUrl: "https://youtube.com/shorts/n1STBVmzgOk?si=vYvuOYrNxBLqUBGr", // Optional YouTube embed URL
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.pandascreation.duojump&pcampaignid=web_share"   // URL for Google Play button
     },
     {
         id: 5,
@@ -66,26 +74,39 @@ const projectsData = [
         excerpt: "An adventure game featuring a bald protagonist navigating through challenging environments.",
         thumbnail: "assets/project-thumbs/baldy-thumb.jpg",
         logo: "assets/project-thumbs/baldy-icon.jpg",
-        category: "game"
+        category: "Game",
+        videoUrl: "https://youtu.be/nSUuGixCRCQ?si=U4lfaV6u3lM7KVpx",
+        itchioUrl: "https://pandasaan.itch.io/baldy"
     },
 
     // Prototypes
     {
-        id: 6,
-        title: "Duo Jump",
+        id: 8,
+        title: "Squares",
         excerpt: "IoT interface for managing connected home devices with voice commands and automation.",
-        thumbnail: "assets/project-thumbs/duojump-thumb.jpg",
-        logo: "assets/project-thumbs/duojump-icon.png",
-        category: "prototype",
-        embedCode: '<iframe width="560" height="315" src="https://www.youtube.com/embed/U_m0j8dUG7M?si=mIbd1L5jJcWbssxW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+        thumbnail: "assets/project-thumbs/squares-icon.jpg",
+        logo: "assets/project-thumbs/squares-icon.jpg",
+        category: "Prototype",
+        itchioUrl: "https://pandasaan.itch.io/squares"
     },
     {
         id: 7,
-        title: "Baldy",
+        title: "Grainy",
         excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
-        thumbnail: "assets/project-thumbs/baldy-thumb.jpg",
-        logo: "assets/project-thumbs/baldy-icon.jpg",
-        category: "prototype"
+        thumbnail: "assets/project-thumbs/grainy-icon.jpg",
+        logo: "assets/project-thumbs/grainy-icon.jpg",
+        category: "Prototype",
+        itchioUrl: "https://pandasaan.itch.io/grainy"
+    },
+    {
+        id: 6,
+        title: "The Crossover",
+        excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
+        thumbnail: "assets/project-thumbs/crossover-thumb.jpg",
+        logo: "assets/project-thumbs/crossover-thumb.jpg",
+        category: "Prototype",
+        itchioUrl: "https://pandasaan.itch.io/the-crossover-virtual-reality-game",
+        videoUrl: "https://youtu.be/r_zFsgJGq20?si=bo05elt1KqDDluae"
     },
 
 ];
@@ -125,7 +146,7 @@ function loadProjects(category) {
 // Function to load prototypes
 function loadPrototypes() {
     const container = document.getElementById('prototypes-container');
-    const filteredProjects = projectsData.filter(project => project.category === 'prototype');
+    const filteredProjects = projectsData.filter(project => project.category === 'Prototype');
 
     container.innerHTML = '';
 
@@ -137,7 +158,7 @@ function loadPrototypes() {
 // Function to load games
 function loadGames() {
     const container = document.getElementById('games-container');
-    const filteredProjects = projectsData.filter(project => project.category === 'game');
+    const filteredProjects = projectsData.filter(project => project.category === 'Game');
 
     container.innerHTML = '';
 
@@ -149,7 +170,7 @@ function loadGames() {
 // Function to load apps
 function loadApps() {
     const container = document.getElementById('apps-container');
-    const filteredProjects = projectsData.filter(project => project.category === 'app');
+    const filteredProjects = projectsData.filter(project => project.category === 'App');
 
     container.innerHTML = '';
 
@@ -170,11 +191,11 @@ function loadProjectDetails(projectId) {
 
     // Determine the section to return to based on project category
     let returnSection = '#';
-    if (project.category === 'game') {
+    if (project.category === 'Game') {
         returnSection = '#games';
-    } else if (project.category === 'app') {
+    } else if (project.category === 'App') {
         returnSection = '#apps';
-    } else if (project.category === 'prototype') {
+    } else if (project.category === 'Prototype') {
         returnSection = '#prototypes';
     }
 
@@ -205,6 +226,28 @@ function loadProjectDetails(projectId) {
             ${project.videoUrl ? `
             <div class="video-container">
                 <iframe width="560" height="315" src="${getYouTubeEmbedUrl(project.videoUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            ` : ''}
+
+            ${(project.appStoreUrl || project.googlePlayUrl || project.itchioUrl) ? `
+            <div class="project-links">
+                ${project.appStoreUrl ? `
+                <a href="${project.appStoreUrl}" target="_blank" class="store-button">
+                    <img src="assets/links/app-store.svg" alt="Download on App Store">
+                </a>
+                ` : ''}
+                
+                ${project.googlePlayUrl ? `
+                <a href="${project.googlePlayUrl}" target="_blank" class="store-button">
+                    <img src="assets/links/google-store.svg" alt="Get it on Google Play">
+                </a>
+                ` : ''}
+
+                ${project.itchioUrl ? `
+                <a href="${project.itchioUrl}" target="_blank" class="store-button">
+                    <img src="assets/links/itchio-store.svg" alt="Get it on Itch.io">
+                </a>
+                ` : ''}
             </div>
             ` : ''}
         </div>
