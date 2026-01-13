@@ -20,7 +20,7 @@ const projectsData = [
             "assets/project-gallery/pdapro-1.jpg",
             "assets/project-gallery/pdapro-2.jpg"
         ],
-        videoUrl: "https://www.youtube.com/embed/your-video-id" // Optional YouTube embed URL
+        videoUrl: "https://youtube.com/shorts/nJXYRFSMVoo?si=EAdpjtU21oJNYI6u" // Optional YouTube embed URL
     },
     {
         id: 2,
@@ -41,7 +41,7 @@ const projectsData = [
             "assets/project-gallery/atlaskeeper-1.jpg",
             "assets/project-gallery/atlaskeeper-2.jpg"
         ],
-        embedCode: '<iframe width="560" height="315" src="https://www.youtube.com/embed/U_m0j8dUG7M?si=mIbd1L5jJcWbssxW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+        videoUrl: "https://youtu.be/U_m0j8dUG7M?si=3Mls99gCGnhjj6Um" // Optional YouTube embed URL
     },
     {
         id: 3,
@@ -49,7 +49,8 @@ const projectsData = [
         excerpt: "Secure and intuitive banking application with biometric authentication and transaction tracking.",
         thumbnail: "assets/project-thumbs/atlasmission-thumb.jpg",
         logo: "assets/project-thumbs/atlasmission-icon.jpg",
-        category: "game"
+        category: "game",
+        videoUrl: "https://www.youtube.com/watch?v=0u-aXlx_tqc" // Optional YouTube embed URL
     },
     {
         id: 4,
@@ -201,13 +202,9 @@ function loadProjectDetails(projectId) {
                 ${project.description || ''}
             </div>
             
-            ${project.embedCode ? `
+            ${project.videoUrl ? `
             <div class="video-container">
-                ${project.embedCode}
-            </div>
-            ` : project.videoUrl ? `
-            <div class="video-container">
-                <iframe width="560" height="315" src="${project.videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="${getYouTubeEmbedUrl(project.videoUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             ` : ''}
         </div>
@@ -217,6 +214,27 @@ function loadProjectDetails(projectId) {
     `;
 
     return detailHtml;
+}
+
+// Helper function to extract YouTube Embed URL from any YouTube link
+function getYouTubeEmbedUrl(url) {
+    if (!url) return '';
+
+    // Handle already embedded URLs
+    if (url.includes('youtube.com/embed/')) {
+        return url;
+    }
+
+    // Robust pattern for YouTube URLs (matches standard watch, shorts, share, embed)
+    const pattern = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const match = url.match(pattern);
+
+    if (match && match[1]) {
+        return `https://www.youtube.com/embed/${match[1]}?rel=0`;
+    }
+
+    console.warn('Could not parse YouTube URL:', url);
+    return url; // Return original if we can't parse it (failsafe)
 }
 
 // Initialize projects when the DOM is loaded
