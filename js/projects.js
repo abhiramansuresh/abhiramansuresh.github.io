@@ -210,6 +210,7 @@ function loadProjectDetails(projectId) {
     }
 
     // Create the project detail HTML
+    // Create the project detail HTML with new 2-column layout
     const detailHtml = `
     <section id="project-detail" class="main-content-section">
         <div class="project-header">
@@ -222,44 +223,54 @@ function loadProjectDetails(projectId) {
             </div>
         </div>
         
-        ${project.gallery && project.gallery.length > 0 ? `
-        <div class="project-gallery">
-            ${project.gallery.map(img => `<img src="${img}" alt="${project.title} screenshot">`).join('')}
-        </div>
-        ` : ''}
-        
-        <div class="project-content">
-            <div class="project-description">
-                ${project.description || ''}
-            </div>
-            
-            ${project.videoUrl ? `
-            <div class="video-container">
-                <iframe width="560" height="315" src="${getYouTubeEmbedUrl(project.videoUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            ` : ''}
+        <div class="project-detail-content">
+            <!-- Left Column: Text & Links -->
+            <div class="project-text-column">
+                <div class="project-description">
+                    ${project.description || ''}
+                </div>
 
-            ${(project.appStoreUrl || project.googlePlayUrl || project.itchioUrl) ? `
-            <div class="project-links">
-                ${project.appStoreUrl ? `
-                <a href="${project.appStoreUrl}" target="_blank" class="store-button">
-                    <img src="assets/links/app-store.svg" alt="Download on App Store">
-                </a>
-                ` : ''}
-                
-                ${project.googlePlayUrl ? `
-                <a href="${project.googlePlayUrl}" target="_blank" class="store-button">
-                    <img src="assets/links/google-store.svg" alt="Get it on Google Play">
-                </a>
-                ` : ''}
+                ${(project.appStoreUrl || project.googlePlayUrl || project.itchioUrl) ? `
+                <div class="project-links">
+                    ${project.appStoreUrl ? `
+                    <a href="${project.appStoreUrl}" target="_blank" class="store-button">
+                        <img src="assets/links/app-store.svg" alt="Download on App Store">
+                    </a>
+                    ` : ''}
+                    
+                    ${project.googlePlayUrl ? `
+                    <a href="${project.googlePlayUrl}" target="_blank" class="store-button">
+                        <img src="assets/links/google-store.svg" alt="Get it on Google Play">
+                    </a>
+                    ` : ''}
 
-                ${project.itchioUrl ? `
-                <a href="${project.itchioUrl}" target="_blank" class="store-button">
-                    <img src="assets/links/itchio-store.svg" alt="Get it on Itch.io">
-                </a>
+                    ${project.itchioUrl ? `
+                    <a href="${project.itchioUrl}" target="_blank" class="store-button">
+                        <img src="assets/links/itchio-store.svg" alt="Get it on Itch.io">
+                    </a>
+                    ` : ''}
+                </div>
                 ` : ''}
             </div>
-            ` : ''}
+
+            <!-- Right Column: Media Gallery (Video + Images) -->
+            <div class="project-media-column">
+                ${/* Video Section */ ''}
+                ${project.videoUrl ? `
+                <div class="media-item" onclick="openLightbox('video', '${getYouTubeEmbedUrl(project.videoUrl)}')">
+                    <iframe width="560" height="315" src="${getYouTubeEmbedUrl(project.videoUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                ` : ''}
+
+                ${/* Gallery Images */ ''}
+                ${project.gallery && project.gallery.length > 0 ?
+            project.gallery.map(img => `
+                    <div class="media-item" onclick="openLightbox('image', '${img}')">
+                        <img src="${img}" alt="${project.title} screenshot">
+                    </div>
+                    `).join('')
+            : ''}
+            </div>
         </div>
         
         <!-- Back button removed as requested -->
@@ -267,6 +278,62 @@ function loadProjectDetails(projectId) {
     `;
 
     return detailHtml;
+}
+
+// Lightbox/Modal Functions
+function createLightbox() {
+    if (document.querySelector('.lightbox-modal')) return;
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox-modal';
+    lightbox.innerHTML = `
+        <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+        <div class="lightbox-content" id="lightbox-content-container">
+            <!-- Content injected here -->
+        </div>
+    `;
+
+    // Close on clicking outside content
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    document.body.appendChild(lightbox);
+}
+
+function openLightbox(type, source) {
+    const lightbox = document.querySelector('.lightbox-modal');
+    if (!lightbox) return;
+
+    const container = document.getElementById('lightbox-content-container');
+    container.innerHTML = '';
+
+    if (type === 'image') {
+        const img = document.createElement('img');
+        img.src = source;
+        container.appendChild(img);
+    } else if (type === 'video') {
+        const iframe = document.createElement('iframe');
+        iframe.src = source; // Source should already be an embed URL
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        container.appendChild(iframe);
+    }
+
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeLightbox() {
+    const lightbox = document.querySelector('.lightbox-modal');
+    if (lightbox) {
+        lightbox.classList.remove('active');
+        document.getElementById('lightbox-content-container').innerHTML = ''; // Clear content to stop video
+        document.body.style.overflow = ''; // Restore scrolling
+    }
 }
 
 // Helper function to extract YouTube Embed URL from any YouTube link
@@ -292,6 +359,9 @@ function getYouTubeEmbedUrl(url) {
 
 // Initialize projects when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function () {
+    // Create lightbox modal
+    createLightbox();
+
     // Load games
     loadGames();
 
