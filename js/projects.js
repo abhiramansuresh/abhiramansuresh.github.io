@@ -422,6 +422,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
+            // Set active state on sidebar based on project category
+            const project = projectsData.find(p => p.id == projectId);
+            if (project) {
+                let targetHref = '';
+                if (project.category === 'Game') targetHref = '#games';
+                else if (project.category === 'App') targetHref = '#apps';
+                else if (project.category === 'Prototype') targetHref = '#prototypes';
+
+                if (targetHref) {
+                    document.querySelectorAll('.nav-item').forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === targetHref) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            }
+
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });

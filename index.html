@@ -184,6 +184,9 @@
         const navItems = document.querySelectorAll('.nav-item');
 
         window.addEventListener('scroll', () => {
+            // If project detail is open, don't update active state based on scroll
+            if (document.getElementById('main-content-area').style.display === 'block') return;
+
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
