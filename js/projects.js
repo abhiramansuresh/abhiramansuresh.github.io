@@ -40,15 +40,13 @@ const projectsData = [
             <li>Customizable reporting tools</li>
         </ul>`,
         gallery: [
-            "assets/project-gallery/atlaskeeper-1.png",
-            "assets/project-gallery/atlaskeeper-3.png",
+            { src: "assets/project-gallery/atlaskeeper-1.png", caption: "Main Dashboard View showing real-time player metrics" },
+            { src: "assets/project-gallery/atlaskeeper-3.png", caption: "Inventory Management Screen" },
             "assets/project-gallery/atlaskeeper-4.png",
             "assets/project-gallery/atlaskeeper-5.png",
             "assets/project-gallery/atlaskeeper-6.png",
             "assets/project-gallery/atlaskeeper-7.png",
             "assets/project-gallery/atlaskeeper-8.png",
-
-
         ],
         videoUrl: "https://youtu.be/U_m0j8dUG7M?si=3Mls99gCGnhjj6Um", // Optional YouTube embed URL
         appStoreUrl: "https://apps.apple.com/in/app/atlaskeeper-kids-learning-game/id6444937235",     // URL for App Store button
@@ -215,15 +213,26 @@ function loadProjectDetails(projectId) {
     if (project.videoUrl) {
         currentMediaItems.push({
             type: 'video',
-            source: getYouTubeEmbedUrl(project.videoUrl)
+            source: getYouTubeEmbedUrl(project.videoUrl),
+            caption: null
         });
     }
     if (project.gallery && project.gallery.length > 0) {
-        project.gallery.forEach(img => {
-            currentMediaItems.push({
-                type: 'image',
-                source: img
-            });
+        project.gallery.forEach(item => {
+            if (typeof item === 'string') {
+                currentMediaItems.push({
+                    type: 'image',
+                    source: item,
+                    caption: null
+                });
+            } else {
+                // Handle object with caption
+                currentMediaItems.push({
+                    type: 'image',
+                    source: item.src,
+                    caption: item.caption
+                });
+            }
         });
     }
 
@@ -296,12 +305,14 @@ function loadProjectDetails(projectId) {
 
                 ${/* Gallery Images */ ''}
                 ${project.gallery && project.gallery.length > 0 ?
-            project.gallery.map((img, index) => {
+            project.gallery.map((item, index) => {
                 // Calculate actual index based on whether video exists
                 const globalIndex = project.videoUrl ? index + 1 : index;
+                const imgSrc = typeof item === 'string' ? item : item.src;
+
                 return `
                         <div class="media-item" onclick="openLightbox(${globalIndex})">
-                            <img src="${img}" alt="${project.title} screenshot">
+                            <img src="${imgSrc}" alt="${project.title} screenshot">
                         </div>
                         `;
             }).join('')
@@ -372,6 +383,15 @@ function updateLightboxContent() {
         const img = document.createElement('img');
         img.src = item.source;
         container.appendChild(img);
+
+        // Add caption if exists
+        if (item.caption) {
+            const captionDiv = document.createElement('div');
+            captionDiv.className = 'lightbox-caption';
+            captionDiv.innerHTML = item.caption; // Allow HTML in captions? Yes.
+            container.appendChild(captionDiv);
+        }
+
     } else if (item.type === 'video') {
         const iframe = document.createElement('iframe');
         iframe.src = item.source; // Source should already be an embed URL
@@ -454,76 +474,126 @@ document.addEventListener('DOMContentLoaded', function () {
     loadPrototypes();
 
     // Add click event listeners to project cards
+    // Add click event listeners to project cards
     document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', function () {
+        card.addEventListener('click', function (e) {
+            e.preventDefault();
             const projectId = this.getAttribute('data-id');
-            const projectHtml = loadProjectDetails(projectId);
 
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.display = 'none';
-            });
+            // Push state to history
+            history.pushState({ view: 'project', projectId: projectId }, '', `#project-${projectId}`);
 
-            // Show project details in main-content-area
-            const mainContentArea = document.getElementById('main-content-area');
-            mainContentArea.innerHTML = projectHtml;
-            mainContentArea.style.display = 'block';
-
-            // Back button functionality removed as requested
-
-            // Make sidebar navigation work from project detail pages
-            document.querySelectorAll('.nav-item').forEach(navItem => {
-                if (navItem.getAttribute('id') !== 'about-link') {
-                    const originalClickHandler = navItem.onclick;
-                    navItem.onclick = function (e) {
-                        e.preventDefault();
-                        const targetId = this.getAttribute('href');
-
-                        // Hide main-content-area and show all sections
-                        mainContentArea.style.display = 'none';
-                        document.querySelectorAll('.section').forEach(section => {
-                            section.style.display = 'block';
-                        });
-
-                        // Scroll to the appropriate section
-                        if (targetId === '#index') {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        } else {
-                            const section = document.querySelector(targetId);
-                            if (section) {
-                                section.scrollIntoView({ behavior: 'smooth' });
-                            }
-                        }
-
-                        // Update active state
-                        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-                        this.classList.add('active');
-
-                        return false;
-                    };
-                }
-            });
-
-            // Set active state on sidebar based on project category
-            const project = projectsData.find(p => p.id == projectId);
-            if (project) {
-                let targetHref = '';
-                if (project.category === 'Game') targetHref = '#games';
-                else if (project.category === 'App') targetHref = '#apps';
-                else if (project.category === 'Prototype') targetHref = '#prototypes';
-
-                if (targetHref) {
-                    document.querySelectorAll('.nav-item').forEach(item => {
-                        item.classList.remove('active');
-                        if (item.getAttribute('href') === targetHref) {
-                            item.classList.add('active');
-                        }
-                    });
-                }
-            }
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Render the project view
+            renderProjectView(projectId);
         });
     });
+
+    // Handle browser back/forward navigation
+    window.addEventListener('popstate', function (event) {
+        if (event.state && event.state.view === 'project') {
+            // Restore project view
+            renderProjectView(event.state.projectId);
+        } else {
+            // Restore home view (default)
+            renderHomeView();
+        }
+    });
+
+    // Handle initial load if URL has hash (optional, but good for linking)
+    const initialHash = window.location.hash;
+    if (initialHash && initialHash.startsWith('#project-')) {
+        const projectId = initialHash.replace('#project-', '');
+        renderProjectView(projectId);
+    }
 });
+
+// Helper to render project view
+function renderProjectView(projectId) {
+    const projectHtml = loadProjectDetails(projectId);
+    if (!projectHtml) return; // Project not found?
+
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Show project details in main-content-area
+    const mainContentArea = document.getElementById('main-content-area');
+    mainContentArea.innerHTML = projectHtml;
+    mainContentArea.style.display = 'block';
+
+    // Make sidebar navigation work from project detail pages
+    setupSidebarNavigationForProject(mainContentArea);
+
+    // Set active state on sidebar based on project category
+    const project = projectsData.find(p => p.id == projectId);
+    if (project) {
+        let targetHref = '';
+        if (project.category === 'Game') targetHref = '#games';
+        else if (project.category === 'App') targetHref = '#apps';
+        else if (project.category === 'Prototype') targetHref = '#prototypes';
+
+        if (targetHref) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === targetHref) {
+                    item.classList.add('active');
+                }
+            });
+        }
+    }
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Helper to render home view
+function renderHomeView() {
+    const mainContentArea = document.getElementById('main-content-area');
+
+    // Hide main-content-area and show all sections
+    mainContentArea.style.display = 'none';
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'block';
+    });
+
+    // Clear URL hash cleanly without reload? Or keep plain
+    // history.replaceState(null, '', window.location.pathname); // Optional
+}
+
+function setupSidebarNavigationForProject(mainContentArea) {
+    document.querySelectorAll('.nav-item').forEach(navItem => {
+        if (navItem.getAttribute('id') !== 'about-link') {
+            // We need to re-attach or ensure global listener handles this.
+            // Since nav items are static, we can actually just ensure their default behavior 
+            // works or intercept it globally.
+            // But implementing the specific logic for "Back to Home" from sidebar:
+
+            navItem.onclick = function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+
+                // Update history to home
+                history.pushState(null, '', targetId);
+
+                renderHomeView();
+
+                // Scroll to the appropriate section
+                if (targetId === '#index') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const section = document.querySelector(targetId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+
+                // Update active state
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+
+                return false;
+            };
+        }
+    });
+}

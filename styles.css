@@ -186,6 +186,15 @@ span {
     /* Center children vertically */
     gap: 4rem;
     /* Add spacing between sidebar and content */
+    overflow: visible;
+    /* Ensure sticky works */
+}
+
+/* Ensure no parent clips the sticky header */
+html,
+body,
+.main-content {
+    overflow: visible;
 }
 
 /* Sidebar Styles */
@@ -978,6 +987,32 @@ a:active {
 .lightbox-close:hover {
     transform: scale(1.1);
     color: var(--highlight-color);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-family: var(--body-font);
+    z-index: 10;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.lightbox-content:hover .lightbox-caption {
+    transform: translateY(0);
+}
+
+/* Also show caption continuously on mobile/touch? pure hover is fine for now */
+.lightbox-modal.active .lightbox-caption {
+    /* We can force it visible or rely on hover. Let's make it always visible if present for better UX */
+    transform: translateY(0);
 }
 
 .lightbox-nav {
