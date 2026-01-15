@@ -505,9 +505,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Handle browser back/forward navigation
     window.addEventListener('popstate', function (event) {
-        if (event.state && event.state.view === 'project') {
-            // Restore project view
-            renderProjectView(event.state.projectId);
+        if (event.state) {
+            if (event.state.view === 'project') {
+                renderProjectView(event.state.projectId);
+            } else if (event.state.view === 'about') {
+                renderAboutView();
+            }
         } else {
             // Restore home view (default)
             renderHomeView();
@@ -519,6 +522,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (initialHash && initialHash.startsWith('#project-')) {
         const projectId = initialHash.replace('#project-', '');
         renderProjectView(projectId);
+    } else if (initialHash === '#about') {
+        renderAboutView();
     }
 });
 
@@ -535,6 +540,7 @@ function renderProjectView(projectId) {
     // Show project details in main-content-area
     const mainContentArea = document.getElementById('main-content-area');
     mainContentArea.innerHTML = projectHtml;
+    mainContentArea.className = 'project-view';
     mainContentArea.style.display = 'block';
 
     // Make sidebar navigation work from project detail pages
@@ -568,28 +574,83 @@ function renderHomeView() {
 
     // Hide main-content-area and show all sections
     mainContentArea.style.display = 'none';
+    mainContentArea.className = '';
     document.querySelectorAll('.section').forEach(section => {
         section.style.display = 'block';
     });
 
-    // Clear URL hash cleanly without reload? Or keep plain
-    // history.replaceState(null, '', window.location.pathname); // Optional
+    // Clear active state for About if needed
+    const aboutLink = document.getElementById('about-link');
+    if (aboutLink) aboutLink.classList.remove('active');
+}
+
+// Helper to render About view
+function renderAboutView() {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    const aboutHtml = `
+    <section id="about-content" class="main-content-section">
+        <div class="project-header">
+            <div class="project-title-container">
+                <h1>About me</h1>
+            </div>
+        </div>
+        
+        <div class="about-content-single">
+            <div class="project-description">
+                <p>Just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.
+                Whether I'm smashing keyboards, sketching ideas, or forging game worlds, I'm all in. 
+                I believe games, when designed right, can hit deep and stay with you long after the credits roll—and that's exactly what I love creating.</p>
+            </div>
+
+            <a href="mailto:abhiraman@live.com" class="email-button-large">Say Hello</a>
+
+            <div class="about-links-row">
+                <a href="https://drive.google.com/file/d/1tgLe0LT1sqQTF9GJH9PEyPQDthLGbeiV/view?usp=sharing" target="_blank">
+                    <img src="assets/links/ResumeBt.gif" alt="Resume" class="about-link-icon resume-gif">
+                </a>
+                
+                <a href="https://www.linkedin.com/in/abhiraman/" target="_blank">
+                    <img src="assets/links/LinkedInBt.gif" alt="LinkedIn" class="about-link-icon">
+                </a>
+            </div>
+        </div>
+    </section>
+    `;
+
+    const mainContentArea = document.getElementById('main-content-area');
+    mainContentArea.innerHTML = aboutHtml;
+    mainContentArea.className = 'about-view';
+    mainContentArea.style.display = 'block';
+
+    // Update active state
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('id') === 'about-link') {
+            item.classList.add('active');
+        }
+    });
+
+    // Ensure sidebar navigation still works
+    setupSidebarNavigationForProject(mainContentArea);
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function setupSidebarNavigationForProject(mainContentArea) {
     document.querySelectorAll('.nav-item').forEach(navItem => {
-        if (navItem.getAttribute('id') !== 'about-link') {
-            // We need to re-attach or ensure global listener handles this.
-            // Since nav items are static, we can actually just ensure their default behavior 
-            // works or intercept it globally.
-            // But implementing the specific logic for "Back to Home" from sidebar:
-
+        // Handle normal section links
+        if (navItem.getAttribute('href').startsWith('#') && navItem.getAttribute('id') !== 'about-link') {
             navItem.onclick = function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
 
                 // Update history to home
-                history.pushState(null, '', targetId);
+                history.pushState(null, '', window.location.pathname);
 
                 renderHomeView();
 
@@ -607,6 +668,14 @@ function setupSidebarNavigationForProject(mainContentArea) {
                 document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
                 this.classList.add('active');
 
+                return false;
+            };
+        } else if (navItem.getAttribute('id') === 'about-link') {
+            // Handle About link specifically
+            navItem.onclick = function (e) {
+                e.preventDefault();
+                history.pushState({ view: 'about' }, '', '#about');
+                renderAboutView();
                 return false;
             };
         }

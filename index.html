@@ -60,8 +60,8 @@
                     <a href="https://abhiraman.tumblr.com" class="nav-item" target="_blank">
                         <i class="fas fa-arrow-up-right-from-square"></i> Scribbling
                     </a> -->
-                    <a href="about.html" class="nav-item" id="about-link">
-                        <!-- Changed href to about.html and added an ID -->
+                    <a href="#about" class="nav-item" id="about-link">
+                        <!-- Changed href to #about and removed redundant logic -->
                         About
                     </a>
                 </div>
@@ -123,7 +123,7 @@
 
             <!-- New container for dynamically loaded content -->
             <section id="main-content-area">
-                <!-- Content from about.html will be loaded here -->
+                <!-- Content will be loaded here -->
             </section>
         </main>
     </div>
@@ -143,6 +143,9 @@
         // Handle smooth scrolling for anchor links - MODIFIED
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                // If it's the about link, projects.js will handle it via state
+                if (this.getAttribute('id') === 'about-link') return;
+
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if (targetId === '#index') {
@@ -157,26 +160,6 @@
                 document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
                 this.classList.add('active');
             });
-        });
-
-        // New JavaScript to handle loading about.html
-        document.getElementById('about-link').addEventListener('click', function (e) {
-            e.preventDefault();
-            fetch('about.html')
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('main-content-area').innerHTML = html;
-                    // Hide other sections and show main-content-area
-                    document.querySelectorAll('.content-section').forEach(section => {
-                        section.style.display = 'none';
-                    });
-                    document.getElementById('main-content-area').style.display = 'block';
-
-                    // Remove active state from other nav items and add to 'About'
-                    document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-                    this.classList.add('active');
-                })
-                .catch(error => console.error('Error loading about.html:', error));
         });
 
         // Update active section on scroll - MODIFIED to exclude dynamically loaded content

@@ -86,7 +86,8 @@
 
     /* Alignment variables */
     --vertical-alignment: 150px;
-    /* Adjust this value to align the logo and title */
+    --project-vertical-alignment: 80px;
+    /* Adjust this value to align the logo and title specifically for projects */
 }
 
 * {
@@ -362,7 +363,14 @@ body,
 /* Index section adjustment */
 #index {
     padding-top: var(--vertical-alignment);
-    /* Use the same variable for consistent alignment */
+}
+
+#main-content-area.project-view {
+    padding-top: var(--project-vertical-alignment);
+}
+
+#main-content-area.about-view {
+    padding-top: var(--vertical-alignment);
 }
 
 .profile-squares {
@@ -914,6 +922,48 @@ a:active {
     font-size: 0.9rem;
     font-weight: 500;
     border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* About Page Redesign */
+.about-content-single {
+    max-width: 800px;
+}
+
+.email-button-large {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--highlight-color);
+    color: #000;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 2rem 0;
+    transition: none;
+    /* Disable transitions */
+}
+
+.about-links-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.about-link-icon {
+    height: 40px;
+    width: auto;
+    display: block;
+    transition: none;
+    /* Disable transitions */
+}
+
+/* Disable hover animations as requested */
+.email-button-large:hover,
+.about-links-row a:hover,
+.about-links-row img:hover {
+    transform: none !important;
 }
 
 .project-text-column {
