@@ -736,13 +736,10 @@ a:active {
     display: flex;
     align-items: center;
     padding-bottom: 2rem;
+    padding-bottom: 2rem;
     padding-top: 1rem;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    background-color: var(--background-color);
-    z-index: 100;
-    /* Optional: explicit separation */
+    position: relative;
+    /* Sticky removed */
 }
 
 .project-logo-large {
@@ -876,8 +873,7 @@ a:active {
 .project-text-column {
     /* Sticky text so it stays while scrolling long galleries */
     position: sticky;
-    top: 11rem;
-    /* Adjusted for sticky header */
+    top: 2rem;
 }
 
 .project-media-column {

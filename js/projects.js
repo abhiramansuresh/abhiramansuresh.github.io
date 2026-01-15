@@ -31,13 +31,13 @@ const projectsData = [
         thumbnail: "assets/project-thumbs/atlaskeeper-thumb.jpg",
         logo: "assets/project-thumbs/atlaskeeper-icon.jpg",
         category: "Game",
-        description: `<p>Atlas Keeper is a real-time analytics dashboard that I developed for tracking game metrics and player behavior.</p>
-        <p>Key features include:</p>
+        description: `<p>Atlas Keeper is an Experimental project built ground up from Concept to Completion by me and my team as an experiment to see how we can leverage AI to build experiences that helps kids learn.</p>
+        <p>My Role: Team Lead and Lead Game Designer</p>
         <ul>
-            <li>Real-time player statistics</li>
-            <li>In-game economy monitoring</li>
-            <li>Player retention analysis</li>
-            <li>Customizable reporting tools</li>
+            <li>Designed the Game mechanics and AI based features</li>
+            <li>Designed the AI systems responsible for Character dialogue and behavior</li>
+            <li>Lead a team of 5 including Developers, QA, and Artists</li>
+            <li>Co-ordinated with the stake holders to ensure smooth delivery of the project</li>
         </ul>`,
         gallery: [
             { src: "assets/project-gallery/atlaskeeper-1.png", caption: "Main Dashboard View showing real-time player metrics" },
