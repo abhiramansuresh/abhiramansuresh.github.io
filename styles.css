@@ -682,6 +682,8 @@ body,
         transform: translateX(-100%);
         left: 0;
         width: 280px;
+        background-color: var(--background-color);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
     }
 
     .sidebar.active {
@@ -763,6 +765,21 @@ a:active {
 
 .project-title-container h1 {
     margin-bottom: 0.5rem;
+}
+
+.header-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.header-tag {
+    background-color: var(--highlight-color);
+    color: #000;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 .project-gallery {
@@ -868,6 +885,35 @@ a:active {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: start;
+}
+
+/* Role Tags */
+.role-tags-container {
+    margin-bottom: 2rem;
+}
+
+.role-label {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.role-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.role-tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--highlight-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 .project-text-column {

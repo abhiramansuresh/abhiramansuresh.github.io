@@ -7,6 +7,7 @@ const projectsData = [
         thumbnail: "assets/project-thumbs/pdapro-thumb.jpg",
         logo: "assets/project-thumbs/pdapro.jpg",
         category: "App",
+        roles: ["AI System Designer", "Prompt Engineer", "React Native Developer"],
         description: `<p>PDA Pro is a comprehensive platform for online education that I developed to provide interactive lessons and assessments.</p>
         <p>The platform features:</p>
         <ul>
@@ -31,8 +32,9 @@ const projectsData = [
         thumbnail: "assets/project-thumbs/atlaskeeper-thumb.jpg",
         logo: "assets/project-thumbs/atlaskeeper-icon.jpg",
         category: "Game",
+        //tags: ["AI - first", "Games"],
+        roles: ["Team Lead", "Lead Game Designer"],
         description: `<p>Atlas Keeper is an Experimental project built ground up from Concept to Completion by me and my team as an experiment to see how we can leverage AI to build experiences that helps kids learn.</p>
-        <p>My Role: Team Lead and Lead Game Designer</p>
         <ul>
             <li>Designed the Game mechanics and AI based features</li>
             <li>Designed the AI systems responsible for Character dialogue and behavior</li>
@@ -260,13 +262,26 @@ function loadProjectDetails(projectId) {
             </div>
             <div class="project-title-container">
                 <h1>${project.title}</h1>
-                <p class="highlight-box">${project.category}</p>
+                ${project.tags && project.tags.length > 0 ? `
+                <div class="header-tags">
+                    ${project.tags.map(tag => `<span class="header-tag">${tag}</span>`).join('')}
+                </div>
+                ` : `<p class="highlight-box">${project.category}</p>`}
             </div>
         </div>
         
         <div class="project-detail-content">
             <!-- Left Column: Text & Links -->
             <div class="project-text-column">
+                ${project.roles && project.roles.length > 0 ? `
+                <div class="role-tags-container">
+                    <div class="role-label">My Role:</div>
+                    <div class="role-tags">
+                        ${project.roles.map(role => `<span class="role-tag">${role}</span>`).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
                 <div class="project-description">
                     ${project.description || ''}
                 </div>
