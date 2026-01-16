@@ -85,10 +85,33 @@ const projectsData = [
         videoUrl: "https://youtu.be/nSUuGixCRCQ?si=U4lfaV6u3lM7KVpx",
         itchioUrl: "https://pandasaan.itch.io/baldy"
     },
+    {
+        id: 6,
+        title: "BrainMo",
+        excerpt: "A comprehensive platform for online education with interactive lessons and assessments.",
+        thumbnail: "assets/project-thumbs/pdapro-thumb.jpg",
+        logo: "assets/project-thumbs/brainmo.png",
+        category: "App",
+        roles: ["AI System Designer", "Prompt Engineer", "React Native Developer"],
+        description: `<p>PDA Pro is a comprehensive platform for online education that I developed to provide interactive lessons and assessments.</p>
+        <p>The platform features:</p>
+        <ul>
+            <li>Interactive lesson modules</li>
+            <li>Real-time assessment tools</li>
+            <li>Progress tracking dashboard</li>
+            <li>Collaborative learning spaces</li>
+        </ul>
+        <p>This project was built using React for the frontend and Node.js for the backend, with MongoDB as the database.</p>`,
+        gallery: [
+            "assets/project-gallery/pdapro-1.jpg",
+            "assets/project-gallery/pdapro-2.jpg"
+        ],
+        videoUrl: "https://youtube.com/shorts/nJXYRFSMVoo?si=EAdpjtU21oJNYI6u",
+    },
 
     // Prototypes
     {
-        id: 6,
+        id: 7,
         title: "Squares",
         excerpt: "IoT interface for managing connected home devices with voice commands and automation.",
         thumbnail: "assets/project-thumbs/squares-icon.jpg",
@@ -99,7 +122,7 @@ const projectsData = [
         <span class="hidden-clue">Saw my face yet? - up, up, down, down</span>`
     },
     {
-        id: 7,
+        id: 8,
         title: "Grainy",
         excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
         thumbnail: "assets/project-thumbs/grainy-icon.jpg",
@@ -108,7 +131,7 @@ const projectsData = [
         itchioUrl: "https://pandasaan.itch.io/grainy"
     },
     {
-        id: 8,
+        id: 9,
         title: "The Crossover",
         excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
         thumbnail: "assets/project-thumbs/crossover-thumb.jpg",
@@ -118,7 +141,7 @@ const projectsData = [
         videoUrl: "https://youtu.be/r_zFsgJGq20?si=bo05elt1KqDDluae"
     },
     {
-        id: 9,
+        id: 10,
         title: "Combat a Mort",
         excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
         thumbnail: "assets/project-thumbs/combat-thumb.jpg",
