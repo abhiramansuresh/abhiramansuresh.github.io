@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /* Word Carousel Animation */
 .word-carousel {
@@ -87,7 +88,8 @@
     /* Alignment variables */
     --vertical-alignment: 150px;
     --project-vertical-alignment: 80px;
-    /* Adjust this value to align the logo and title specifically for projects */
+    --about-actions-gap: 1rem;
+    --scroll-offset: 100px;
 }
 
 * {
@@ -452,7 +454,7 @@ body,
     border-radius: 8px;
     transition: background-color 0.3s;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .nav-item:hover {
@@ -486,12 +488,13 @@ body,
     justify-content: center;
     color: var(--text-color);
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .contact-icon:hover {
     background-color: var(--highlight-color);
     color: #000;
+    transform: translateY(-3px);
 }
 
 /* Main Content Styles */
@@ -505,6 +508,7 @@ body,
 /* Section Styles */
 .section {
     margin-bottom: 4rem;
+    scroll-margin-top: var(--scroll-offset);
 }
 
 .section-title {
@@ -929,41 +933,157 @@ a:active {
     max-width: 800px;
 }
 
-.email-button-large {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: var(--highlight-color);
-    color: #000;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin: 2rem 0;
-    transition: none;
-    /* Disable transitions */
+.about-section {
+    margin-bottom: 3.5rem;
 }
 
-.about-links-row {
+.about-header-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--highlight-color);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about-skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.about-skill-tag {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.experience-item {
+    border-left: 2px solid rgba(255, 215, 0, 0.2);
+    padding-left: 1.5rem;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.company-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.work-duration {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.role-title {
+    font-size: 1rem;
+    color: var(--highlight-color);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.experience-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.experience-details li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.experience-details li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--highlight-color);
+}
+
+.education-item {
+    padding-left: 1.5rem;
+    border-left: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.email-button-large {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin-top: 1rem;
+    justify-content: center;
+    height: 40px;
+    padding: 0 1.2rem;
+    background-color: var(--highlight-color);
+    color: #1e1033 !important;
+    border: none;
+    border-radius: 0;
+    /* Sharp corners for pixel look */
+    text-decoration: none;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: 400;
+    /* Press Start 2P only has 400 */
+    font-size: 0.7rem;
+    /* Smaller font to compensate for pixel width */
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    box-shadow: 4px 4px 0px #1e1033;
+    /* Pixel block shadow */
+    box-sizing: border-box;
+    text-transform: uppercase;
+}
+
+.email-button-large:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px #1e1033;
+}
+
+.email-button-large:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px #1e1033;
+}
+
+.about-actions-row {
+    display: flex;
+    align-items: center;
+    gap: var(--about-actions-gap);
+    margin-top: 2rem;
     flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .about-link-icon {
     height: 40px;
+    /* Fixed height to match button */
     width: auto;
     display: block;
-    transition: none;
-    /* Disable transitions */
+    transition: transform 0.3s ease;
 }
 
-/* Disable hover animations as requested */
+/* Social buttons and links floating hover effect */
 .email-button-large:hover,
-.about-links-row a:hover,
-.about-links-row img:hover {
-    transform: none !important;
+.about-actions-row a:hover {
+    transform: translateY(-3px);
 }
 
 .project-text-column {
@@ -1166,4 +1286,38 @@ a:active {
     .project-logo-large {
         margin-right: 0;
     }
+}
+
+/* More on Itch.io Button Refinement */
+.section-footer {
+    display: flex;
+    justify-content: flex-start;
+    /* Left aligned */
+    margin-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+.itch-more-button {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    /* Smaller size */
+    background-color: var(--highlight-color);
+    color: #1e1033 !important;
+    /* Forced dark purple text for contrast */
+    border-radius: 12px;
+    /* Match project card/media corners */
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1rem;
+    /* Smaller font */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.itch-more-button:hover {
+    transform: translateY(-3px);
+}
+
+.itch-more-button:active {
+    transform: translateY(-1px);
 }

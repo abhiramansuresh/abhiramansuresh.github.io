@@ -266,7 +266,7 @@ function loadProjectDetails(projectId) {
                 <div class="header-tags">
                     ${project.tags.map(tag => `<span class="header-tag">${tag}</span>`).join('')}
                 </div>
-                ` : `<p class="highlight-box">${project.category}</p>`}
+                ` : ''}
             </div>
         </div>
         
@@ -525,6 +525,9 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (initialHash === '#about') {
         renderAboutView();
     }
+
+    // Initialize sidebar navigation so links work from home page immediately
+    setupSidebarNavigationForProject();
 });
 
 // Helper to render project view
@@ -544,7 +547,7 @@ function renderProjectView(projectId) {
     mainContentArea.style.display = 'block';
 
     // Make sidebar navigation work from project detail pages
-    setupSidebarNavigationForProject(mainContentArea);
+    setupSidebarNavigationForProject();
 
     // Set active state on sidebar based on project category
     const project = projectsData.find(p => p.id == projectId);
@@ -600,15 +603,14 @@ function renderAboutView() {
         </div>
         
         <div class="about-content-single">
-            <div class="project-description">
-                <p>Just a guy happily co-existing in a world where Mario and the Doom Slayer run wild.
-                Whether I'm smashing keyboards, sketching ideas, or forging game worlds, I'm all in. 
-                I believe games, when designed right, can hit deep and stay with you long after the credits roll—and that's exactly what I love creating.</p>
+            <div class="about-section bio-section">
+                <p>Hey! I'm Abhi, I've been designing games for 5+ years focusing deeply on Player Experience & Satisfaction. 
+                I love building experiences that resonate deeply with the players and have deep technical knowledge of game-making tools and pipelines.</p>
             </div>
 
-            <a href="mailto:abhiraman@live.com" class="email-button-large">Say Hello</a>
+            <div class="about-actions-row">
+                <a href="mailto:abhiraman@live.com" class="email-button-large">Say Hello</a>
 
-            <div class="about-links-row">
                 <a href="https://drive.google.com/file/d/1tgLe0LT1sqQTF9GJH9PEyPQDthLGbeiV/view?usp=sharing" target="_blank">
                     <img src="assets/links/ResumeBt.gif" alt="Resume" class="about-link-icon resume-gif">
                 </a>
@@ -635,13 +637,13 @@ function renderAboutView() {
     });
 
     // Ensure sidebar navigation still works
-    setupSidebarNavigationForProject(mainContentArea);
+    setupSidebarNavigationForProject();
 
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function setupSidebarNavigationForProject(mainContentArea) {
+function setupSidebarNavigationForProject() {
     document.querySelectorAll('.nav-item').forEach(navItem => {
         // Handle normal section links
         if (navItem.getAttribute('href').startsWith('#') && navItem.getAttribute('id') !== 'about-link') {
