@@ -520,7 +520,205 @@ body,
     }
 }
 
-/* Dev Mode Easter Egg Styles */
+/* Meltdown Effect */
+.profile-squares.meltdown {
+    animation: meltdown-shake 0.1s infinite;
+    filter: drop-shadow(0 0 10px #ff4444) saturate(2);
+}
+
+.profile-squares.overheated {
+    filter: grayscale(1) brightness(0.5);
+    pointer-events: none;
+    transition: filter 0.5s ease;
+}
+
+@keyframes meltdown-shake {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(2px, -2px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-2px, 2px) rotate(-1deg);
+    }
+
+    75% {
+        transform: translate(2px, 2px) rotate(1deg);
+    }
+
+    100% {
+        transform: translate(-2px, -2px) rotate(-1deg);
+    }
+}
+
+.overheat-smoke {
+    position: absolute;
+    font-size: 2rem;
+    animation: smoke-rise 2s forwards;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes smoke-rise {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+
+    20% {
+        transform: translate(-50%, -70%) scale(1.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -150%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Achievement Toast */
+.achievement-toast {
+    position: fixed;
+    bottom: -100px;
+    right: 20px;
+    background: rgba(15, 15, 15, 0.95);
+    border: 2px solid var(--highlight-color);
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    z-index: 10002;
+    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    min-width: 250px;
+}
+
+.achievement-toast.show {
+    bottom: 20px;
+}
+
+.ach-icon {
+    font-size: 1.8rem;
+}
+
+.ach-title {
+    font-size: 0.4rem;
+    color: var(--highlight-color);
+    margin-bottom: 0.3rem;
+    letter-spacing: 1px;
+}
+
+.ach-name {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.jiggle {
+    animation: jiggle 0.5s ease-in-out;
+}
+
+@keyframes jiggle {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(0.98) rotate(-1deg);
+    }
+
+    50% {
+        transform: scale(1.02) rotate(1deg);
+    }
+
+    75% {
+        transform: scale(0.99) rotate(-0.5deg);
+    }
+}
+
+/* Golden Drop Easter Egg */
+.golden-coin {
+    position: fixed;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10005;
+    user-select: none;
+    filter: drop-shadow(0 0 10px #ffd700);
+    animation: coin-float 3s ease-in-out forwards, coin-pulse 1s infinite alternate;
+}
+
+@keyframes coin-float {
+    0% {
+        transform: translate(-50%, -50%) translateY(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateY(-100px);
+        opacity: 0;
+    }
+}
+
+@keyframes coin-pulse {
+    from {
+        filter: drop-shadow(0 0 10px #ffd700) scale(1);
+    }
+
+    to {
+        filter: drop-shadow(0 0 20px #ffea00) scale(1.1);
+    }
+}
+
+.jackpot-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 215, 0, 0.2);
+    pointer-events: none;
+    z-index: 10006;
+    animation: flash-out 0.5s forwards;
+}
+
+@keyframes flash-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.hidden-clue {
+    display: block;
+    font-size: 0.6rem;
+    color: var(--text-color);
+    opacity: 0.15;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 0.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.hidden-clue:hover {
+    opacity: 0.6;
+}
+
 .dev-mode .profile-square.square-top {
     border: 4px solid var(--highlight-color);
     box-shadow: 0 0 15px var(--highlight-color);

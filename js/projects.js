@@ -94,7 +94,9 @@ const projectsData = [
         thumbnail: "assets/project-thumbs/squares-icon.jpg",
         logo: "assets/project-thumbs/squares-icon.jpg",
         category: "Prototype",
-        itchioUrl: "https://pandasaan.itch.io/squares"
+        itchioUrl: "https://pandasaan.itch.io/squares",
+        description: `<p>IoT interface for managing connected home devices with voice commands and automation.</p>
+        <span class="hidden-clue">Saw my face yet? - up, up, down, down</span>`
     },
     {
         id: 7,
@@ -200,8 +202,10 @@ function loadApps() {
 // Global state for lightbox navigation
 let currentMediaItems = [];
 let currentMediaIndex = 0;
+let currProjectId = null;
 
 function loadProjectDetails(projectId) {
+    currProjectId = projectId;
     // Find the project by ID
     const project = projectsData.find(p => p.id == projectId);
 
@@ -377,6 +381,7 @@ function createLightbox() {
 }
 
 function openLightbox(index) {
+    if (window.trackGalleryView) window.trackGalleryView(currProjectId);
     const lightbox = document.querySelector('.lightbox-modal');
     if (!lightbox) return;
 
