@@ -71,9 +71,12 @@ function resetHealth() {
 function handleClickAnimation(event) {
     const bottomSquare = document.querySelector('.square-bottom');
     const topSquare = document.querySelector('.square-top');
-    const clickSound = new Audio('assets/click.mp3');
-
-    clickSound.play();
+    if (window.PortfolioAudio) {
+        window.PortfolioAudio.play('click', {
+            volume: 0.3,
+            playbackRate: 0.95 + Math.random() * 0.12
+        });
+    }
     
     // Initial scale down
     bottomSquare.style.transform = `rotate(${getRandomRotation()}deg) scale(0.95)`;

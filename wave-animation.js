@@ -12,10 +12,9 @@ function playGreeting() {
     isAnimating = true;
 
     const waveEmoji = document.querySelector('.wave-emoji');
-    const clapSound = new Audio('assets/clap.mp3');
-
-    // Play the clap sound
-    clapSound.play();
+    if (window.PortfolioAudio) {
+        window.PortfolioAudio.play('clap', { volume: 0.35 });
+    }
 
     // Temporarily disable the idle animation
     waveEmoji.style.animation = 'none';

@@ -50,7 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="hud-value" id="hud-xp">${state.xp}</span>
         </div>
     `;
-    document.body.appendChild(statsHUD);
+    const hudCluster = document.createElement('div');
+    hudCluster.className = 'game-hud-cluster';
+    document.body.appendChild(hudCluster);
+
+    const audioToggle = document.getElementById('audio-toggle');
+    if (audioToggle) {
+        hudCluster.appendChild(audioToggle);
+    }
+    hudCluster.appendChild(statsHUD);
 
     // Collect all value display elements
     const clickDisplays = [document.getElementById('hud-clicks')];

@@ -156,7 +156,7 @@ const projectsData = [
 // Function to create project cards
 function createProjectCard(project) {
     return `
-        <div class="project-card" data-id="${project.id}">
+        <div class="project-card" data-id="${project.id}" role="button" tabindex="0" aria-label="Open project ${project.title}">
             <div class="project-thumbnail">
                 <img src="${project.thumbnail}" alt="${project.title}" onerror="this.src='assets/project-thumbs/AtlasMission.jpg'">
             </div>
@@ -226,6 +226,12 @@ function loadApps() {
 let currentMediaItems = [];
 let currentMediaIndex = 0;
 let currProjectId = null;
+
+function playUiSound(name, options = {}) {
+    if (window.PortfolioAudio) {
+        window.PortfolioAudio.play(name, options);
+    }
+}
 
 function loadProjectDetails(projectId) {
     currProjectId = projectId;
@@ -316,20 +322,32 @@ function loadProjectDetails(projectId) {
                 ${(project.appStoreUrl || project.googlePlayUrl || project.itchioUrl) ? `
                 <div class="project-links">
                     ${project.appStoreUrl ? `
-                    <a href="${project.appStoreUrl}" target="_blank" class="store-button">
-                        <img src="assets/links/app-store.svg" alt="Download on App Store">
+                    <a href="${project.appStoreUrl}" target="_blank" class="store-button store-button-appstore" aria-label="Download on the App Store">
+                        <i class="fab fa-app-store-ios" aria-hidden="true"></i>
+                        <span class="store-button-text">
+                            <span class="store-button-kicker">Download on the</span>
+                            <span class="store-button-name">App Store</span>
+                        </span>
                     </a>
                     ` : ''}
                     
                     ${project.googlePlayUrl ? `
-                    <a href="${project.googlePlayUrl}" target="_blank" class="store-button">
-                        <img src="assets/links/google-store.svg" alt="Get it on Google Play">
+                    <a href="${project.googlePlayUrl}" target="_blank" class="store-button store-button-googleplay" aria-label="Get it on Google Play">
+                        <i class="fab fa-google-play" aria-hidden="true"></i>
+                        <span class="store-button-text">
+                            <span class="store-button-kicker">Get it on</span>
+                            <span class="store-button-name">Google Play</span>
+                        </span>
                     </a>
                     ` : ''}
 
                     ${project.itchioUrl ? `
-                    <a href="${project.itchioUrl}" target="_blank" class="store-button">
-                        <img src="assets/links/itchio-store.svg" alt="Get it on Itch.io">
+                    <a href="${project.itchioUrl}" target="_blank" class="store-button store-button-itchio" aria-label="Get it on Itch.io">
+                        <i class="fab fa-itch-io" aria-hidden="true"></i>
+                        <span class="store-button-text">
+                            <span class="store-button-kicker">Play on</span>
+                            <span class="store-button-name">Itch.io</span>
+                        </span>
                     </a>
                     ` : ''}
                 </div>
@@ -340,7 +358,7 @@ function loadProjectDetails(projectId) {
             <div class="project-media-column ${gridClass}">
                 ${/* Video Section */ ''}
                 ${project.videoUrl ? `
-                <div class="media-item video-item" onclick="openLightbox(0)">
+                <div class="media-item video-item" role="button" tabindex="0" aria-label="Open video in lightbox" onclick="openLightbox(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox(0);}">
                     <iframe width="560" height="315" src="${getYouTubeEmbedUrl(project.videoUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 ` : ''}
@@ -353,7 +371,7 @@ function loadProjectDetails(projectId) {
                 const imgSrc = typeof item === 'string' ? item : item.src;
 
                 return `
-                        <div class="media-item" onclick="openLightbox(${globalIndex})">
+                        <div class="media-item" role="button" tabindex="0" aria-label="Open image in lightbox" onclick="openLightbox(${globalIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox(${globalIndex});}">
                             <img src="${imgSrc}" alt="${project.title} screenshot">
                         </div>
                         `;
@@ -376,9 +394,9 @@ function createLightbox() {
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox-modal';
     lightbox.innerHTML = `
-        <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
-        <div class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</div>
-        <div class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#10095;</div>
+        <button type="button" class="lightbox-close" aria-label="Close lightbox" onclick="closeLightbox()">&times;</button>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous media" onclick="navigateLightbox(-1)">&#10094;</button>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next media" onclick="navigateLightbox(1)">&#10095;</button>
         <div class="lightbox-content" id="lightbox-content-container">
             <!-- Content injected here -->
         </div>
@@ -408,6 +426,7 @@ function openLightbox(index) {
     const lightbox = document.querySelector('.lightbox-modal');
     if (!lightbox) return;
 
+    playUiSound('open', { volume: 0.25, playbackRate: 1.05 });
     currentMediaIndex = index;
     updateLightboxContent();
 
@@ -460,6 +479,7 @@ function updateLightboxContent() {
 }
 
 function navigateLightbox(direction) {
+    playUiSound('nav', { volume: 0.2, playbackRate: direction > 0 ? 1.08 : 0.98 });
     currentMediaIndex += direction;
 
     // Loop functionality
@@ -475,6 +495,7 @@ function navigateLightbox(direction) {
 function closeLightbox() {
     const lightbox = document.querySelector('.lightbox-modal');
     if (lightbox) {
+        playUiSound('close', { volume: 0.22, playbackRate: 0.9 });
         lightbox.classList.remove('active');
         document.getElementById('lightbox-content-container').innerHTML = ''; // Clear content to stop video
         document.body.style.overflow = ''; // Restore scrolling
@@ -519,15 +540,26 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add click event listeners to project cards
     // Add click event listeners to project cards
     document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', function (e) {
+        const openProject = function (e) {
             e.preventDefault();
-            const projectId = this.getAttribute('data-id');
+            const projectId = card.getAttribute('data-id');
+            playUiSound('open', { volume: 0.26, playbackRate: 1.08 });
 
             // Push state to history
             history.pushState({ view: 'project', projectId: projectId }, '', `#project-${projectId}`);
 
             // Render the project view
             renderProjectView(projectId);
+        };
+
+        card.addEventListener('click', function (e) {
+            openProject(e);
+        });
+
+        card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                openProject(e);
+            }
         });
     });
 
@@ -678,6 +710,7 @@ function setupSidebarNavigationForProject() {
             navItem.onclick = function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
+                playUiSound('nav', { volume: 0.2, playbackRate: 1.04 });
 
                 // Update history to home
                 history.pushState(null, '', window.location.pathname);
@@ -704,6 +737,7 @@ function setupSidebarNavigationForProject() {
             // Handle About link specifically
             navItem.onclick = function (e) {
                 e.preventDefault();
+                playUiSound('open', { volume: 0.24, playbackRate: 1.08 });
                 history.pushState({ view: 'about' }, '', '#about');
                 renderAboutView();
                 return false;

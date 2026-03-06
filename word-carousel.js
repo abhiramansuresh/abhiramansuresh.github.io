@@ -46,5 +46,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Start the carousel
     updateWord();
+
+    // Allow manual cycling for extra interactivity.
+    if (carouselElement) {
+        carouselElement.addEventListener('click', () => {
+            if (window.PortfolioAudio) {
+                window.PortfolioAudio.play('nav', { volume: 0.2, playbackRate: 1.12 });
+            }
+            if (window.carouselTimeout) {
+                clearTimeout(window.carouselTimeout);
+            }
+            isAnimating = false;
+            updateWord();
+        });
+    }
     
 });
