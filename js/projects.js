@@ -1,228 +1,288 @@
-// Project data - Add new projects here
+
 const projectsData = [
-    {
-        id: 1,
-        title: "PDA Pro",
-        excerpt: "A comprehensive platform for online education with interactive lessons and assessments.",
-        thumbnail: "assets/project-thumbs/pdapro-thumb.jpg",
-        logo: "assets/project-thumbs/pdapro.jpg",
-        category: "App",
-        roles: ["AI System Designer", "Prompt Engineer", "React Native Developer"],
-        description: `<p>PDA Pro is a comprehensive platform for online education that I developed to provide interactive lessons and assessments.</p>
-        <p>The platform features:</p>
-        <ul>
-            <li>Interactive lesson modules</li>
-            <li>Real-time assessment tools</li>
-            <li>Progress tracking dashboard</li>
-            <li>Collaborative learning spaces</li>
-        </ul>
-        <p>This project was built using React for the frontend and Node.js for the backend, with MongoDB as the database.</p>`,
-        gallery: [
-            "assets/project-gallery/pdapro-1.jpg",
-            "assets/project-gallery/pdapro-2.jpg"
-        ],
-        videoUrl: "https://youtube.com/shorts/nJXYRFSMVoo?si=EAdpjtU21oJNYI6u", // Optional YouTube embed URL
-        appStoreUrl: "https://apps.apple.com/in/app/pda-pro-for-demand-avoidance/id6743385207",     // URL for App Store button
-        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.learningyogi.pdapro&pcampaignid=web_share",   // URL for Google Play button
-    },
     {
         id: 2,
         title: "Atlas Keeper",
-        excerpt: "Real-time analytics dashboard for tracking sales, inventory, and customer behavior.",
+        summary: "AI-assisted learning adventure designed to make educational play feel magical and responsive.",
+        cardSummary: "Interactive kids learning game shaped around AI-assisted play and delightful progression.",
         thumbnail: "assets/project-thumbs/atlaskeeper-thumb.jpg",
         logo: "assets/project-thumbs/atlaskeeper-icon.jpg",
         category: "Game",
-        //tags: ["AI - first", "Games"],
+        platform: "iOS / Android",
+        featured: true,
         roles: ["Team Lead", "Lead Game Designer"],
-        description: `<p>Atlas Keeper is an Experimental project built ground up from Concept to Completion by me and my team as an experiment to see how we can leverage AI to build experiences that helps kids learn.</p>
-        <ul>
-            <li>Designed the Game mechanics and AI based features</li>
-            <li>Designed the AI systems responsible for Character dialogue and behavior</li>
-            <li>Lead a team of 5 including Developers, QA, and Artists</li>
-            <li>Co-ordinated with the stake holders to ensure smooth delivery of the project</li>
-        </ul>`,
+        overview: "Atlas Keeper is an experiment in combining playful world-building, learning design, and AI-supported interactions into a mobile-first game for kids.",
+        context: "The project started as a ground-up exploration into how intelligent systems could support learning without making the experience feel overly instructional or rigid.",
+        contributions: [
+            "Designed the core game loop, player progression, and experience flow.",
+            "Defined the AI system behavior for character dialogue and interaction beats.",
+            "Led a five-person cross-functional team across design, engineering, art, and QA.",
+            "Worked with stakeholders to shape scope, direction, and delivery decisions."
+        ],
+        outcome: "The result was a more playful learning experience that felt character-led, interactive, and cohesive across design, AI behavior, and team execution.",
         gallery: [
-            { src: "assets/project-gallery/atlaskeeper-1.png", caption: "Main Dashboard View showing real-time player metrics" },
-            { src: "assets/project-gallery/atlaskeeper-3.png", caption: "Inventory Management Screen" },
+            { src: "assets/project-gallery/atlaskeeper-1.png", caption: "A first look at the world and interaction tone." },
+            { src: "assets/project-gallery/atlaskeeper-3.png", caption: "Core gameplay views built to keep learning light and exploratory." },
             "assets/project-gallery/atlaskeeper-4.png",
             "assets/project-gallery/atlaskeeper-5.png",
             "assets/project-gallery/atlaskeeper-6.png",
             "assets/project-gallery/atlaskeeper-7.png",
-            "assets/project-gallery/atlaskeeper-8.png",
+            "assets/project-gallery/atlaskeeper-8.png"
         ],
-        videoUrl: "https://youtu.be/U_m0j8dUG7M?si=3Mls99gCGnhjj6Um", // Optional YouTube embed URL
-        appStoreUrl: "https://apps.apple.com/in/app/atlaskeeper-kids-learning-game/id6444937235",     // URL for App Store button
-        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.learningyogi.MagicBookMVP&pcampaignid=web_share"   // URL for Google Play button
+        videoUrl: "https://youtu.be/U_m0j8dUG7M?si=3Mls99gCGnhjj6Um",
+        appStoreUrl: "https://apps.apple.com/in/app/atlaskeeper-kids-learning-game/id6444937235",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.learningyogi.MagicBookMVP&pcampaignid=web_share"
     },
     {
-        id: 3,
-        title: "Atlas Mission",
-        excerpt: "Secure and intuitive banking application with biometric authentication and transaction tracking.",
-        thumbnail: "assets/project-thumbs/atlasmission-thumb.jpg",
-        logo: "assets/project-thumbs/atlasmission-icon.jpg",
-        category: "Game",
-        videoUrl: "https://www.youtube.com/watch?v=0u-aXlx_tqc", // Optional YouTube embed URL
-        appStoreUrl: "https://apps.apple.com/in/app/atlasmission-1-kids-learning/id1161093896",     // URL for App Store button
-        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.LearningYogi.Atlasmission&pcampaignid=web_share"   // URL for Google Play button
-    },
-    {
-        id: 4,
-        title: "Duo Jump",
-        excerpt: "A fun platformer game where you control two characters simultaneously.",
-        thumbnail: "assets/project-thumbs/duojump-thumb.jpg",
-        logo: "assets/project-thumbs/duojump-icon.png",
-        category: "Game",
-        videoUrl: "https://youtube.com/shorts/n1STBVmzgOk?si=vYvuOYrNxBLqUBGr", // Optional YouTube embed URL
-        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.pandascreation.duojump&pcampaignid=web_share"   // URL for Google Play button
-    },
-    {
-        id: 5,
-        title: "Baldy",
-        excerpt: "An adventure game featuring a bald protagonist navigating through challenging environments.",
-        thumbnail: "assets/project-thumbs/baldy-thumb.jpg",
-        logo: "assets/project-thumbs/baldy-icon.jpg",
-        category: "Game",
-        videoUrl: "https://youtu.be/nSUuGixCRCQ?si=U4lfaV6u3lM7KVpx",
-        itchioUrl: "https://pandasaan.itch.io/baldy"
+        id: 1,
+        title: "PDA Pro",
+        summary: "Support-focused mobile product designed around clearer routines, calmer interactions, and AI-informed systems thinking.",
+        cardSummary: "A mobile app experience shaped around accessible UX, AI systems thinking, and everyday usability.",
+        thumbnail: "assets/project-thumbs/pdapro-thumb.jpg",
+        logo: "assets/project-thumbs/pdapro.jpg",
+        category: "App",
+        platform: "iOS / Android",
+        featured: true,
+        roles: ["Senior UX / AI Designer", "AI System Designer", "React Native Developer"],
+        overview: "PDA Pro is a mobile product focused on building a more supportive, structured, and usable experience for parents and caregivers.",
+        context: "The challenge was to make a content-heavy product feel calmer, easier to navigate, and better aligned with the needs of people using it in real day-to-day scenarios.",
+        contributions: [
+            "Designed the user experience across key product flows and content structures.",
+            "Helped shape AI-related system behavior and prompting logic where intelligence could improve usability.",
+            "Worked directly in React Native to close the gap between design intent and shipped experience."
+        ],
+        outcome: "The product direction prioritized clarity, trust, and usability while creating room for more intelligent and supportive experiences over time.",
+        gallery: [],
+        videoUrl: "https://youtube.com/shorts/nJXYRFSMVoo?si=EAdpjtU21oJNYI6u",
+        appStoreUrl: "https://apps.apple.com/in/app/pda-pro-for-demand-avoidance/id6743385207",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.learningyogi.pdapro&pcampaignid=web_share"
     },
     {
         id: 6,
         title: "BrainMo",
-        excerpt: "A comprehensive platform for online education with interactive lessons and assessments.",
+        summary: "An AI-forward product concept exploring how interaction design can make cognitive support feel engaging and approachable.",
+        cardSummary: "AI-flavored product work exploring smarter interaction patterns and supportive experience design.",
         thumbnail: "assets/project-thumbs/pdapro-thumb.jpg",
-        logo: "assets/project-thumbs/brainmo.png",
+        logo: "assets/project-thumbs/brainmo-icon.jpg",
         category: "App",
-        roles: ["AI System Designer", "Prompt Engineer", "React Native Developer"],
-        description: `<p>PDA Pro is a comprehensive platform for online education that I developed to provide interactive lessons and assessments.</p>
-        <p>The platform features:</p>
-        <ul>
-            <li>Interactive lesson modules</li>
-            <li>Real-time assessment tools</li>
-            <li>Progress tracking dashboard</li>
-            <li>Collaborative learning spaces</li>
-        </ul>
-        <p>This project was built using React for the frontend and Node.js for the backend, with MongoDB as the database.</p>`,
-        gallery: [
-            "assets/project-gallery/pdapro-1.jpg",
-            "assets/project-gallery/pdapro-2.jpg"
+        platform: "Mobile",
+        featured: true,
+        roles: ["Senior UX / AI Designer", "AI Prototyper"],
+        overview: "BrainMo explores how AI-informed interaction design can support thinking, structure, and engagement in a product experience.",
+        context: "This work focused on translating abstract AI potential into concrete product behavior that users could actually understand and benefit from.",
+        contributions: [
+            "Explored UX patterns for AI-assisted interactions and product guidance.",
+            "Worked through system behavior, flow design, and product framing for a more approachable experience.",
+            "Used prototyping to quickly test how intelligence could feel useful instead of intrusive."
         ],
-        videoUrl: "https://youtube.com/shorts/nJXYRFSMVoo?si=EAdpjtU21oJNYI6u",
+        outcome: "The concept helped clarify how AI systems could be shaped into friendlier, more assistive product interactions without losing usability.",
+        gallery: [],
+        videoUrl: "https://youtube.com/shorts/nJXYRFSMVoo?si=EAdpjtU21oJNYI6u"
     },
-
-    // Prototypes
+    {
+        id: 3,
+        title: "Atlas Mission",
+        summary: "A learning-focused mobile game that packaged educational content into a more directed mission-based format.",
+        cardSummary: "Mission-driven educational game experience designed for mobile learning and progression.",
+        thumbnail: "assets/project-thumbs/atlasmission-thumb.jpg",
+        logo: "assets/project-thumbs/atlasmission-icon.jpg",
+        category: "Game",
+        platform: "iOS / Android",
+        roles: ["Game Designer"],
+        overview: "Atlas Mission translated educational goals into a more structured, mission-led mobile game format.",
+        context: "The focus was to present learning content in a way that felt directed and rewarding rather than static or repetitive.",
+        contributions: [
+            "Helped shape the interaction flow and mission-based game structure.",
+            "Worked on the overall player experience and pacing of the product."
+        ],
+        outcome: "The experience moved learning content into a clearer gameplay loop with stronger progression and better motivational framing.",
+        gallery: [],
+        videoUrl: "https://www.youtube.com/watch?v=0u-aXlx_tqc",
+        appStoreUrl: "https://apps.apple.com/in/app/atlasmission-1-kids-learning/id1161093896",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.LearningYogi.Atlasmission&pcampaignid=web_share"
+    },
+    {
+        id: 4,
+        title: "Duo Jump",
+        summary: "A mobile platformer built around the challenge of controlling two characters at once.",
+        cardSummary: "Fast, playful mobile platformer built on dual-character coordination.",
+        thumbnail: "assets/project-thumbs/duojump-thumb.jpg",
+        logo: "assets/project-thumbs/duojump-icon.png",
+        category: "Game",
+        platform: "Android",
+        roles: ["Game Designer", "Developer"],
+        overview: "Duo Jump is a mobile platformer centered on simultaneous control, timing, and playful challenge.",
+        context: "The idea was to create something mechanically simple to understand, but satisfyingly tricky to master.",
+        contributions: [
+            "Designed the core interaction mechanic and gameplay feel.",
+            "Helped shape the challenge curve and player readability."
+        ],
+        outcome: "The final experience leaned into quick replayability and a clear central mechanic that immediately defined the game.",
+        gallery: [],
+        videoUrl: "https://youtube.com/shorts/n1STBVmzgOk?si=vYvuOYrNxBLqUBGr",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.pandascreation.duojump&pcampaignid=web_share"
+    },
+    {
+        id: 5,
+        title: "Baldy",
+        summary: "A quirky indie game project built around character, traversal, and playful experimentation.",
+        cardSummary: "Character-led indie game prototype with a playful tone and compact adventure feel.",
+        thumbnail: "assets/project-thumbs/baldy-thumb.jpg",
+        logo: "assets/project-thumbs/baldy-icon.jpg",
+        category: "Game",
+        platform: "PC",
+        roles: ["Game Designer", "Developer"],
+        overview: "Baldy is a smaller game project that leans into personality, movement, and tone.",
+        context: "It was an opportunity to explore a more playful character-driven concept without overcomplicating the experience.",
+        contributions: [
+            "Worked on concept direction, mechanics, and overall play feel.",
+            "Shaped the game's tone through interaction and presentation choices."
+        ],
+        outcome: "The project landed as a concise, memorable prototype with a clear sense of personality.",
+        gallery: [],
+        videoUrl: "https://youtu.be/nSUuGixCRCQ?si=U4lfaV6u3lM7KVpx",
+        itchioUrl: "https://pandasaan.itch.io/baldy"
+    },
     {
         id: 7,
         title: "Squares",
-        excerpt: "IoT interface for managing connected home devices with voice commands and automation.",
+        summary: "A compact prototype built to explore interaction patterns through simple rules and strong visual response.",
+        cardSummary: "Quick interaction prototype focused on systems, feedback, and playful constraint.",
         thumbnail: "assets/project-thumbs/squares-icon.jpg",
         logo: "assets/project-thumbs/squares-icon.jpg",
         category: "Prototype",
-        itchioUrl: "https://pandasaan.itch.io/squares",
-        description: `<p>IoT interface for managing connected home devices with voice commands and automation.</p>
-        <span class="hidden-clue">Saw my face yet? - up, up, down, down</span>`
+        platform: "PC Prototype",
+        roles: ["Designer", "Prototype Developer"],
+        overview: "Squares is a smaller prototype centered on simple interaction rules and responsive play.",
+        context: "It was built as a fast exploration of how much engagement could come from minimal systems and clear feedback.",
+        contributions: [
+            "Designed the interaction structure and prototype behavior.",
+            "Explored visual feedback and feel through quick iteration."
+        ],
+        outcome: "The project became a lightweight experiment in clarity, responsiveness, and playful system design.",
+        gallery: [],
+        itchioUrl: "https://pandasaan.itch.io/squares"
     },
     {
         id: 8,
         title: "Grainy",
-        excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
+        summary: "A prototype focused on texture, atmosphere, and a small but distinct interaction idea.",
+        cardSummary: "Experimental prototype exploring mood, texture, and a focused interactive hook.",
         thumbnail: "assets/project-thumbs/grainy-icon.jpg",
         logo: "assets/project-thumbs/grainy-icon.jpg",
         category: "Prototype",
+        platform: "PC Prototype",
+        roles: ["Designer", "Prototype Developer"],
+        overview: "Grainy is an experimental prototype built around a specific visual and interaction mood.",
+        context: "The project was an excuse to explore tone-first prototyping while still grounding the experience in interaction.",
+        contributions: [
+            "Explored the experience direction through rapid prototyping.",
+            "Focused on the visual feel and player response loop."
+        ],
+        outcome: "It served as a concise experiment in atmosphere-led interactive design.",
+        gallery: [],
         itchioUrl: "https://pandasaan.itch.io/grainy"
     },
     {
         id: 9,
         title: "The Crossover",
-        excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
+        summary: "A VR-flavored prototype exploring movement, presence, and playful interaction in a more physical space.",
+        cardSummary: "Prototype exploring immersive interaction and movement in a VR-oriented format.",
         thumbnail: "assets/project-thumbs/crossover-thumb.jpg",
         logo: "assets/project-thumbs/crossover-thumb.jpg",
         category: "Prototype",
+        platform: "VR Prototype",
+        roles: ["Designer", "Prototype Developer"],
+        overview: "The Crossover experiments with more embodied interaction and player presence.",
+        context: "It was built to test how movement and perspective could shape the feel of play in a VR-inspired format.",
+        contributions: [
+            "Designed the core interaction loop and prototype feel.",
+            "Explored how physicality changed pacing and engagement."
+        ],
+        outcome: "The prototype clarified which interaction ideas felt most natural and exciting in a more immersive setup.",
+        gallery: [],
         itchioUrl: "https://pandasaan.itch.io/the-crossover-virtual-reality-game",
         videoUrl: "https://youtu.be/r_zFsgJGq20?si=bo05elt1KqDDluae"
     },
     {
         id: 10,
         title: "Combat a Mort",
-        excerpt: "Health monitoring application with workout plans, nutrition tracking, and progress visualization.",
+        summary: "A combat-focused prototype exploring pacing, responsiveness, and mechanical clarity.",
+        cardSummary: "Combat prototype built around responsiveness, tension, and readable moment-to-moment play.",
         thumbnail: "assets/project-thumbs/combat-thumb.jpg",
         logo: "assets/project-thumbs/combat-thumb.jpg",
         category: "Prototype",
+        platform: "PC Prototype",
+        roles: ["Designer", "Prototype Developer"],
+        overview: "Combat a Mort is a smaller prototype focused on combat feel and core loop clarity.",
+        context: "The goal was to test how quickly a combat idea could become readable, satisfying, and worth iterating on.",
+        contributions: [
+            "Designed the combat loop and encounter feel.",
+            "Iterated on pacing, feedback, and overall responsiveness."
+        ],
+        outcome: "The prototype worked as a focused sandbox for testing combat interaction and feel.",
+        gallery: [],
         itchioUrl: "https://pandasaan.itch.io/combat-a-mort",
         videoUrl: "https://www.youtube.com/watch?v=4DFo81-5m4Y"
-    },
-
+    }
 ];
 
-// Function to create project cards
-function createProjectCard(project) {
+function getProjectsByCategory(category) {
+    return projectsData.filter(project => project.category === category);
+}
+
+function getFeaturedProjects() {
+    return projectsData.filter(project => project.featured);
+}
+
+function createMetaChips(project) {
     return `
-        <div class="project-card" data-id="${project.id}" role="button" tabindex="0" aria-label="Open project ${project.title}">
-            <div class="project-thumbnail">
-                <img src="${project.thumbnail}" alt="${project.title}" onerror="this.src='assets/project-thumbs/AtlasMission.jpg'">
-            </div>
-            <div class="project-info">
-                <div class="project-logo">
-                    <img src="${project.logo}" alt="${project.title} Logo" onerror="this.src='assets/project-thumbs/AtlasKeeper.jpg'">
-                </div>
-                <div class="project-text">
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-excerpt">${project.excerpt}</p>
-                </div>
-            </div>
+        <div class="project-meta-chips">
+            <span class="project-meta-chip">${project.category}</span>
+            <span class="project-meta-chip">${project.platform}</span>
         </div>
     `;
 }
 
-// Function to load projects by category
-function loadProjects(category) {
-    const container = document.getElementById('projects-container');
-    const filteredProjects = projectsData.filter(project => project.category === category);
-
-    container.innerHTML = '';
-
-    filteredProjects.forEach(project => {
-        container.innerHTML += createProjectCard(project);
-    });
+function createRoleChips(project, featured = false) {
+    const visibleRoles = featured ? project.roles.slice(0, 1) : project.roles;
+    return `
+        <div class="project-role-chips">
+            ${visibleRoles.map(role => `<span class="project-role-chip">${role}</span>`).join('')}
+        </div>
+    `;
 }
 
-// Function to load prototypes
-function loadPrototypes() {
-    const container = document.getElementById('prototypes-container');
-    const filteredProjects = projectsData.filter(project => project.category === 'Prototype');
-
-    container.innerHTML = '';
-
-    filteredProjects.forEach(project => {
-        container.innerHTML += createProjectCard(project);
-    });
+function createProjectCard(project, featured = false) {
+    return `
+        <article class="project-card ${featured ? 'project-card-featured' : ''}" data-id="${project.id}" role="button" tabindex="0" aria-label="Open project ${project.title}">
+            <div class="project-thumbnail">
+                <img src="${project.thumbnail}" alt="${project.title}" onerror="this.src='assets/project-thumbs/atlasmission-thumb.jpg'">
+            </div>
+            <div class="project-info">
+                <div class="project-card-head">
+                    <div class="project-logo">
+                        <img src="${project.logo}" alt="${project.title} logo" onerror="this.src='assets/project-thumbs/atlaskeeper-icon.jpg'">
+                    </div>
+                    <div class="project-card-head-copy">
+                        <h3 class="project-title">${project.title}</h3>
+                        ${createRoleChips(project, featured)}
+                    </div>
+                </div>
+                <div class="project-text">
+                    ${featured ? '' : `<p class="project-summary">${project.cardSummary}</p>`}
+                </div>
+            </div>
+        </article>
+    `;
 }
 
-// Function to load games
-function loadGames() {
-    const container = document.getElementById('games-container');
-    const filteredProjects = projectsData.filter(project => project.category === 'Game');
-
-    container.innerHTML = '';
-
-    filteredProjects.forEach(project => {
-        container.innerHTML += createProjectCard(project);
-    });
+function renderProjects(containerId, projects, featured = false) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML = projects.map(project => createProjectCard(project, featured)).join('');
 }
 
-// Function to load apps
-function loadApps() {
-    const container = document.getElementById('apps-container');
-    const filteredProjects = projectsData.filter(project => project.category === 'App');
-
-    container.innerHTML = '';
-
-    filteredProjects.forEach(project => {
-        container.innerHTML += createProjectCard(project);
-    });
-}
-
-// Function to load project details
-// Global state for lightbox navigation
 let currentMediaItems = [];
 let currentMediaIndex = 0;
 let currProjectId = null;
@@ -233,114 +293,89 @@ function playUiSound(name, options = {}) {
     }
 }
 
+function createDetailSection(title, content, listItems) {
+    if (!content && (!listItems || listItems.length === 0)) return '';
+
+    return `
+        <section class="detail-block">
+            <h2 class="detail-block-title">${title}</h2>
+            ${content ? `<p>${content}</p>` : ''}
+            ${listItems && listItems.length ? `
+                <ul>
+                    ${listItems.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+            ` : ''}
+        </section>
+    `;
+}
+
 function loadProjectDetails(projectId) {
     currProjectId = projectId;
-    // Find the project by ID
     const project = projectsData.find(p => p.id == projectId);
 
     if (!project) {
         console.error(`Project with ID ${projectId} not found`);
-        return;
+        return '';
     }
 
-    // Reset media items for this project
     currentMediaItems = [];
     if (project.videoUrl) {
-        currentMediaItems.push({
-            type: 'video',
-            source: getYouTubeEmbedUrl(project.videoUrl),
-            caption: null
-        });
+        currentMediaItems.push({ type: 'video', source: getYouTubeEmbedUrl(project.videoUrl), caption: null });
     }
+
     if (project.gallery && project.gallery.length > 0) {
         project.gallery.forEach(item => {
             if (typeof item === 'string') {
-                currentMediaItems.push({
-                    type: 'image',
-                    source: item,
-                    caption: null
-                });
+                currentMediaItems.push({ type: 'image', source: item, caption: null });
             } else {
-                // Handle object with caption
-                currentMediaItems.push({
-                    type: 'image',
-                    source: item.src,
-                    caption: item.caption
-                });
+                currentMediaItems.push({ type: 'image', source: item.src, caption: item.caption });
             }
         });
     }
 
-    // Determine the section to return to based on project category
-    let returnSection = '#';
-    if (project.category === 'Game') {
-        returnSection = '#games';
-    } else if (project.category === 'App') {
-        returnSection = '#apps';
-    } else if (project.category === 'Prototype') {
-        returnSection = '#prototypes';
-    }
-
-    // Create the project detail HTML
-    // Check if we should use grid layout (more than 2 images)
     const hasManyImages = project.gallery && project.gallery.length > 2;
     const gridClass = hasManyImages ? 'use-grid' : '';
-
-    // Create the project detail HTML with new 2-column layout
-    const detailHtml = `
+    return `
     <section id="project-detail" class="main-content-section">
         <div class="project-header">
             <div class="project-logo-large">
-                <img src="${project.logo}" alt="${project.title} Logo">
+                <img src="${project.logo}" alt="${project.title} logo">
             </div>
             <div class="project-title-container">
                 <h1>${project.title}</h1>
-                ${project.tags && project.tags.length > 0 ? `
-                <div class="header-tags">
-                    ${project.tags.map(tag => `<span class="header-tag">${tag}</span>`).join('')}
-                </div>
-                ` : ''}
+                ${createMetaChips(project)}
+                <p class="project-hero-summary">${project.summary}</p>
             </div>
         </div>
-        
+
         <div class="project-detail-content">
-            <!-- Left Column: Text & Links -->
             <div class="project-text-column">
-                ${project.roles && project.roles.length > 0 ? `
                 <div class="role-tags-container">
-                    <div class="role-label">My Role:</div>
+                    <div class="role-label">My Role</div>
                     <div class="role-tags">
                         ${project.roles.map(role => `<span class="role-tag">${role}</span>`).join('')}
                     </div>
                 </div>
-                ` : ''}
 
                 <div class="project-description">
-                    ${project.description || ''}
+                    ${createDetailSection('Overview', project.overview)}
+                    ${createDetailSection('Context', project.context)}
+                    ${createDetailSection('What I Did', '', project.contributions)}
+                    ${createDetailSection('Outcome', project.outcome)}
                 </div>
 
                 ${(project.appStoreUrl || project.googlePlayUrl || project.itchioUrl) ? `
                 <div class="project-links">
                     ${project.appStoreUrl ? `
-                    <a href="${project.appStoreUrl}" target="_blank" class="store-button store-button-appstore" aria-label="Download on the App Store">
-                        <i class="fab fa-app-store-ios" aria-hidden="true"></i>
-                        <span class="store-button-text">
-                            <span class="store-button-kicker">Download on the</span>
-                            <span class="store-button-name">App Store</span>
-                        </span>
+                    <a href="${project.appStoreUrl}" target="_blank" class="store-badge-link" aria-label="Download on the App Store">
+                        <img src="assets/links/app-store.svg" alt="Download on the App Store" class="store-badge">
                     </a>
                     ` : ''}
-                    
                     ${project.googlePlayUrl ? `
-                    <a href="${project.googlePlayUrl}" target="_blank" class="store-button store-button-googleplay" aria-label="Get it on Google Play">
-                        <i class="fab fa-google-play" aria-hidden="true"></i>
-                        <span class="store-button-text">
-                            <span class="store-button-kicker">Get it on</span>
-                            <span class="store-button-name">Google Play</span>
-                        </span>
+                    <a href="${project.googlePlayUrl}" target="_blank" class="store-badge-link" aria-label="Get it on Google Play">
+                        <img src="assets/links/google-store.svg" alt="Get it on Google Play" class="store-badge">
                     </a>
                     ` : ''}
-
                     ${project.itchioUrl ? `
                     <a href="${project.itchioUrl}" target="_blank" class="store-button store-button-itchio" aria-label="Get it on Itch.io">
                         <i class="fab fa-itch-io" aria-hidden="true"></i>
@@ -354,40 +389,29 @@ function loadProjectDetails(projectId) {
                 ` : ''}
             </div>
 
-            <!-- Right Column: Media Gallery (Video + Images) -->
             <div class="project-media-column ${gridClass}">
-                ${/* Video Section */ ''}
                 ${project.videoUrl ? `
                 <div class="media-item video-item" role="button" tabindex="0" aria-label="Open video in lightbox" onclick="openLightbox(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox(0);}">
                     <iframe width="560" height="315" src="${getYouTubeEmbedUrl(project.videoUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 ` : ''}
 
-                ${/* Gallery Images */ ''}
-                ${project.gallery && project.gallery.length > 0 ?
-            project.gallery.map((item, index) => {
-                // Calculate actual index based on whether video exists
-                const globalIndex = project.videoUrl ? index + 1 : index;
-                const imgSrc = typeof item === 'string' ? item : item.src;
+                ${project.gallery && project.gallery.length > 0 ? project.gallery.map((item, index) => {
+                    const globalIndex = project.videoUrl ? index + 1 : index;
+                    const imgSrc = typeof item === 'string' ? item : item.src;
 
-                return `
-                        <div class="media-item" role="button" tabindex="0" aria-label="Open image in lightbox" onclick="openLightbox(${globalIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox(${globalIndex});}">
-                            <img src="${imgSrc}" alt="${project.title} screenshot">
-                        </div>
-                        `;
-            }).join('')
-            : ''}
+                    return `
+                    <div class="media-item" role="button" tabindex="0" aria-label="Open image in lightbox" onclick="openLightbox(${globalIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox(${globalIndex});}">
+                        <img src="${imgSrc}" alt="${project.title} screenshot">
+                    </div>
+                    `;
+                }).join('') : '<div class="media-empty-state">More visuals and process notes can be added here as the project case study evolves.</div>'}
             </div>
         </div>
-        
-        <!-- Back button removed as requested -->
     </section>
     `;
-
-    return detailHtml;
 }
 
-// Lightbox/Modal Functions
 function createLightbox() {
     if (document.querySelector('.lightbox-modal')) return;
 
@@ -395,24 +419,19 @@ function createLightbox() {
     lightbox.className = 'lightbox-modal';
     lightbox.innerHTML = `
         <button type="button" class="lightbox-close" aria-label="Close lightbox" onclick="closeLightbox()">&times;</button>
-        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous media" onclick="navigateLightbox(-1)">&#10094;</button>
-        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next media" onclick="navigateLightbox(1)">&#10095;</button>
-        <div class="lightbox-content" id="lightbox-content-container">
-            <!-- Content injected here -->
-        </div>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous media" onclick="navigateLightbox(-1)"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next media" onclick="navigateLightbox(1)"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+        <div class="lightbox-content" id="lightbox-content-container"></div>
     `;
 
-    // Close on clicking outside content
     lightbox.addEventListener('click', function (e) {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', function (e) {
         if (!document.querySelector('.lightbox-modal.active')) return;
-
         if (e.key === 'Escape') closeLightbox();
         if (e.key === 'ArrowLeft') navigateLightbox(-1);
         if (e.key === 'ArrowRight') navigateLightbox(1);
@@ -431,7 +450,7 @@ function openLightbox(index) {
     updateLightboxContent();
 
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.style.overflow = 'hidden';
 }
 
 function updateLightboxContent() {
@@ -446,26 +465,21 @@ function updateLightboxContent() {
         img.src = item.source;
         container.appendChild(img);
 
-        // Add caption if exists
         if (item.caption) {
             const captionDiv = document.createElement('div');
             captionDiv.className = 'lightbox-caption';
-            captionDiv.innerHTML = item.caption; // Allow HTML in captions? Yes.
+            captionDiv.innerHTML = item.caption;
             container.appendChild(captionDiv);
         }
-
     } else if (item.type === 'video') {
         const iframe = document.createElement('iframe');
-        iframe.src = item.source; // Source should already be an embed URL
-        iframe.frameBorder = "0";
-        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.src = item.source;
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         iframe.allowFullscreen = true;
         container.appendChild(iframe);
     }
 
-    // Update nav buttons visibility based on index (optional: loop or hide at ends)
-    // For now, we'll loop strictly or just let them exist. 
-    // Let's hide if there's only 1 item
     const prevBtn = document.querySelector('.lightbox-prev');
     const nextBtn = document.querySelector('.lightbox-next');
 
@@ -482,7 +496,6 @@ function navigateLightbox(direction) {
     playUiSound('nav', { volume: 0.2, playbackRate: direction > 0 ? 1.08 : 0.98 });
     currentMediaIndex += direction;
 
-    // Loop functionality
     if (currentMediaIndex < 0) {
         currentMediaIndex = currentMediaItems.length - 1;
     } else if (currentMediaIndex >= currentMediaItems.length) {
@@ -496,22 +509,16 @@ function closeLightbox() {
     const lightbox = document.querySelector('.lightbox-modal');
     if (lightbox) {
         playUiSound('close', { volume: 0.22, playbackRate: 0.9 });
+        document.getElementById('lightbox-content-container').innerHTML = '';
         lightbox.classList.remove('active');
-        document.getElementById('lightbox-content-container').innerHTML = ''; // Clear content to stop video
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = '';
     }
 }
 
-// Helper function to extract YouTube Embed URL from any YouTube link
 function getYouTubeEmbedUrl(url) {
     if (!url) return '';
+    if (url.includes('youtube.com/embed/')) return url;
 
-    // Handle already embedded URLs
-    if (url.includes('youtube.com/embed/')) {
-        return url;
-    }
-
-    // Robust pattern for YouTube URLs (matches standard watch, shorts, share, embed)
     const pattern = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
     const match = url.match(pattern);
 
@@ -520,50 +527,35 @@ function getYouTubeEmbedUrl(url) {
     }
 
     console.warn('Could not parse YouTube URL:', url);
-    return url; // Return original if we can't parse it (failsafe)
+    return url;
 }
-
-// Initialize projects when the DOM is loaded
-document.addEventListener('DOMContentLoaded', function () {
-    // Create lightbox modal
-    createLightbox();
-
-    // Load games
-    loadGames();
-
-    // Load apps
-    loadApps();
-
-    // Load prototypes
-    loadPrototypes();
-
-    // Add click event listeners to project cards
-    // Add click event listeners to project cards
+function attachProjectCardEvents() {
     document.querySelectorAll('.project-card').forEach(card => {
         const openProject = function (e) {
             e.preventDefault();
             const projectId = card.getAttribute('data-id');
             playUiSound('open', { volume: 0.26, playbackRate: 1.08 });
-
-            // Push state to history
             history.pushState({ view: 'project', projectId: projectId }, '', `#project-${projectId}`);
-
-            // Render the project view
             renderProjectView(projectId);
         };
 
-        card.addEventListener('click', function (e) {
-            openProject(e);
-        });
-
+        card.addEventListener('click', openProject);
         card.addEventListener('keydown', function (e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 openProject(e);
             }
         });
     });
+}
 
-    // Handle browser back/forward navigation
+document.addEventListener('DOMContentLoaded', function () {
+    createLightbox();
+    renderProjects('featured-container', getFeaturedProjects(), true);
+    renderProjects('games-container', getProjectsByCategory('Game'));
+    renderProjects('apps-container', getProjectsByCategory('App'));
+    renderProjects('prototypes-container', getProjectsByCategory('Prototype'));
+    attachProjectCardEvents();
+
     window.addEventListener('popstate', function (event) {
         if (event.state) {
             if (event.state.view === 'project') {
@@ -572,44 +564,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 renderAboutView();
             }
         } else {
-            // Restore home view (default)
             renderHomeView();
         }
     });
 
-    // Handle initial load if URL has hash (optional, but good for linking)
     const initialHash = window.location.hash;
     if (initialHash && initialHash.startsWith('#project-')) {
-        const projectId = initialHash.replace('#project-', '');
-        renderProjectView(projectId);
+        renderProjectView(initialHash.replace('#project-', ''));
     } else if (initialHash === '#about') {
         renderAboutView();
     }
 
-    // Initialize sidebar navigation so links work from home page immediately
     setupSidebarNavigationForProject();
 });
 
-// Helper to render project view
 function renderProjectView(projectId) {
     const projectHtml = loadProjectDetails(projectId);
-    if (!projectHtml) return; // Project not found?
+    if (!projectHtml) return;
 
-    // Hide all sections
     document.querySelectorAll('.section').forEach(section => {
         section.style.display = 'none';
     });
 
-    // Show project details in main-content-area
     const mainContentArea = document.getElementById('main-content-area');
     mainContentArea.innerHTML = projectHtml;
     mainContentArea.className = 'project-view';
     mainContentArea.style.display = 'block';
 
-    // Make sidebar navigation work from project detail pages
     setupSidebarNavigationForProject();
 
-    // Set active state on sidebar based on project category
     const project = projectsData.find(p => p.id == projectId);
     if (project) {
         let targetHref = '';
@@ -627,29 +610,22 @@ function renderProjectView(projectId) {
         }
     }
 
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Helper to render home view
 function renderHomeView() {
     const mainContentArea = document.getElementById('main-content-area');
-
-    // Hide main-content-area and show all sections
     mainContentArea.style.display = 'none';
     mainContentArea.className = '';
     document.querySelectorAll('.section').forEach(section => {
         section.style.display = 'block';
     });
 
-    // Clear active state for About if needed
     const aboutLink = document.getElementById('about-link');
     if (aboutLink) aboutLink.classList.remove('active');
 }
 
-// Helper to render About view
 function renderAboutView() {
-    // Hide all sections
     document.querySelectorAll('.section').forEach(section => {
         section.style.display = 'none';
     });
@@ -658,23 +634,51 @@ function renderAboutView() {
     <section id="about-content" class="main-content-section">
         <div class="project-header">
             <div class="project-title-container">
-                <h1>About me</h1>
+                <div class="project-meta-chips">
+                    <span class="project-meta-chip">About</span>
+                    <span class="project-meta-chip">Aaabhi</span>
+                </div>
+                <h1>Playful by instinct. System-minded by trade.</h1>
+                <p class="project-hero-summary">I'm Aaabhi, a Senior Designer working across UX, AI systems, and interactive product design over 6+ years.</p>
             </div>
         </div>
-        
+
         <div class="about-content-single">
             <div class="about-section bio-section">
-                <p>Hey! I'm Abhi, I've been designing games for 5+ years focusing deeply on Player Experience & Satisfaction. 
-                I love building experiences that resonate deeply with the players and have deep technical knowledge of game-making tools and pipelines.</p>
+                <p>I design experiences across games, apps, and web products, with a particular interest in making intelligent systems feel usable, intentional, and human.</p>
+                <p>My work usually sits somewhere between interaction design, AI system thinking, product design, and team leadership. I like turning fuzzy ideas into experiences that feel smart, satisfying, and surprisingly natural to use.</p>
+                <p>Whether I'm shaping a game loop, prototyping an AI behavior, or aligning a cross-functional team, I care most about how the final experience feels in a real person's hands.</p>
+            </div>
+
+            <div class="about-section">
+                <h2 class="about-header-text">What I Bring</h2>
+                <div class="about-skills-row">
+                    <span class="about-skill-tag">UX Design</span>
+                    <span class="about-skill-tag">AI Prototyping</span>
+                    <span class="about-skill-tag">AI System Design</span>
+                    <span class="about-skill-tag">AI Interaction Design</span>
+                    <span class="about-skill-tag">Conversational Design</span>
+                    <span class="about-skill-tag">Cross-Functional Leadership</span>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h2 class="about-header-text">Tools & Platforms</h2>
+                <div class="about-skills-row">
+                    <span class="about-skill-tag">Unity</span>
+                    <span class="about-skill-tag">Godot</span>
+                    <span class="about-skill-tag">React Native</span>
+                    <span class="about-skill-tag">Games</span>
+                    <span class="about-skill-tag">Apps</span>
+                    <span class="about-skill-tag">Web</span>
+                </div>
             </div>
 
             <div class="about-actions-row">
                 <a href="mailto:abhiraman@live.com" class="email-button-large">Say Hello</a>
-
                 <a href="https://drive.google.com/file/d/1tgLe0LT1sqQTF9GJH9PEyPQDthLGbeiV/view?usp=sharing" target="_blank">
                     <img src="assets/links/ResumeBt.gif" alt="Resume" class="about-link-icon resume-gif">
                 </a>
-                
                 <a href="https://www.linkedin.com/in/abhiraman/" target="_blank">
                     <img src="assets/links/LinkedInBt.gif" alt="LinkedIn" class="about-link-icon">
                 </a>
@@ -688,7 +692,6 @@ function renderAboutView() {
     mainContentArea.className = 'about-view';
     mainContentArea.style.display = 'block';
 
-    // Update active state
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
         if (item.getAttribute('id') === 'about-link') {
@@ -696,28 +699,20 @@ function renderAboutView() {
         }
     });
 
-    // Ensure sidebar navigation still works
     setupSidebarNavigationForProject();
-
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function setupSidebarNavigationForProject() {
     document.querySelectorAll('.nav-item').forEach(navItem => {
-        // Handle normal section links
         if (navItem.getAttribute('href').startsWith('#') && navItem.getAttribute('id') !== 'about-link') {
             navItem.onclick = function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 playUiSound('nav', { volume: 0.2, playbackRate: 1.04 });
-
-                // Update history to home
                 history.pushState(null, '', window.location.pathname);
-
                 renderHomeView();
 
-                // Scroll to the appropriate section
                 if (targetId === '#index') {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
@@ -727,14 +722,11 @@ function setupSidebarNavigationForProject() {
                     }
                 }
 
-                // Update active state
                 document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
                 this.classList.add('active');
-
                 return false;
             };
         } else if (navItem.getAttribute('id') === 'about-link') {
-            // Handle About link specifically
             navItem.onclick = function (e) {
                 e.preventDefault();
                 playUiSound('open', { volume: 0.24, playbackRate: 1.08 });
@@ -745,3 +737,7 @@ function setupSidebarNavigationForProject() {
         }
     });
 }
+
+
+
+

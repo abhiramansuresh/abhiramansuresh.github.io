@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const audioCache = {};
     let muted = localStorage.getItem(STORAGE_KEY) === 'true';
 
-    function getBaseAudio(src) {
+    function warmAudio(src) {
         if (!audioCache[src]) {
             const audio = new Audio(src);
             audio.preload = 'auto';
@@ -47,8 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const src = soundMap[name] || name;
         if (!src) return;
 
-        const baseAudio = getBaseAudio(src);
-        const instance = baseAudio.cloneNode();
+        warmAudio(src);
+        const instance = new Audio(src);
+        instance.preload = 'auto';
         instance.volume = Math.max(0, Math.min(1, settings.volume ?? 0.35));
         instance.playbackRate = settings.playbackRate ?? 1;
         instance.currentTime = settings.currentTime ?? 0;
@@ -76,3 +77,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateToggleUI();
 });
+
+

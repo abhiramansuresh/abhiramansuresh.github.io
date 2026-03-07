@@ -12,43 +12,6 @@ function updateSquareRotations() {
     topSquare.style.transform = `rotate(${getRandomRotation()}deg)`;
 }
 
-// Function to create and animate floating score
-function createFloatingScore(x, y) {
-    const score = document.createElement('div');
-    score.textContent = '+1';
-    score.style.position = 'fixed';
-    // Add random horizontal offset (-20 to +20 pixels)
-    const randomX = x + (Math.random() * 40 - 20);
-    score.style.left = `${randomX}px`;
-    score.style.top = `${y - 40}px`;
-    score.style.color = 'var(--accent-color)';
-    score.style.fontSize = '2.5rem';
-    score.style.fontWeight = 'bold';
-    score.style.pointerEvents = 'none';
-    score.style.transition = 'all 1s ease-out';
-    score.style.opacity = '1';
-    score.style.zIndex = '9999';
-    score.style.textShadow = '2px 2px 4px rgba(0,0,0,0.3)';
-    
-    document.body.appendChild(score);
-    
-    // Random angle for movement (-30 to +30 degrees)
-    const randomAngle = (Math.random() * 60 - 30) * (Math.PI / 180);
-    const moveDistance = 80;
-    const moveX = Math.sin(randomAngle) * moveDistance;
-    const moveY = -Math.cos(randomAngle) * moveDistance;
-    
-    // Trigger animation with random direction
-    requestAnimationFrame(() => {
-        score.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        score.style.opacity = '0';
-    });
-    
-    setTimeout(() => {
-        document.body.removeChild(score);
-    }, 1000);
-}
-
 let health = 100;
 const healthDecreaseAmount = 2; // Amount to decrease health by on each click
 
@@ -71,13 +34,6 @@ function resetHealth() {
 function handleClickAnimation(event) {
     const bottomSquare = document.querySelector('.square-bottom');
     const topSquare = document.querySelector('.square-top');
-    if (window.PortfolioAudio) {
-        window.PortfolioAudio.play('click', {
-            volume: 0.3,
-            playbackRate: 0.95 + Math.random() * 0.12
-        });
-    }
-    
     // Initial scale down
     bottomSquare.style.transform = `rotate(${getRandomRotation()}deg) scale(0.95)`;
     topSquare.style.transform = `rotate(${getRandomRotation()}deg) scale(0.95)`;
@@ -87,11 +43,6 @@ function handleClickAnimation(event) {
     if (health < 0) health = 0; // Prevent negative health
     updateHealthBar();
 
-    // Create floating score at click position
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = rect.left + (rect.width / 2) - 15;
-    const y = rect.top + (rect.height / 2);
-    createFloatingScore(x, y);
     
     // Scale up with overshoot after 150ms
     setTimeout(() => {
@@ -132,3 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize health bar on load
     updateHealthBar();
 });
+
+
+
