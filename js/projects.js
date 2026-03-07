@@ -548,6 +548,57 @@ function attachProjectCardEvents() {
     });
 }
 
+const VIEW_TRANSITION_MS = 220;
+
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function fadeOutElement(element) {
+    if (!element || element.style.display === 'none') return;
+
+    element.classList.remove('view-enter-active');
+    element.classList.add('view-exit-active');
+    await wait(VIEW_TRANSITION_MS);
+    element.classList.remove('view-exit-active');
+}
+
+async function fadeOutSections() {
+    const visibleSections = Array.from(document.querySelectorAll('.section')).filter(section => section.style.display !== 'none');
+    if (visibleSections.length === 0) return;
+
+    visibleSections.forEach(section => {
+        section.classList.remove('view-enter-active');
+        section.classList.add('view-exit-active');
+    });
+
+    await wait(VIEW_TRANSITION_MS);
+
+    visibleSections.forEach(section => {
+        section.style.display = 'none';
+        section.classList.remove('view-exit-active');
+    });
+}
+
+function showElementWithFade(element, displayMode = 'block') {
+    if (!element) return;
+
+    element.style.display = displayMode;
+    element.classList.remove('view-exit-active');
+    element.classList.add('view-enter');
+    void element.offsetWidth;
+    element.classList.add('view-enter-active');
+}
+
+function showSectionsWithFade() {
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'block';
+        section.classList.remove('view-exit-active');
+        section.classList.add('view-enter');
+        void section.offsetWidth;
+        section.classList.add('view-enter-active');
+    });
+}
 document.addEventListener('DOMContentLoaded', function () {
     createLightbox();
     renderProjects('featured-container', getFeaturedProjects(), true);
@@ -556,15 +607,15 @@ document.addEventListener('DOMContentLoaded', function () {
     renderProjects('prototypes-container', getProjectsByCategory('Prototype'));
     attachProjectCardEvents();
 
-    window.addEventListener('popstate', function (event) {
+    window.addEventListener('popstate', async function (event) {
         if (event.state) {
             if (event.state.view === 'project') {
-                renderProjectView(event.state.projectId);
+                await renderProjectView(event.state.projectId);
             } else if (event.state.view === 'about') {
-                renderAboutView();
+                await renderAboutView();
             }
         } else {
-            renderHomeView();
+            await renderHomeView();
         }
     });
 
@@ -578,17 +629,17 @@ document.addEventListener('DOMContentLoaded', function () {
     setupSidebarNavigationForProject();
 });
 
-function renderProjectView(projectId) {
+async function renderProjectView(projectId) {
     const projectHtml = loadProjectDetails(projectId);
     if (!projectHtml) return;
 
-    document.querySelectorAll('.section').forEach(section => {
-        section.style.display = 'none';
-    });
-
     const mainContentArea = document.getElementById('main-content-area');
+    await fadeOutElement(mainContentArea);
+    await fadeOutSections();
+
     mainContentArea.innerHTML = projectHtml;
     mainContentArea.className = 'project-view';
+    showElementWithFade(mainContentArea);
     mainContentArea.style.display = 'block';
 
     setupSidebarNavigationForProject();
@@ -613,22 +664,18 @@ function renderProjectView(projectId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function renderHomeView() {
+async function renderHomeView() {
     const mainContentArea = document.getElementById('main-content-area');
+    await fadeOutElement(mainContentArea);
     mainContentArea.style.display = 'none';
     mainContentArea.className = '';
-    document.querySelectorAll('.section').forEach(section => {
-        section.style.display = 'block';
-    });
+    showSectionsWithFade();
 
     const aboutLink = document.getElementById('about-link');
     if (aboutLink) aboutLink.classList.remove('active');
 }
 
-function renderAboutView() {
-    document.querySelectorAll('.section').forEach(section => {
-        section.style.display = 'none';
-    });
+async function renderAboutView() {
 
     const aboutHtml = `
     <section id="about-content" class="main-content-section">
@@ -688,9 +735,12 @@ function renderAboutView() {
     `;
 
     const mainContentArea = document.getElementById('main-content-area');
+    await fadeOutElement(mainContentArea);
+    await fadeOutSections();
+
     mainContentArea.innerHTML = aboutHtml;
     mainContentArea.className = 'about-view';
-    mainContentArea.style.display = 'block';
+    showElementWithFade(mainContentArea);
 
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
@@ -706,12 +756,12 @@ function renderAboutView() {
 function setupSidebarNavigationForProject() {
     document.querySelectorAll('.nav-item').forEach(navItem => {
         if (navItem.getAttribute('href').startsWith('#') && navItem.getAttribute('id') !== 'about-link') {
-            navItem.onclick = function (e) {
+            navItem.onclick = async function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 playUiSound('nav', { volume: 0.2, playbackRate: 1.04 });
                 history.pushState(null, '', window.location.pathname);
-                renderHomeView();
+                await renderHomeView();
 
                 if (targetId === '#index') {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -727,16 +777,18 @@ function setupSidebarNavigationForProject() {
                 return false;
             };
         } else if (navItem.getAttribute('id') === 'about-link') {
-            navItem.onclick = function (e) {
+            navItem.onclick = async function (e) {
                 e.preventDefault();
                 playUiSound('open', { volume: 0.24, playbackRate: 1.08 });
                 history.pushState({ view: 'about' }, '', '#about');
-                renderAboutView();
+                await renderAboutView();
                 return false;
             };
         }
     });
 }
+
+
 
 
 

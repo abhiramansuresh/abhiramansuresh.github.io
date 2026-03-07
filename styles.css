@@ -2643,3 +2643,27 @@ button:focus-visible,
 .project-card-head-copy .project-role-chips {
     margin-top: 0;
 }
+
+/* View transition states */
+.section,
+#main-content-area {
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.section.view-enter,
+#main-content-area.view-enter {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.section.view-enter.view-enter-active,
+#main-content-area.view-enter.view-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section.view-exit-active,
+#main-content-area.view-exit-active {
+    opacity: 0;
+    transform: translateY(10px);
+}
