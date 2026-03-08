@@ -722,12 +722,13 @@ async function renderAboutView() {
             </div>
 
             <div class="about-actions-row">
-                <a href="mailto:abhiraman@live.com" class="email-button-large">Say Hello</a>
-                <a href="https://drive.google.com/file/d/1tgLe0LT1sqQTF9GJH9PEyPQDthLGbeiV/view?usp=sharing" target="_blank">
-                    <img src="assets/links/ResumeBt.gif" alt="Resume" class="about-link-icon resume-gif">
+                <a href="mailto:abhiraman@live.com" class="about-action-button">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <span>Say Hello</span>
                 </a>
-                <a href="https://www.linkedin.com/in/abhiraman/" target="_blank">
-                    <img src="assets/links/LinkedInBt.gif" alt="LinkedIn" class="about-link-icon">
+                <a href="https://drive.google.com/file/d/1tgLe0LT1sqQTF9GJH9PEyPQDthLGbeiV/view?usp=sharing" target="_blank" class="about-action-button">
+                    <i class="fas fa-file-lines" aria-hidden="true"></i>
+                    <span>Resume</span>
                 </a>
             </div>
         </div>
@@ -787,7 +788,6 @@ function setupSidebarNavigationForProject() {
         }
     });
 }
-
 
 
 
