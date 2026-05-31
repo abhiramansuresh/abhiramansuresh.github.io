@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&family=Special+Elite&family=Special+Gothic+Expanded+One&family=Press+Start+2P&display=swap');
 
 /* Word Carousel Animation */
 .word-carousel {
@@ -71,6 +68,9 @@
     line-height: 1.5;
 }
 
+/* ==========================================================
+   1. CUSTOM PROPERTIES & DESIGN TOKENS
+   ========================================================== */
 :root {
     --background-color: #130b22;
     --text-color: #ffffff;
@@ -80,25 +80,27 @@
     --body-font: 'Lato', sans-serif;
     --accent-color: #ffd454;
     --accent-color-hover: #ffe079;
-    --accent-colors: #ffd454, #49e5d5, #ff8b8b, #8fe388;
-    --accent-colors-hover: #ffe079, #74f7e8, #ffabab, #adf0aa;
     --surface-1: rgba(255, 255, 255, 0.07);
     --surface-2: rgba(255, 255, 255, 0.11);
     --edge-subtle: rgba(255, 255, 255, 0.14);
     --ambient-glow: rgba(255, 212, 84, 0.14);
+    --bp-tablet: 1024px;
+    --bp-mobile: 640px;
 
     /* Grid variables */
-    --grid-margin: 100px;
+    --grid-margin: clamp(16px, 5vw, 100px);
     --grid-gutter: 52px;
     --grid-columns: 5;
 
     /* Alignment variables */
-    --vertical-alignment: 150px;
+    --vertical-alignment: clamp(60px, 10vh, 150px);
     --project-vertical-alignment: 80px;
     --about-actions-gap: 1rem;
-    --scroll-offset: 100px;
 }
 
+/* ==========================================================
+   2. RESET & BASE
+   ========================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -129,7 +131,9 @@ body::before {
     opacity: 0.28;
 }
 
-/* Typography */
+/* ==========================================================
+   4. TYPOGRAPHY
+   ========================================================== */
 h1,
 h2,
 .large-text {
@@ -196,7 +200,9 @@ span {
     height: 100%;
 }
 
-/* Main Layout */
+/* ==========================================================
+   3. LAYOUT — CONTAINER, SIDEBAR, MAIN CONTENT
+   ========================================================== */
 .container {
     display: flex;
     min-height: 100vh;
@@ -246,7 +252,9 @@ body,
     /* Right-align text content */
 }
 
-/* Navigation Styles */
+/* ==========================================================
+   5. NAVIGATION
+   ========================================================== */
 .navigation {
     display: flex;
     flex-direction: column;
@@ -256,14 +264,6 @@ body,
     /* Change from space-between to flex-start */
     align-items: flex-end;
     /* Right-align navigation items */
-}
-
-.nav-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-end;
-    /* Right-align items in nav sections */
 }
 
 /* Contact section - horizontal alignment */
@@ -277,27 +277,6 @@ body,
     /* Add space between nav buttons and contact icons */
     margin-bottom: auto;
     /* Push away from bottom */
-}
-
-/* Profile section - right align */
-.profile {
-    text-align: right;
-    /* Override the center alignment */
-    margin-bottom: 2rem;
-    margin-top: 0;
-}
-
-.profile-squares {
-    margin: 0 auto 2rem;
-}
-
-/* Navigation items - right align */
-.nav-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-end;
-    /* Align items to the right */
 }
 
 .nav-item {
@@ -325,60 +304,9 @@ body,
     /* Move icon to the right of text */
 }
 
-/* Contact section - right align */
-.contact-section {
-    display: flex;
-    gap: 1rem;
-    margin-top: 100;
-    justify-content: flex-end;
-    /* Align icons to the right */
-}
-
-/* Main Content Styles */
-/* Main Content Styles - Consolidate with later definition */
-
-/* Responsive Styles - adjust as needed */
-@media screen and (max-width: 1200px) {
-    .container {
-        width: 80%;
-    }
-
-    .sidebar {
-        left: 70px;
-        /* Fixed position on medium screens */
-    }
-
-    .main-content {
-        margin-left: 230px;
-        /* Adjust based on new sidebar width + padding */
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .container {
-        width: 100%;
-    }
-
-    .sidebar {
-        transform: translateX(-100%);
-        /* Hide off-screen when inactive */
-        margin-left: 0;
-        left: 0;
-        width: 280px;
-    }
-
-    .sidebar.active {
-        transform: translateX(0);
-    }
-
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-        padding: 2rem var(--grid-margin);
-        border-left: none;
-    }
-}
-
+/* ==========================================================
+   6. PROFILE & ANIMATION
+   ========================================================== */
 .profile {
     text-align: center;
     margin-bottom: 2rem;
@@ -603,7 +531,9 @@ body,
     }
 }
 
-/* Achievement Toast */
+/* ==========================================================
+   9. GAMIFICATION / HUD
+   ========================================================== */
 .achievement-toast {
     position: fixed;
     bottom: -100px;
@@ -816,7 +746,6 @@ body,
 .contact-section {
     display: flex;
     gap: 1rem;
-    margin-top: 100;
 }
 
 .contact-icon {
@@ -851,7 +780,7 @@ body,
 /* Section Styles */
 .section {
     margin-bottom: 4rem;
-    scroll-margin-top: var(--scroll-offset);
+    scroll-margin-top: 100px;
 }
 
 .section-title {
@@ -884,7 +813,9 @@ body,
     margin-bottom: 2rem;
 }
 
-/* Project Grid */
+/* ==========================================================
+   7. PROJECT CARDS & GRID
+   ========================================================== */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -908,6 +839,7 @@ body,
 .project-thumbnail {
     width: 100%;
     height: 200px;
+    aspect-ratio: 16 / 9;
     background-color: #2a2a2a;
     display: flex;
     align-items: center;
@@ -919,6 +851,7 @@ body,
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.3s ease;
 }
 
@@ -1034,57 +967,6 @@ body,
     z-index: 998;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 1200px) {
-    :root {
-        --grid-margin: 50px;
-        --grid-gutter: 30px;
-    }
-
-    .container {
-        width: 90%;
-        /* Give more space on tablets */
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    :root {
-        --grid-margin: 20px;
-    }
-
-    .menu-button {
-        display: block;
-    }
-
-    .sidebar {
-        position: fixed;
-        /* Go back to fixed for mobile drawer */
-        transform: translateX(-100%);
-        left: 0;
-        width: 280px;
-        background-color: var(--background-color);
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .sidebar.active {
-        transform: translateX(0);
-    }
-
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-        padding: 2rem var(--grid-margin);
-    }
-
-    .overlay.active {
-        display: block;
-    }
-}
-
 /* General link styling */
 a {
     color: #ffd54f;
@@ -1117,7 +999,9 @@ a:active {
     /* Color when the link is clicked */
 }
 
-/* Project Detail Styles */
+/* ==========================================================
+   8. PROJECT DETAIL & LIGHTBOX
+   ========================================================== */
 .project-header {
     display: flex;
     align-items: center;
@@ -1440,32 +1324,6 @@ a:active {
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
 }
 
-@media screen and (max-width: 768px) {
-    .game-hud-cluster {
-        top: 0.8rem;
-        right: 0.8rem;
-        gap: 0.45rem;
-    }
-
-    .audio-toggle {
-        width: 36px;
-        height: 36px;
-    }
-
-    .stats-hud {
-        padding: 0.45rem;
-        gap: 0.4rem;
-    }
-
-    .hud-item {
-        min-width: 80px;
-    }
-
-    .hud-value {
-        font-size: 0.9rem;
-    }
-}
-
 .experience-list {
     display: flex;
     flex-direction: column;
@@ -1750,35 +1608,6 @@ a:active {
     right: 20px;
 }
 
-/* Media Queries for New Layout */
-@media screen and (max-width: 900px) {
-    .project-detail-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .project-text-column {
-        position: static;
-        order: 2;
-        /* Text below images on mobile */
-    }
-
-    .project-media-column {
-        order: 1;
-        /* Images on top on mobile */
-    }
-
-    .project-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .project-logo-large {
-        margin-right: 0;
-    }
-}
-
 /* More on Itch.io Button Refinement */
 .section-footer {
     display: flex;
@@ -1929,6 +1758,32 @@ button:focus-visible,
 
 .project-card:hover {
     box-shadow: 0 10px 18px rgba(0, 0, 0, 0.24);
+}
+
+/* Snapshot + Match Game */
+.snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.snapshot-card {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 1rem;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.16);
+}
+
+.snapshot-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    color: var(--highlight-color);
+    font-weight: 700;
+}
+
+.snapshot-card p {
+    font-size: 0.92rem;
+    color: var(--secondary-text-color);
+    line-height: 1.5;
 }
 
 /* Accessibility: Motion Safety */
@@ -2099,22 +1954,6 @@ button:focus-visible,
     color: var(--highlight-color);
 }
 
-@media screen and (max-width: 1200px) {
-    .featured-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .hero-support {
-        font-size: 0.98rem;
-    }
-
-    .project-card-featured .project-thumbnail {
-        height: 210px;
-    }
-}
-
 /* Refinement pass overrides */
 .featured-grid {
     gap: 1.5rem;
@@ -2268,21 +2107,6 @@ button:focus-visible,
     100% {
         transform: translateY(-65px);
         opacity: 0;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .featured-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .project-logo-large {
-        width: 100px;
-        height: 100px;
-        min-height: 100px;
     }
 }
 
@@ -2456,17 +2280,6 @@ button:focus-visible,
     opacity: 0.92;
 }
 
-@media screen and (max-width: 768px) {
-    .sidebar-hud-mount {
-        margin-top: 1.4rem;
-    }
-
-    .audio-toggle-sidebar {
-        width: 100%;
-        height: 40px;
-    }
-}
-
 /* HUD layout refinement */
 #audio-toggle {
     position: fixed;
@@ -2539,17 +2352,6 @@ button:focus-visible,
     100% {
         transform: translate(-50%, -150%) scale(0.98);
         opacity: 0;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    #audio-toggle {
-        top: 0.8rem;
-        right: 0.8rem;
-    }
-
-    .sidebar-hud-mount .stats-hud {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -2641,4 +2443,159 @@ button:focus-visible,
 #main-content-area.view-exit-active {
     opacity: 0;
     transform: translateY(10px);
+}
+
+/* ==========================================================
+   10. RESPONSIVE BREAKPOINTS
+   ========================================================== */
+@media (max-width: 1024px) {
+    .container {
+        width: 92%;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 2rem var(--grid-margin);
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .projects-grid,
+    .featured-grid,
+    .snapshot-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-grid {
+        gap: 1.2rem;
+    }
+
+    .project-detail-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .project-text-column {
+        position: static;
+        order: 2;
+    }
+
+    .project-media-column {
+        order: 1;
+    }
+
+    .project-media-column.use-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .project-logo-large {
+        width: 100px;
+        height: 100px;
+        min-height: 100px;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: 100%;
+    }
+
+    .sidebar {
+        display: flex;
+        position: fixed;
+        transform: translateX(-100%);
+        left: 0;
+        width: 280px;
+        background-color: var(--background-color);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 999;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 1.5rem var(--grid-margin);
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+
+    .game-hud-cluster {
+        top: 0.8rem;
+        right: 0.8rem;
+        gap: 0.45rem;
+    }
+
+    .audio-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    #audio-toggle {
+        top: 0.8rem;
+        right: 0.8rem;
+    }
+
+    .stats-hud {
+        padding: 0.45rem;
+        gap: 0.4rem;
+    }
+
+    .hud-item {
+        min-width: 80px;
+    }
+
+    .hud-value {
+        font-size: 0.9rem;
+    }
+
+    .hero-support {
+        font-size: 0.98rem;
+    }
+
+    .project-card-featured .project-thumbnail {
+        height: 210px;
+    }
+
+    .sidebar-hud-mount {
+        margin-top: 1.4rem;
+    }
+
+    .sidebar-hud-mount .stats-hud {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .audio-toggle-sidebar {
+        width: 100%;
+        height: 40px;
+    }
+
+    .lightbox-modal {
+        padding: 1rem;
+    }
 }

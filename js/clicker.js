@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let clickTimes = [];
     let isOverheated = false;
     let heat = 0;
+    let saveTimer;
 
     const MAX_HEAT = 25;
     const XP_PER_CLICK = 5;
@@ -23,10 +24,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const meaningfulTargets = 'a, button, .project-card, .media-item, .profile-squares, .contact-icon, .store-button, .audio-toggle, .menu-button';
     const getXPForLevel = (lvl) => (lvl * (lvl + 1) / 2) * 100;
 
+    function scheduleSave() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(persistState, 300);
+    }
+
+    function persistState() {
+        localStorage.setItem('portfolio_xp', state.xp);
+        localStorage.setItem('portfolio_level', state.level);
+        localStorage.setItem('portfolio_clicks', state.clicks);
+        localStorage.setItem('portfolio_achievements', JSON.stringify(state.achievements));
+        localStorage.setItem('portfolio_face_clicks', state.faceClicks);
+        localStorage.setItem('portfolio_meltdowns', state.meltdowns);
+        localStorage.setItem('portfolio_social_clicks', state.socialClicks);
+        localStorage.setItem('portfolio_galleries', JSON.stringify(state.viewedGalleries));
+    }
+
+    window.addEventListener('beforeunload', persistState);
+
     const prevThreshold = state.level > 1 ? getXPForLevel(state.level - 1) : 0;
     if (state.xp < prevThreshold) {
         state.xp += prevThreshold;
-        localStorage.setItem('portfolio_xp', state.xp);
+        scheduleSave();
     }
 
     const profileSquares = document.querySelector('.profile-squares');
@@ -144,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => statsHUD.classList.add('ambient'), 2200);
         }
 
-        saveState();
+        scheduleSave();
         updateStatsUI();
     }
     document.addEventListener('click', (e) => {
@@ -190,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(winText);
         setTimeout(() => winText.remove(), 2100);
 
-        saveState();
+        scheduleSave();
         updateStatsUI();
     }
 
@@ -269,17 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lvlLabelBottom.textContent = `Level ${state.level}`;
     }
 
-    function saveState() {
-        localStorage.setItem('portfolio_xp', state.xp);
-        localStorage.setItem('portfolio_level', state.level);
-        localStorage.setItem('portfolio_clicks', state.clicks);
-        localStorage.setItem('portfolio_achievements', JSON.stringify(state.achievements));
-        localStorage.setItem('portfolio_face_clicks', state.faceClicks);
-        localStorage.setItem('portfolio_meltdowns', state.meltdowns);
-        localStorage.setItem('portfolio_social_clicks', state.socialClicks);
-        localStorage.setItem('portfolio_galleries', JSON.stringify(state.viewedGalleries));
-    }
-
     function createFloatingXP(x, y, amount, className = 'floating-xp') {
         const xpText = document.createElement('div');
         xpText.className = className;
@@ -313,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.achievements.includes(id)) return;
         state.achievements.push(id);
         addXP(ACHIEVEMENT_XP_BONUS);
-        saveState();
+        scheduleSave();
         showAchievementToast(id);
     }
 
@@ -348,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (type === 'SOCIAL') {
             state.socialClicks++;
             if (state.socialClicks >= 2) unlockAchievement('THE_SOCIALITE');
-            saveState();
+            scheduleSave();
         }
         if (type === 'NAV') {
             sessionNav.add(value);
@@ -363,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollStart = Date.now();
             hasScrolled = true;
         }
-        const scrollBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 100;
+        const scrollBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
         if (scrollBottom && (Date.now() - scrollStart < 3000)) {
             unlockAchievement('SPEED_READER');
         }
@@ -388,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const projectDetail = document.getElementById('project-detail');
         if (projectDetail) {
-            const scrollBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 50;
+            const scrollBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
             if (scrollBottom) {
                 unlockAchievement('DEEP_DIVER');
             }
@@ -399,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!state.viewedGalleries.includes(projectId)) {
             state.viewedGalleries.push(projectId);
             if (state.viewedGalleries.length >= 2) unlockAchievement('COLLECTOR');
-            saveState();
+            scheduleSave();
         }
     };
 
@@ -431,8 +439,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
-
 
 
 

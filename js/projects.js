@@ -257,7 +257,7 @@ function createProjectCard(project, featured = false) {
     return `
         <article class="project-card ${featured ? 'project-card-featured' : ''}" data-id="${project.id}" role="button" tabindex="0" aria-label="Open project ${project.title}">
             <div class="project-thumbnail">
-                <img src="${project.thumbnail}" alt="${project.title}" onerror="this.src='assets/project-thumbs/atlasmission-thumb.jpg'">
+                <img src="${project.thumbnail}" alt="${project.title}" loading="lazy" onerror="this.src='assets/project-thumbs/atlasmission-thumb.jpg'">
             </div>
             <div class="project-info">
                 <div class="project-card-head">
@@ -391,7 +391,7 @@ function loadProjectDetails(projectId) {
 
             <div class="project-media-column ${gridClass}">
                 ${project.videoUrl ? `
-                <div class="media-item video-item" role="button" tabindex="0" aria-label="Open video in lightbox" onclick="openLightbox(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox(0);}">
+                <div class="media-item video-item" data-media-index="0" role="button" tabindex="0" aria-label="Open video in lightbox">
                     <iframe width="560" height="315" src="${getYouTubeEmbedUrl(project.videoUrl)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 ` : ''}
@@ -401,8 +401,8 @@ function loadProjectDetails(projectId) {
                     const imgSrc = typeof item === 'string' ? item : item.src;
 
                     return `
-                    <div class="media-item" role="button" tabindex="0" aria-label="Open image in lightbox" onclick="openLightbox(${globalIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLightbox(${globalIndex});}">
-                        <img src="${imgSrc}" alt="${project.title} screenshot">
+                    <div class="media-item" data-media-index="${globalIndex}" role="button" tabindex="0" aria-label="Open image in lightbox">
+                        <img src="${imgSrc}" alt="${project.title} screenshot" loading="lazy" width="800" height="600">
                     </div>
                     `;
                 }).join('') : '<div class="media-empty-state">More visuals and process notes can be added here as the project case study evolves.</div>'}
@@ -418,11 +418,15 @@ function createLightbox() {
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox-modal';
     lightbox.innerHTML = `
-        <button type="button" class="lightbox-close" aria-label="Close lightbox" onclick="closeLightbox()">&times;</button>
-        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous media" onclick="navigateLightbox(-1)"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
-        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next media" onclick="navigateLightbox(1)"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+        <button type="button" class="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous media"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next media"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
         <div class="lightbox-content" id="lightbox-content-container"></div>
     `;
+
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.lightbox-prev').addEventListener('click', () => navigateLightbox(-1));
+    lightbox.querySelector('.lightbox-next').addEventListener('click', () => navigateLightbox(1));
 
     lightbox.addEventListener('click', function (e) {
         if (e.target === lightbox) {
@@ -441,7 +445,7 @@ function createLightbox() {
 }
 
 function openLightbox(index) {
-    if (window.trackGalleryView) window.trackGalleryView(currProjectId);
+    if (typeof window.trackGalleryView === 'function') window.trackGalleryView(currProjectId);
     const lightbox = document.querySelector('.lightbox-modal');
     if (!lightbox) return;
 
@@ -519,7 +523,7 @@ function getYouTubeEmbedUrl(url) {
     if (!url) return '';
     if (url.includes('youtube.com/embed/')) return url;
 
-    const pattern = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const pattern = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(pattern);
 
     if (match && match[1]) {
@@ -606,6 +610,25 @@ document.addEventListener('DOMContentLoaded', function () {
     renderProjects('apps-container', getProjectsByCategory('App'));
     renderProjects('prototypes-container', getProjectsByCategory('Prototype'));
     attachProjectCardEvents();
+
+    const mainContentArea = document.getElementById('main-content-area');
+    if (mainContentArea) {
+        mainContentArea.addEventListener('click', function (e) {
+            const item = e.target.closest('.media-item');
+            if (!item) return;
+            const index = parseInt(item.dataset.mediaIndex, 10);
+            if (!isNaN(index)) openLightbox(index);
+        });
+
+        mainContentArea.addEventListener('keydown', function (e) {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            const item = e.target.closest('.media-item');
+            if (!item) return;
+            e.preventDefault();
+            const index = parseInt(item.dataset.mediaIndex, 10);
+            if (!isNaN(index)) openLightbox(index);
+        });
+    }
 
     window.addEventListener('popstate', async function (event) {
         if (event.state) {
@@ -788,7 +811,6 @@ function setupSidebarNavigationForProject() {
         }
     });
 }
-
 
 
 
